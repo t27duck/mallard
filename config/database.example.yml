@@ -1,0 +1,13 @@
+development:
+  adapter: postgresql
+  host: localhost
+  database: mallard_development
+  username: 
+  password:
+
+production:
+  adapter: postgresql
+  host: localhost
+  database: mallard_production
+  username: 
+  password:

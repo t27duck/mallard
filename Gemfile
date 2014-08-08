@@ -17,4 +17,4 @@ gem "i18n", "~> 0.6.11"
 gem "sinatra", "~> 1.4.5"
 gem "sinatra-flash", "~> 0.3.0"
 gem "sinatra-contrib", "~> 1.4.2"
-
+gem "sinatra-activerecord", "~> 2.0.2"
