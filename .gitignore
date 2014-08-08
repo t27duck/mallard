@@ -2,3 +2,4 @@
 *.swap
 .ruby-version
 db/*.sqlite
+config/database.yml
