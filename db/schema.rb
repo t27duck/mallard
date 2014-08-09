@@ -16,11 +16,11 @@ ActiveRecord::Schema.define(version: 20140809001406) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "config_values", force: true do |t|
-    t.string "key"
-    t.string "value"
+  create_table "config_infos", force: true do |t|
+    t.string "key",   null: false
+    t.string "value", null: false
   end
 
-  add_index "config_values", ["key"], name: "index_config_values_on_key", unique: true, using: :btree
+  add_index "config_infos", ["key"], name: "index_config_infos_on_key", unique: true, using: :btree
 
 end
