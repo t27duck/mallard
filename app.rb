@@ -1,3 +1,4 @@
+require "bcrypt"
 require "i18n"
 require "json"
 require "sinatra/base"
