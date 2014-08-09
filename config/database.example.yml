@@ -11,3 +11,7 @@ production:
   database: mallard_production
   username: 
   password:
+
+test:
+  adapter: sqlite3
+  database: ":memory:"

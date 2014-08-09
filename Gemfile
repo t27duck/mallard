@@ -5,6 +5,10 @@ group :production do
   gem "unicorn", "~> 4.8"
 end
 
+group :test do
+  gem "sqlite3"
+  gem "database_cleaner"
+end
 
 gem "pg", "~> 0.17.1"
 gem "activerecord", "~> 4.1"

@@ -6,7 +6,7 @@ module Sinatra
     end
 
     def require_login?(path)
-      return false if path == "/login"
+      return false if ["/login", "/setup"].include?(path)
       true
     end
 
