@@ -6,6 +6,7 @@ require "sinatra/activerecord"
 require "sinatra/assetpack"
 require "sinatra/contrib/all"
 require "sinatra/flash"
+require "sinatra/reloader"
 
 require_relative "app/helpers/application_helper"
 
@@ -20,23 +21,33 @@ class Mallard < Sinatra::Base
   register Sinatra::ActiveRecordExtension
   register Sinatra::Contrib
   register Sinatra::Flash
+  register Sinatra::Reloader
 
   configure do
     enable :method_override
     enable :logging
     enable :sessions
     
+    set :public_dir, "public"
     set :root, File.dirname(__FILE__)
     set :session_secret, ENV["SESSION_TOKEN"] || "8675309LetsGo!"
     set :views, "app/views"
 
     assets do
+      css_compression :simple
+
       css :application, [
         "/css/bootstrap.min.css",
         "/css/bootstrap-theme.min.css"
       ]
 
-      css_compression :simple
+      js_compression :jsmin
+
+      js :application, [
+        "/js/bootstrap.min.js"
+      ]
+
+      prebuild true
     end
 
     before do
