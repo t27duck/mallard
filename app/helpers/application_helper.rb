@@ -1,7 +1,6 @@
 module ApplicationHelper
-  def needs_setup?(path=nil)
-    return false if path == "/setup"
-    return false if path =~ /css/ || path =~ /js/ || path =~ /img/ || path =~ /fonts/
+  def needs_setup?(path="")
+    return false if path == "/setup" || asset_path?(path)
     !setup_complete?
   end
 
@@ -9,9 +8,8 @@ module ApplicationHelper
     ConfigInfo.include?(:password) && ConfigInfo.include?(:auth_token)
   end
 
-  def require_login?(path=nil)
-    return false if ["/login", "/setup"].include?(path)
-    return false if path =~ /css/ || path =~ /js/ || path =~ /img/ || path =~ /fonts/
+  def require_login?(path="")
+    return false if ["/login", "/setup"].include?(path) || asset_path?(path)
     true
   end
 
@@ -27,5 +25,11 @@ module ApplicationHelper
     else
       false
     end
+  end
+
+  private ######################################################################
+
+  def asset_path?(path)
+    path =~ /css/ || path =~ /js/ || path =~ /img/ || path =~ /fonts/
   end
 end
