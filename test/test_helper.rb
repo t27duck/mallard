@@ -5,6 +5,7 @@ require "database_cleaner"
 
 require File.expand_path '../../app.rb', __FILE__
 
+ActiveRecord::Base.establish_connection adapter: "sqlite3", database: ":memory:"
 ActiveRecord::Schema.verbose = false
 ActiveRecord::Migrator.migrate(ActiveRecord::Migrator.migrations_paths)
 
