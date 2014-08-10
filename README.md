@@ -1,6 +1,17 @@
-mallard
+Mallard
 =======
 
+[![Code Climate](https://codeclimate.com/github/t27duck/mallard/badges/gpa.svg)](https://codeclimate.com/github/t27duck/mallard)
+
+### Mallard is a self-hosted, no-nonsense, straight-forward RSS reader.
+
+It's a sinatra application can run on a VPS or Heroku.
+
+You can run it locally by running:
+
+```bash
+unicorn -c config/unicorn.rb
+```
 
 ## Contributing
 

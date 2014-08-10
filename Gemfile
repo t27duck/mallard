@@ -17,6 +17,7 @@ gem "delayed_job_active_record", "~> 4.0"
 gem "feedzirra", :github => 't27duck/feedzirra', :branch => 'lite'
 gem "i18n", "~> 0.6.11"
 gem "pg", "~> 0.17.1"
+gem "rake"
 gem "sanitize", "~> 3.0.0"
 gem "sinatra", "~> 1.4.5"
 gem "sinatra-activerecord", "~> 2.0.2"
