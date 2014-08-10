@@ -10,15 +10,9 @@ ActiveRecord::Migrator.migrate(ActiveRecord::Migrator.migrations_paths)
 
 DatabaseCleaner.strategy = :transaction
 
-class MiniTest::Unit::TestCase
+class MiniTest::Test
   include Rack::Test::Methods
 
-  def app
-    Mallard
-  end
-end
-
-module DatabaseCleanerMiniTest
   def before_setup
     super
     DatabaseCleaner.start
@@ -28,8 +22,13 @@ module DatabaseCleanerMiniTest
     DatabaseCleaner.clean
     super
   end
-end
 
-class MiniTest::Unit::TestCase
-  include DatabaseCleanerMiniTest
+  def app
+    Mallard
+  end
+
+  def complete_setup
+    ConfigInfo.create!(:key => "password", :value => BCrypt::Password.create("12345"))
+    ConfigInfo.create!(:key => "auth_token", :value => "12345")
+  end
 end

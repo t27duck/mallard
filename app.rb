@@ -30,12 +30,11 @@ class Mallard < Sinatra::Base
   end
 
   helpers do
-    include Sinatra::ApplicationHelper
+    include ApplicationHelper
   end
 
   get "/" do
-      redirect to("/setup") if needs_setup?(request.path)
-    
+    redirect to("/setup") if needs_setup?(request.path)
   end
 end
 
