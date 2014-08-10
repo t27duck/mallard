@@ -1,17 +1,6 @@
 require File.expand_path '../test_helper.rb', __FILE__
 
 class ApplicationHelperTest < MiniTest::Test
-
-  class AppHelper
-    attr_accessor :session
-    include ApplicationHelper
-  end
-
-  def setup
-    @helpers = AppHelper.new
-    @helpers.session = {}
-  end
-
   def test_setup_complete_is_true_when_everything_is_configured
     complete_setup
     assert @helpers.setup_complete?

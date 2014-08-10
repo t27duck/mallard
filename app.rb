@@ -7,8 +7,13 @@ require "sinatra/contrib/all"
 require "sinatra/flash"
 
 require_relative "app/helpers/application_helper"
+
 require_relative "app/models/config_info"
+
+require_relative "app/util/app_setup"
+
 I18n.enforce_available_locales = false
+
 class Mallard < Sinatra::Base
   register Sinatra::ActiveRecordExtension
   register Sinatra::Contrib

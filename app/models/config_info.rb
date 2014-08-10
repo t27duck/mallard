@@ -1,4 +1,8 @@
 class ConfigInfo < ActiveRecord::Base
+
+  validate :key, :value, :presense => true
+  validate :key, :uniqueness => true
+
   def self.include?(key)
     where(:key => key).exists?
   end
@@ -10,7 +14,7 @@ class ConfigInfo < ActiveRecord::Base
   end
 
   def self.set(key, value)
-    record = find_or_initalize_by(:key => key)
+    record = find_or_initialize_by(:key => key)
     record.value = value
     record.save!
   end
