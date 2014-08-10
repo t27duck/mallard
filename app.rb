@@ -3,6 +3,7 @@ require "i18n"
 require "json"
 require "sinatra/base"
 require "sinatra/activerecord"
+require "sinatra/assetpack"
 require "sinatra/contrib/all"
 require "sinatra/flash"
 
@@ -15,6 +16,7 @@ require_relative "app/util/app_setup"
 I18n.enforce_available_locales = false
 
 class Mallard < Sinatra::Base
+  register Sinatra::AssetPack
   register Sinatra::ActiveRecordExtension
   register Sinatra::Contrib
   register Sinatra::Flash
@@ -24,9 +26,19 @@ class Mallard < Sinatra::Base
     enable :logging
     enable :sessions
     
+    set :root, File.dirname(__FILE__)
     set :session_secret, ENV["SESSION_TOKEN"] || "8675309LetsGo!"
     set :views, "app/views"
-    
+
+    assets do
+      css :application, [
+        "/css/bootstrap.min.css",
+        "/css/bootstrap-theme.min.css"
+      ]
+
+      css_compression :simple
+    end
+
     before do
       I18n.locale = ENV["LOCALE"].present? ? ENV["LOCALE"].to_sym : :en
       redirect to("/setup") if needs_setup?(request.path)
