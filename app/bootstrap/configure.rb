@@ -14,12 +14,14 @@ class Mallard < Sinatra::Base
 
       css :application, [
         "/css/bootstrap.min.css",
-        "/css/bootstrap-theme.min.css"
+        "/css/bootstrap-theme.min.css",
+        "/css/main.css"
       ]
 
       js_compression :jsmin
 
       js :application, [
+        "/js/jquery-2.1.1.min.js",
         "/js/bootstrap.min.js"
       ]
 
