@@ -41,9 +41,7 @@ class Feed < ActiveRecord::Base
 
   def create_new_entries!
     feed_object.entries.each do |e|
-      identifier = e.entry_id if e.respond_to?(:entry_id)  
-      identifier ||= e.guid if e.respond_to?(:guid)
-      identifier ||= e.url
+      identifier = determine_identifier(e)
 
       unless Entry.exists?(:feed_id => id, :guid => identifier)
         Entry.create!({
@@ -65,6 +63,13 @@ class Feed < ActiveRecord::Base
 
   def feed_object
     @feed_object ||= Feedzirra::Feed.fetch_and_parse(url)
+  end
+
+  def determine_identifier(feed_entry)
+    identifier = feed_entry.entry_id if feed_entry.respond_to?(:entry_id)
+    identifier ||= feed_entry.guid if feed_entry.respond_to?(:guid)
+    identifier ||= feed_entry.url
+    identifier
   end
 
 end
