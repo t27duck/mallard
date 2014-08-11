@@ -7,6 +7,8 @@ class Feed < ActiveRecord::Base
     4 => 'full'
   }
 
+  has_many :entries, :dependent => :delete_all
+
   validates_presence_of :title, :sanitization_level, :url
 
   before_validation :set_info!, :if => lambda{ |model| model.new_record? }
@@ -31,7 +33,35 @@ class Feed < ActiveRecord::Base
   rescue Timeout::Error
   end
 
+  def unread_count
+    @unread_count ||= entries.unread.count
+  end
+
   private ######################################################################
+
+  def create_new_entries!
+    feed_object.entries.each do |e|
+      identifier = e.entry_id if e.respond_to?(:entry_id)  
+      identifier ||= e.guid if e.respond_to?(:guid)
+      identifier ||= e.url
+
+      unless Entry.exists?(:feed_id => id, :guid => identifier)
+        Entry.create!({
+          :feed_id   => id,
+          :title     => e.title,
+          :url       => e.url,
+          :author    => e.author,
+          :published => e.published,
+          :guid      => identifier,
+          :summary   => e.summary,
+          :content   => e.respond_to?(:content) ? e.content : nil
+        })
+      end
+    end
+  rescue
+    self.errors.add(:base, 'There was an error parsing entries in this feed')
+    raise
+  end
 
   def feed_object
     @feed_object ||= Feedzirra::Feed.fetch_and_parse(url)

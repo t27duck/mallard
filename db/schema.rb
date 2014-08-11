@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140811012236) do
+ActiveRecord::Schema.define(version: 20140811013509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,21 @@ ActiveRecord::Schema.define(version: 20140811012236) do
   end
 
   add_index "config_infos", ["key"], name: "index_config_infos_on_key", unique: true, using: :btree
+
+  create_table "entries", force: true do |t|
+    t.integer  "feed_id",                   null: false
+    t.string   "title",                     null: false
+    t.text     "url",                       null: false
+    t.text     "guid",                      null: false
+    t.string   "author",                    null: false
+    t.text     "summary"
+    t.text     "content"
+    t.datetime "published",                 null: false
+    t.boolean  "read",      default: false, null: false
+    t.boolean  "starred",                   null: false
+  end
+
+  add_index "entries", ["feed_id"], name: "index_entries_on_feed_id", using: :btree
 
   create_table "feeds", force: true do |t|
     t.string   "title",            null: false
