@@ -1,15 +1,8 @@
 class Feed < ActiveRecord::Base
-  SANITATION_LEVELS = {
-    0 => 'none',
-    1 => 'relaxed',
-    2 => 'basic',
-    3 => 'restricted',
-    4 => 'full'
-  }
-
+  
   has_many :entries, :dependent => :delete_all
 
-  validates_presence_of :title, :sanitization_level, :url
+  validates_presence_of :title, :url
 
   before_validation :set_info!, :if => lambda{ |model| model.new_record? }
   after_create :fetch!

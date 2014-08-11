@@ -4,7 +4,7 @@ class CreateFeeds < ActiveRecord::Migration
       t.string :title, :null => false
       t.string :url, :null => false
       t.string :etag, :null => false
-      t.integer :sanitization_level, :null => false
+      t.boolean :sanitize, :null => false, :default => true
       t.datetime :last_checked
       t.datetime :last_modified
       t.timestamps

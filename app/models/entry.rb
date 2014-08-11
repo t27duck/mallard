@@ -22,18 +22,6 @@ class Entry < ActiveRecord::Base
 
   def body
     entry_body = content ? content : summary
-    level = case feed.sanitization_level
-    when 1
-      Sanitize::Config::CUSTOM_RELAXED
-    when 2
-      Sanitize::Config::BASIC
-    when 3
-      Sanitize::Config::RESTRICTED
-    when 4
-      Sanitize::Config::DEFAULT
-    else
-      nil
-    end
-    level ? Sanitize.clean(entry_body, level) : entry_body
+    feed.sanitize ? Loofah.scrub_fragment(entry_body, :prune).to_s : entry_body
   end
 end

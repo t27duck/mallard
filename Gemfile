@@ -14,7 +14,7 @@ gem "activerecord", "~> 4.1"
 gem "bcrypt", "~> 3.1.7"
 gem "delayed_job", "~> 4.0"
 gem "delayed_job_active_record", "~> 4.0"
-gem "feedzirra", :github => 't27duck/feedzirra', :branch => 'lite'
+gem "feedjira", "~> 1.3.1"
 gem "i18n", "~> 0.6.11"
 gem "pg", "~> 0.17.1"
 gem "rake"

@@ -39,10 +39,10 @@ ActiveRecord::Schema.define(version: 20140811013509) do
   add_index "entries", ["feed_id"], name: "index_entries_on_feed_id", using: :btree
 
   create_table "feeds", force: true do |t|
-    t.string   "title",              null: false
-    t.string   "url",                null: false
-    t.string   "etag",               null: false
-    t.integer  "sanitization_level", null: false
+    t.string   "title",                        null: false
+    t.string   "url",                          null: false
+    t.string   "etag",                         null: false
+    t.boolean  "sanitize",      default: true, null: false
     t.datetime "last_checked"
     t.datetime "last_modified"
     t.datetime "created_at"
