@@ -7,6 +7,19 @@ class Entry < ActiveRecord::Base
   scope :read, -> { where(:read => true) }
   scope :starred, -> { where(:starred => true) }
 
+  def self.create_from_feedzirra(feed_id, identifier, entry)
+    Entry.create!({
+      :feed_id   => feed_id,
+      :title     => entry.title,
+      :url       => entry.url,
+      :author    => entry.author,
+      :published => entry.published,
+      :guid      => identifier,
+      :summary   => entry.summary,
+      :content   => entry.respond_to?(:content) ? entry.content : nil
+    }) if !Entry.exists?(:feed_id => feed_id, :guid => identifier)
+  end
+
   def body
     entry_body = content ? content : summary
     level = case feed.sanitization_level

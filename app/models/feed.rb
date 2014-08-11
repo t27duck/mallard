@@ -42,19 +42,7 @@ class Feed < ActiveRecord::Base
   def create_new_entries!
     feed_object.entries.each do |e|
       identifier = determine_identifier(e)
-
-      unless Entry.exists?(:feed_id => id, :guid => identifier)
-        Entry.create!({
-          :feed_id   => id,
-          :title     => e.title,
-          :url       => e.url,
-          :author    => e.author,
-          :published => e.published,
-          :guid      => identifier,
-          :summary   => e.summary,
-          :content   => e.respond_to?(:content) ? e.content : nil
-        })
-      end
+      Entry.create_from_feedzirra(id, identifier, e)
     end
   rescue
     self.errors.add(:base, 'There was an error parsing entries in this feed')
