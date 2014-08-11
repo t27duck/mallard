@@ -1,4 +1,4 @@
-require File.expand_path '../test_helper.rb', __FILE__
+require File.expand_path '../../../test_helper.rb', __FILE__
 
 class ApplicationHelperTest < MiniTest::Test
   def test_setup_complete_is_true_when_everything_is_configured
