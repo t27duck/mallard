@@ -28,21 +28,23 @@ ActiveRecord::Schema.define(version: 20140811013509) do
     t.string   "title",                     null: false
     t.text     "url",                       null: false
     t.text     "guid",                      null: false
-    t.string   "author",                    null: false
+    t.string   "author"
     t.text     "summary"
     t.text     "content"
     t.datetime "published",                 null: false
     t.boolean  "read",      default: false, null: false
-    t.boolean  "starred",                   null: false
+    t.boolean  "starred",   default: false, null: false
   end
 
   add_index "entries", ["feed_id"], name: "index_entries_on_feed_id", using: :btree
 
   create_table "feeds", force: true do |t|
-    t.string   "title",            null: false
-    t.string   "url",              null: false
-    t.string   "etag",             null: false
-    t.integer  "sanitation_level", null: false
+    t.string   "title",              null: false
+    t.string   "url",                null: false
+    t.string   "etag",               null: false
+    t.integer  "sanitization_level", null: false
+    t.datetime "last_checked"
+    t.datetime "last_modified"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

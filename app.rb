@@ -1,4 +1,5 @@
 require "bcrypt"
+require "feedzirra"
 require "i18n"
 require "json"
 require "sanitize"

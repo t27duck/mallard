@@ -5,12 +5,12 @@ class CreateEntries < ActiveRecord::Migration
       t.string :title, :null => false
       t.text :url, :null => false
       t.text :guid, :null => false
-      t.string :author, :null => false
+      t.string :author
       t.text :summary
       t.text :content
       t.datetime :published, :null => false
       t.boolean :read, :null => false, :default => false
-      t.boolean :starred, :null => false, :defalt => false
+      t.boolean :starred, :null => false, :default => false
       t.timestamp
     end
 
