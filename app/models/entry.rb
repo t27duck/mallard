@@ -7,7 +7,8 @@ class Entry < ActiveRecord::Base
   scope :read, -> { where(:read => true) }
   scope :starred, -> { where(:starred => true) }
 
-  def self.create_from_feedzirra(feed_id, identifier, entry)
+  def self.create_from_feedjira(feed_id, entry)
+    identifier = determine_identifier(entry)
     Entry.create!({
       :feed_id   => feed_id,
       :title     => entry.title,
@@ -18,6 +19,13 @@ class Entry < ActiveRecord::Base
       :summary   => entry.summary,
       :content   => entry.respond_to?(:content) ? entry.content : nil
     }) if !Entry.exists?(:feed_id => feed_id, :guid => identifier)
+  end
+
+  def self.determine_identifier(feed_entry)
+    identifier = feed_entry.entry_id if feed_entry.respond_to?(:entry_id)
+    identifier ||= feed_entry.guid if feed_entry.respond_to?(:guid)
+    identifier ||= feed_entry.url
+    identifier
   end
 
   def body

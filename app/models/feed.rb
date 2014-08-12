@@ -1,5 +1,4 @@
 class Feed < ActiveRecord::Base
-  
   has_many :entries, :dependent => :delete_all
 
   validates_presence_of :title, :url
@@ -34,8 +33,7 @@ class Feed < ActiveRecord::Base
 
   def create_new_entries!
     feed_object.entries.each do |e|
-      identifier = determine_identifier(e)
-      Entry.create_from_feedzirra(id, identifier, e)
+      Entry.create_from_feedjira(id, e)
     end
   rescue
     self.errors.add(:base, 'There was an error parsing entries in this feed')
@@ -43,14 +41,7 @@ class Feed < ActiveRecord::Base
   end
 
   def feed_object
-    @feed_object ||= Feedzirra::Feed.fetch_and_parse(url)
-  end
-
-  def determine_identifier(feed_entry)
-    identifier = feed_entry.entry_id if feed_entry.respond_to?(:entry_id)
-    identifier ||= feed_entry.guid if feed_entry.respond_to?(:guid)
-    identifier ||= feed_entry.url
-    identifier
+    @feed_object ||= Feedjira::Feed.fetch_and_parse(url)
   end
 
 end
