@@ -21,7 +21,7 @@ class Mallard < Sinatra::Base
   end
 
   get "/feeds/:id/edit" do
-    @feed = Feed.find(params[:id])
+    @feed = FeedRepo.find(params[:id])
     erb :"feeds/edit"
   end
 
@@ -34,7 +34,7 @@ class Mallard < Sinatra::Base
   get "/feeds/:id/delete" do
     @feed = FeedRepo.find(params[:id])
     @feed.destroy
-    flash[:notice] = "Feed deleted"
+    flash[:info] = "Feed deleted"
     redirect to("/feeds")
   end
 end

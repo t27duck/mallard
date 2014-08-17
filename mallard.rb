@@ -15,7 +15,6 @@ end
 I18n.enforce_available_locales = false
 
 require_dir "app/helpers"
-require_dir "config/boot"
 require_dir "app/models"
 require_dir "app/decorators"
 require_dir "app/repos"
@@ -24,6 +23,7 @@ require_dir "app/controllers"
 
 class Mallard < Sinatra::Base
   register Sinatra::ActiveRecordExtension
+  register Sinatra::AssetPack
   register Sinatra::Contrib
   register Sinatra::Flash
   register Sinatra::Reloader
@@ -42,10 +42,34 @@ class Mallard < Sinatra::Base
     set :session_secret, ENV["SESSION_TOKEN"] || "8675309LetsGo!"
     set :views, "app/views"
 
+    assets do
+      css_compression :simple
+
+      css :application, [
+        "/css/bootstrap.min.css",
+        "/css/bootstrap-theme.min.css",
+        "/css/main.css"
+      ]
+
+      js_compression :jsmin
+
+      js :application, [
+        "/js/jquery-2.1.1.min.js",
+        "/js/bootstrap.min.js"
+      ]
+
+      prebuild true
+    end
+
     before do
       I18n.locale = ENV["LOCALE"].nil? ? :en : ENV["LOCALE"].to_sym
       redirect to("/setup") if needs_setup?(request.path)
       redirect to("/login") if require_login?(request.path) && !logged_in?
+    end
+
+    error ActiveRecord::RecordNotFound do
+      status 404
+      body "Not found!"
     end
   end
 end
