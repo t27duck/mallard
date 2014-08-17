@@ -6,8 +6,9 @@ group :production do
 end
 
 group :test do
-  gem "sqlite3"
-  gem "database_cleaner"
+  gem "sqlite3", "~> 1.3.9"
+  gem "database_cleaner", "~> 1.3.0"
+  gem "mocha", "~> 1.1.0"
 end
 
 gem "activerecord", "~> 4.1"
@@ -17,7 +18,7 @@ gem "delayed_job_active_record", "~> 4.0"
 gem "feedjira", "~> 1.3.1"
 gem "i18n", "~> 0.6.11"
 gem "pg", "~> 0.17.1"
-gem "rake"
+gem "rake", "~> 10.3.2"
 gem "sanitize", "~> 3.0.0"
 gem "sinatra", "~> 1.4.5"
 gem "sinatra-activerecord", "~> 2.0.2"

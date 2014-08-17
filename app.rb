@@ -70,7 +70,7 @@ class Mallard < Sinatra::Base
   end
 
   get "/" do
-    redirect to("/setup") if needs_setup?(request.path)
+    @entries = Entries.unread
   end
 end
 

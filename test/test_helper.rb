@@ -3,6 +3,7 @@ require "minitest/autorun"
 require "rack/test"
 require "database_cleaner"
 require "ostruct"
+require "mocha/mini_test"
 
 require File.expand_path "../../app.rb", __FILE__
 
