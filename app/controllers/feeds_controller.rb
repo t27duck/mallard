@@ -1,6 +1,6 @@
 class Mallard < Sinatra::Base
   get "/feeds" do
-    @feeds = FeedRepo.all
+    @feeds = Decorator.generate(FeedRepo.all)
     erb :"feeds/index"
   end
 
@@ -10,13 +10,12 @@ class Mallard < Sinatra::Base
   end
 
   post "/feeds" do
-    url       = params[:url]
-    sanitize  = params[:sanitize]
-    @feed = FeedRepo.create(url, sanitize)
+    @feed = FeedRepo.create(params[:url], params[:sanitize])
     if @feed.valid?
-      flash[:notice] = "Feed created"
+      flash[:info] = "Feed created"
       redirect to("/feeds")
     else
+      flash[:danger] = "Unable to add feed"
       erb :"feeds/new"
     end
   end
@@ -27,15 +26,12 @@ class Mallard < Sinatra::Base
   end
 
   put "/feeds/:id" do
-    id      = params[:id]
-    title   = params[:title]
-    santize = params[:sanitize]
-    FeedRepo.update(FeedRepo.find(id), title, santize)
-    flash[:notice] = "Feed updated"
+    FeedRepo.update(FeedRepo.find(params[:id]), params[:title], params[:sanitize])
+    flash[:danger] = "Feed updated"
     redirect to("/feeds")
   end
 
-  delete "/feeds/:id" do
+  get "/feeds/:id/delete" do
     @feed = FeedRepo.find(params[:id])
     @feed.destroy
     flash[:notice] = "Feed deleted"

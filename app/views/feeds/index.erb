@@ -1,0 +1,31 @@
+<div class="pull-right">
+  <a href="/feeds/new" class="btn btn-primary">Add</a>
+</div>
+
+<h2>Feeds</h2>
+<% if @feeds.empty? %>
+  <h3>No feeds found... you should add some!</h3>
+<% else %>
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Entry Count</th>
+        <th>Unread Count</th>
+        <th></th>
+    </thead>
+    <tbody>
+    <% @feeds.each do |feed| %>
+      <tr>
+        <td><%= feed.title %></td>
+        <td><%= feed.entry_count %></td>
+        <td><%= feed.unread_count %></td>
+        <td>
+          <a href="/feeds/<%= feed.id %>/edit" class="btn btn-primary">Edit</a>
+          <a href="/feeds/<%= feed.id %>/delete" class="btn btn-danger">Delete</a>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>

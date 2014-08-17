@@ -7,11 +7,11 @@ class Mallard < Sinatra::Base
   post "/setup" do
     password = params[:password]
     if password == params[:password_confirmation]
-      flash[:notice] = "Setup complete"
+      flash[:info] = "Setup complete"
       AppSetup.set_password(password)
       redirect to("/")
     else
-      flash[:error] = "Passwords do not match"
+      flash[:danger] = "Passwords do not match"
       redirect to("/setup")
     end
   end

@@ -70,27 +70,14 @@ class Mallard < Sinatra::Base
   end
 
   get "/" do
-    @entries = EntryRepo.unread
+    @entries = Decorator.generate(EntryRepo.unread)
     erb :root
-  end
-
-  get "/login" do
-    redirect to("/") if logged_in?
-    erb :login
-  end
-
-  post "/login" do
-    redirect to("/") if logged_in?
-    if authenticate(params[:password])
-      redirect to("/")
-    else
-      erb :login
-    end
   end
 end
 
 
 require_dir "app/models"
+require_dir "app/decorators"
 require_dir "app/repos"
 require_dir "app/util"
 require_dir "app/controllers"

@@ -14,10 +14,6 @@ class Feed < ActiveRecord::Base
   rescue Timeout::Error
   end
 
-  def unread_count
-    @unread_count ||= entries.unread.count
-  end
-
   private ######################################################################
 
   def set_info

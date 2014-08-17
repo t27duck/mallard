@@ -1,0 +1,2 @@
+class EntryDecorator < Decorator
+end

@@ -1,6 +1,6 @@
 class FeedRepo
   def self.all
-    Feed.order(:name)
+    Feed.order(:title)
   end
 
   def self.find(id)
