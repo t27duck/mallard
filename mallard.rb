@@ -71,6 +71,21 @@ class Mallard < Sinatra::Base
 
   get "/" do
     @entries = EntryRepo.unread
+    erb :root
+  end
+
+  get "/login" do
+    redirect to("/") if logged_in?
+    erb :login
+  end
+
+  post "/login" do
+    redirect to("/") if logged_in?
+    if authenticate(params[:password])
+      redirect to("/")
+    else
+      erb :login
+    end
   end
 end
 
