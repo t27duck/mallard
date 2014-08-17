@@ -14,8 +14,8 @@ class FeedRepo
   end
 
   def self.update(feed, title, sanitize)
-    feed.title = title
-    feed.sanitize
+    feed.title    = title
+    feed.sanitize = sanitize
     feed.save
     feed
   end

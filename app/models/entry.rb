@@ -3,10 +3,6 @@ class Entry < ActiveRecord::Base
 
   validates_presence_of :feed, :title, :url, :published, :guid
 
-  scope :unread, -> { where(:read => false) }
-  scope :read, -> { where(:read => true) }
-  scope :starred, -> { where(:starred => true) }
-
   def self.create_from_feedjira(feed_id, entry)
     identifier = determine_identifier(entry)
     Entry.create!({

@@ -1,31 +1,31 @@
 class Mallard < Sinatra::Base
   get "/entries/:id" do
-    @entry = Entry.find(params[:id])
-    @entry.update_attributes!(:read => true)
+    @entry = EntryRepo.find(params[:id])
+    EntryRepo.read(@entry)
     erb :"entries/show"
   end
 
   get "/entries/:id/star" do
-    @entry = Entry.find(params[:id])
-    @entry.update_attributes!(:starred => true)
+    @entry = EntryRepo.find(params[:id])
+    EntryRepo.star(@entry)
     "ok"
   end
 
   get "/entries/:id/unstar" do
-    @entry = Entry.find(params[:id])
-    @entry.update_attributes!(:starred => false)
+    @entry = EntryRepo.find(params[:id])
+    EntryRepo.unstarr(@entry)
     "ok"
   end
 
   get "/entries/:id/read" do
-    @entry = Entry.find(params[:id])
-    @entry.update_attributes!(:read => true)
+    @entry = EntryRepo.find(params[:id])
+    EntryRepo.read(@entry)
     "ok"
   end
 
   get "/entries/:id/unread" do
     @entry = Entry.find(params[:id])
-    @entry.update_attributes!(:read => false)
+    EntryRepo.unread(@entry)
     "ok"
   end
 end
