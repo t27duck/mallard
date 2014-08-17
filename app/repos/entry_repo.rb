@@ -20,7 +20,7 @@ class EntryRepo
   end
   
   def self.unread
-    Entry.unread.order(:published => :desc)
+    all.where(:starred => false)
   end
 
   def self.read(entry)

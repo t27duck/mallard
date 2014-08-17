@@ -70,7 +70,7 @@ class Mallard < Sinatra::Base
   end
 
   get "/" do
-    @entries = Entries.unread
+    @entries = EntryRepo.unread
   end
 end
 
