@@ -8,6 +8,12 @@ class EntriesControllerTest < MiniTest::Test
     @entry = Entry.first
   end
 
+  def test_if_entry_isnt_found_render_404
+    get "/entries/0"
+    assert_response 404
+    assert !last_response.body.nil?
+  end
+
   def test_fetching_entry_renders_and_marks_entry_read
     get "/entries/#{@entry.id}"
     assert_response 200

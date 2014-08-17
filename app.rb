@@ -63,6 +63,11 @@ class Mallard < Sinatra::Base
       redirect to("/login") if require_login?(request.path) && !logged_in?
     end
   end
+  
+  error ActiveRecord::RecordNotFound do
+    status 404
+    body "Not found!"
+  end
 
   get "/" do
     redirect to("/setup") if needs_setup?(request.path)
