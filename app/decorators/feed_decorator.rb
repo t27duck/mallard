@@ -1,3 +1,4 @@
+require_relative "decorator"
 class FeedDecorator < Decorator
   def entry_count
     entries.count
