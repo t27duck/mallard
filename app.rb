@@ -31,7 +31,7 @@ class Mallard < Sinatra::Base
   configure do
     enable :method_override
     enable :logging
-    enable :sessions
+    enable :sessions unless test?
     
     set :public_dir, "public"
     set :root, File.dirname(__FILE__)

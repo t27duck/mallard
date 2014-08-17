@@ -18,22 +18,22 @@ end
 DatabaseCleaner.strategy = :transaction
 
 class MiniTest::Test
+  def session
+    @session ||= {}
+  end
+  
   include Rack::Test::Methods
 
-  class AppHelper
-    attr_accessor :session
-    include ApplicationHelper
-  end
+  include ApplicationHelper
 
   def before_setup
     super
     DatabaseCleaner.start
-    @helpers = AppHelper.new
-    @helpers.session = {}
   end
-
+  
   def after_teardown
     DatabaseCleaner.clean
+    ENV["BYPASS_LOGIN"] = nil
     super
   end
 
@@ -46,8 +46,16 @@ class MiniTest::Test
     ConfigInfo.create!(:key => "auth_token", :value => "12345")
   end
 
+  def log_user_in
+    ENV["BYPASS_LOGIN"] = "yes"
+  end
+
+  def assert_response(code, message=nil)
+    assert_equal code, last_response.status, message
+  end
+
   def assert_redirected(path, message=nil)
-    assert_equal 302, last_response.status, message
+    assert_response 302, message
     assert_equal last_response.location, "http://example.org#{path}", message
   end
 end

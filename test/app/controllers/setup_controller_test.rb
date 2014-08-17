@@ -9,7 +9,7 @@ class SetupControllerTest < MiniTest::Test
 
   def test_when_config_isnt_set_allow_access_to_setup
     get "/setup"
-    assert_equal 200, last_response.status
+    assert_response 200
   end
 
   def test_when_config_set_disallow_access_to_setup
@@ -21,7 +21,7 @@ class SetupControllerTest < MiniTest::Test
   def test_posting_to_setup_path_completes_setup
     password = "12345"
     post "/setup", {:password => password, :password_confirmation => password}
-    assert @helpers.setup_complete?
+    assert setup_complete?
     assert_redirected "/"
   end
 
@@ -29,7 +29,7 @@ class SetupControllerTest < MiniTest::Test
     password = "12345"
     password_confirmation = "54321"
     post "/setup", {:password => password, :password_confirmation => password_confirmation}
-    assert !@helpers.setup_complete?
+    assert !setup_complete?
     assert_redirected "/setup"
   end
 
