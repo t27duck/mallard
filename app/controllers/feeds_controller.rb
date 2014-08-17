@@ -1,6 +1,6 @@
 class Mallard < Sinatra::Base
   get "/feeds" do
-    @feeds = Feed.all
+    @feeds = FeedRepo.all
     erb :"feeds/index"
   end
 
@@ -10,8 +10,10 @@ class Mallard < Sinatra::Base
   end
 
   post "/feeds" do
-    @feed = Feed.new(params[:feed])
-    if @feed.save
+    url       = params[:url]
+    sanitize  = params[:sanitize]
+    @feed = FeedRepo.create(url, sanitize)
+    if @feed.valid?
       flash[:notice] = "Feed created"
       redirect to("/feeds")
     else
@@ -25,17 +27,16 @@ class Mallard < Sinatra::Base
   end
 
   put "/feeds/:id" do
-    @feed = Feed.find(params[:id])
-    if @feed.update_attributes(params[:feed])
-      flash[:notice] = "Feed updated"
-      redirect to("/feeds")
-    else
-      erb :"feeds/edit"
-    end
+    id      = params[:id]
+    title   = params[:title]
+    santize = params[:sanitize]
+    FeedRepo.update(FeedRepo.find(id), title, santize)
+    flash[:notice] = "Feed updated"
+    redirect to("/feeds")
   end
 
   delete "/feeds/:id" do
-    @feed = Feed.find(params[:id])
+    @feed = FeedRepo.find(params[:id])
     @feed.destroy
     flash[:notice] = "Feed deleted"
     redirect to("/feeds")

@@ -76,5 +76,6 @@ end
 
 
 require_dir "app/models"
+require_dir "app/repos"
 require_dir "app/util"
 require_dir "app/controllers"

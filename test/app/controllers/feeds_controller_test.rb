@@ -25,14 +25,14 @@ class FeedsControllerTest < MiniTest::Test
       :etag => "abcde"
     })
     Feed.any_instance.stubs(:feed_object).returns(fake_feed_object)
-    post "/feeds", :feed => {:url => "http://yahoo.com"}
+    post "/feeds", :url => "http://yahoo.com", :sanitize => false
     assert_redirected "/feeds"
     assert_equal 1, Feed.count - old_feed_count
   end
 
   def test_feed_create_rerenders_if_validation_fails
     old_feed_count = Feed.count
-    post "/feeds", :feed => {}
+    post "/feeds"
     assert_response 200
     assert_equal old_feed_count, Feed.count
   end
@@ -50,19 +50,11 @@ class FeedsControllerTest < MiniTest::Test
   def test_feed_update_updates_feed_and_redirects
     new_title = "New title"
     old_title = @feed.title
-    put "/feeds/#{@feed.id}", :feed => {:title => new_title}
+    put "/feeds/#{@feed.id}", :title => new_title, :sanitize => false
     assert_redirected "/feeds"
     @feed.reload
     assert_equal new_title, @feed.title
     assert old_title != @feed.title
-  end
-
-  def test_feed_rerenders_if_valiation_fails
-    new_title = nil
-    put "/feeds/#{@feed.id}", :feed => {:title => new_title}
-    assert_response 200
-    @feed.reload
-    assert new_title != @feed.title
   end
 
   def test_feed_update_throws_404_if_feed_is_not_found
