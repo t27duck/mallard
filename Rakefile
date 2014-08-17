@@ -2,7 +2,7 @@ require "bundler"
 Bundler.setup
 
 require "sinatra/activerecord/rake"
-require "./app"
+require "./mallard"
 
 require 'rake/testtask'
 Rake::TestTask.new do |t|

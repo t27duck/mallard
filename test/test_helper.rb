@@ -5,7 +5,7 @@ require "database_cleaner"
 require "ostruct"
 require "mocha/mini_test"
 
-require File.expand_path "../../app.rb", __FILE__
+require File.expand_path "../../mallard.rb", __FILE__
 
 require "active_record/fixtures"
 

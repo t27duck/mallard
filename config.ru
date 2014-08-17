@@ -2,5 +2,5 @@ require "bundler"
 
 Bundler.require
 
-require "./app"
+require "./mallard"
 run Mallard
