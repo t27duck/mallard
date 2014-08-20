@@ -22,7 +22,10 @@
         <td><%= feed.unread_count %></td>
         <td>
           <a href="/feeds/<%= feed.id %>/edit" class="btn btn-primary">Edit</a>
-          <a href="/feeds/<%= feed.id %>/delete" class="btn btn-danger">Delete</a>
+          <form style="display: inline;" onsubmit="return confirm('Are you sure?');" method="post" action="/feeds/<%= feed.id %>">
+            <input type="hidden" name="_method" value="DELETE">
+            <button class="btn btn-danger" type="submit">Delete</button>
+          </form>
         </td>
       </tr>
     <% end %>

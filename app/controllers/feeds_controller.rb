@@ -27,11 +27,11 @@ class Mallard < Sinatra::Base
 
   put "/feeds/:id" do
     FeedRepo.update(FeedRepo.find(params[:id]), params[:title], params[:sanitize])
-    flash[:danger] = "Feed updated"
+    flash[:info] = "Feed updated"
     redirect to("/feeds")
   end
 
-  get "/feeds/:id/delete" do
+  delete "/feeds/:id" do
     @feed = FeedRepo.find(params[:id])
     @feed.destroy
     flash[:info] = "Feed deleted"

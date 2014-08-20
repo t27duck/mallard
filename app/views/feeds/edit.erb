@@ -1,0 +1,17 @@
+<h2>Edit a Feed</h2>
+
+<form action="/feeds/<%= @feed.id %>" method="post" role="form">
+  <input type="hidden" name="_method" value="PUT" />
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" class="form-control" name="title" value="<%= @feed.title %>">
+  </div>
+  <div class="form-group">
+    <label for="sanitize">Sanitize</label>
+    <select class="form-control" name="sanitize">
+      <option value="true" <%= @feed.sanitize ? 'selected="selected"' : nil %>>Yes</option>
+      <option value="false" <%= !@feed.sanitize ? 'selected="selected"' : nil %>>No</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>

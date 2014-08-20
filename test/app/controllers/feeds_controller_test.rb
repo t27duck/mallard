@@ -64,7 +64,7 @@ class FeedsControllerTest < MiniTest::Test
 
   def test_feed_destory_removes_feed
     original_count = Feed.count
-    get "/feeds/#{@feed.id}/delete"
+    delete "/feeds/#{@feed.id}"
     assert_redirected "/feeds"
     assert_equal 1, original_count - Feed.count
   end
