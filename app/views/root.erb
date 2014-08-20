@@ -1,1 +1,25 @@
-
+<div id="entry-nav" class="pull-right">
+  <a href="#" class="btn btn-primary">&laquo; Prev</a>
+  <a href="#" class="btn btn-primary">Next &raquo;</a>
+</div>
+<div class="clearfix"></div>
+<% if @entries.empty? %>
+  <h2 class="text-center">No Entries Found</h2>
+<% else %>
+  <div id="entry-list" class="panel-group">
+    <% @entries.each do |entry| %>
+      <div class="panel">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <a href="#entry-<%= entry.id %>" data-parent="#entry-list">
+              <%= entry.title %>
+            </a>
+          </h3>
+        </div>
+        <div id="entry-<%= entry.id %>" class="panel-collapse collapse" data-entry-id="<%= entry.id %>" data-read-state="<%= entry.read.to_s %>">
+          <div class="panel-body"></div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
