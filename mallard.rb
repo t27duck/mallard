@@ -8,18 +8,9 @@ require "sinatra/contrib/all"
 require "sinatra/flash"
 require "sinatra/reloader"
 
-def require_dir(path)
-  Dir["#{path}/*.rb"].each {|file| require_relative file }
-end
+Dir.glob('./app/{controllers,decorators,helpers,models,repos,util}/*.rb').each { |file| require file }
 
 I18n.enforce_available_locales = false
-
-require_dir "app/helpers"
-require_dir "app/models"
-require_dir "app/decorators"
-require_dir "app/repos"
-require_dir "app/util"
-require_dir "app/controllers"
 
 class Mallard < Sinatra::Base
   register Sinatra::ActiveRecordExtension
