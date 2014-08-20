@@ -19,4 +19,8 @@ class FeedRepo
     feed.save
     feed
   end
+
+  def self.update_last_checked(feed, last_checked=Time.now)
+    feed.update_attributes(:last_checked => last_checked)
+  end
 end

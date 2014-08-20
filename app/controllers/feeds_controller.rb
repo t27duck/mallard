@@ -37,4 +37,11 @@ class Mallard < Sinatra::Base
     flash[:info] = "Feed deleted"
     redirect to("/feeds")
   end
+
+  get "/feeds/:id/fetch" do
+    @feed = FeedRepo.find(params[:id])
+    EntryFetcher.new(@feed).fetch
+    flash[:info] = "New entries have been fetched for #{@feed.title}"
+    redirect to("/feeds")
+  end
 end

@@ -10,8 +10,9 @@
     <thead>
       <tr>
         <th></th>
-        <th>Entry Count</th>
-        <th>Unread Count</th>
+        <th>Entries</th>
+        <th>Unread</th>
+        <th>Last Checked</th>
         <th></th>
     </thead>
     <tbody>
@@ -20,7 +21,9 @@
         <td><%= feed.title %></td>
         <td><%= feed.entry_count %></td>
         <td><%= feed.unread_count %></td>
+        <td><%= feed.last_checked ? feed.last_checked.strftime("%Y-%m-%d %I:%M%p %Z") : "-" %></td>
         <td>
+          <a href="/feeds/<%= feed.id %>/fetch" class="btn btn-info">Fetch</a>
           <a href="/feeds/<%= feed.id %>/edit" class="btn btn-primary">Edit</a>
           <form style="display: inline;" onsubmit="return confirm('Are you sure?');" method="post" action="/feeds/<%= feed.id %>">
             <input type="hidden" name="_method" value="DELETE">

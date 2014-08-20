@@ -4,14 +4,9 @@ class Feed < ActiveRecord::Base
   validates_presence_of :title, :url, :etag
 
   before_validation :set_info, :if => lambda{ |model| model.new_record? }
-
-  def fetch!
-    Timeout::timeout(10) {
-      create_new_entries!
-      self.last_checked = Time.now
-      save!
-    }
-  rescue Timeout::Error
+  
+  def feed_object
+    @feed_object ||= Feedjira::Feed.fetch_and_parse(url)
   end
 
   private ######################################################################
@@ -26,19 +21,6 @@ class Feed < ActiveRecord::Base
     else
       self.errors.add(:base, 'Unable to parse feed')
     end
-  end
-
-  def create_new_entries!
-    feed_object.entries.each do |e|
-      Entry.create_from_feedjira(id, e)
-    end
-  rescue
-    self.errors.add(:base, "There was an error parsing entries in this feed")
-    raise
-  end
-
-  def feed_object
-    @feed_object ||= Feedjira::Feed.fetch_and_parse(url)
   end
 
 end
