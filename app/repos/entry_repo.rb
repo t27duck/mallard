@@ -18,20 +18,8 @@ class EntryRepo
   def self.starred
     all.where(:starred => true)
   end
-  
-  def self.mark_read(entry)
-    entry.update_attributes(:read => true)
-  end
 
-  def self.mark_unread(entry)
-    entry.update_attributes(:read => false)
-  end
-
-  def self.mark_star(entry)
-    entry.update_attributes(:starred => true)
-  end
-
-  def self.mark_unstar(entry)
-    entry.update_attributes(:starred => false)
+  def self.update(entry, attrs)
+    entry.update_attributes(attrs)
   end
 end

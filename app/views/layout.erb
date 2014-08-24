@@ -7,7 +7,7 @@
     <title>Mallard</title>
     <%= css :application, :media => 'screen' %>
   </head>
-  <body>
+  <body data-mobile-browser="<%= mobile_browser?.to_s %>">
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -21,9 +21,10 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/feeds">Feeds</a></li>
-            <li><a href="/entries/starred">Starred Entries</a></li>
-            <li><a href="/entries/unread">Read Entries</a></li>
+            <li><a href="/">Unread - <span class="unread-count"><%= EntryRepo.unread.count %></span></a></li>
+            <li><a href="/entries/starred">Starred - <span class="starred-count"><%= EntryRepo.starred.count %></span></a></li>
+            <li><a href="/feeds">Manage Feeds</a></li>
+            <li><a href="/entries/read">Read Entries</a></li>
           </ul>
         </div>
       </div>

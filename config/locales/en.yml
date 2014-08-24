@@ -1,0 +1,4 @@
+en:
+  time:
+    formats:
+      published_at: "at %H:%M"

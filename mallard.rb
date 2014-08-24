@@ -9,7 +9,7 @@ require "sinatra/flash"
 require "sinatra/reloader"
 
 Dir.glob('./app/{controllers,decorators,helpers,models,repos,util}/*.rb').each { |file| require file }
-
+I18n.load_path += Dir[File.join(File.dirname(__FILE__), 'config/locales', '*.yml').to_s]
 I18n.enforce_available_locales = false
 
 class Mallard < Sinatra::Base
@@ -46,7 +46,10 @@ class Mallard < Sinatra::Base
 
       js :application, [
         "/js/jquery-2.1.1.min.js",
-        "/js/bootstrap.min.js"
+        "/js/jquery.fitvids.js",
+        "/js/jquery.hotkeys.js",
+        "/js/bootstrap.min.js",
+        "/js/application.js"
       ]
 
       prebuild true

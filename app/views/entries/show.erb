@@ -1,0 +1,22 @@
+<div class="pull-right">
+  <div class="entry-title"><a class="btn btn-primary" href="<%= @entry.url %>" target="_blank">View</a></div>
+</div>
+
+<button type="button" class="btn btn-primary read-entry" data-entry-id="<%= @entry.id %>" data-read-state="<%= @entry.read.to_s %>">
+  <%= "Mark #{@entry.read ? "Unread" : "Read"}" %>
+</button>
+
+<button type="button" class="btn btn-primary star-entry" data-entry-id="<%= @entry.id %>" data-starred-state="<%= @entry.starred.to_s %>">
+  <%= @entry.starred ? "Unstar" : "Star" %>
+</button>
+  
+<div class="entry-meta">
+  <%="by #{@entry.author}" if @entry.author %>
+  <%= @entry.published %>
+</div>
+
+<div class="entry-body">
+  <%= @entry.body %>
+</div>
+
+<div class="clearfix"</div>

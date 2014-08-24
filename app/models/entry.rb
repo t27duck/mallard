@@ -23,9 +23,4 @@ class Entry < ActiveRecord::Base
     identifier ||= feed_entry.url
     identifier
   end
-
-  def body
-    entry_body = content ? content : summary
-    feed.sanitize ? Loofah.scrub_fragment(entry_body, :prune).to_s : entry_body
-  end
 end

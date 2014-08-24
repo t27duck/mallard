@@ -27,6 +27,13 @@ body {
   margin-bottom: 15px;
 }
 
+#entry-list {
+  overflow-y: auto;
+  margin-bottom: 5px;
+  height: 120px;
+  border-left: 1px solid #DDDDDD;
+}
+
 .content {
   padding: 19px 29px 29px;
   margin: 0 auto 20px;

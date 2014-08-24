@@ -1,8 +1,13 @@
 class Decorator
   attr_accessor :model
 
-  def self.generate(relation)
-    klass = "#{relation.model.name}Decorator".constantize
+  def self.generate(relation_or_model)
+    klass_name = if relation_or_model.is_a?(ActiveRecord::Base)
+                   relation_or_model.class.name
+                 else
+                   relation.model.name
+                 end
+    klass = "#{klass_name}Decorator".constantize
     relation.map do |rel|
       klass.new(rel)
     end

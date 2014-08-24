@@ -23,7 +23,7 @@ class EntriesControllerTest < MiniTest::Test
 
   def test_read_action_entry_is_marked_as_read
     @entry.update_attributes!(:read => false)
-    get "/entries/#{@entry.id}/read"
+    put "/entries/#{@entry.id}", {:entry => {:read => true}}
     assert_response 200
     @entry.reload
     assert @entry.read
@@ -31,7 +31,7 @@ class EntriesControllerTest < MiniTest::Test
 
   def test_iunread_action_entry_is_marked_as_read
     @entry.update_attributes!(:read => true)
-    get "/entries/#{@entry.id}/unread"
+    put "/entries/#{@entry.id}", {:entry => {:read => false}}
     assert_response 200
     @entry.reload
     assert !@entry.read
@@ -39,7 +39,7 @@ class EntriesControllerTest < MiniTest::Test
 
   def test_star_action_entry_is_marked_as_starred
     @entry.update_attributes!(:starred => false)
-    get "/entries/#{@entry.id}/star"
+    put "/entries/#{@entry.id}", {:entry => {:starred => true}}
     assert_response 200
     @entry.reload
     assert @entry.starred
@@ -47,7 +47,7 @@ class EntriesControllerTest < MiniTest::Test
 
   def test_unstar_action_entry_is_marked_as_unstarred
     @entry.update_attributes!(:starred => false)
-    get "/entries/#{@entry.id}/star"
+    put "/entries/#{@entry.id}", {:entry => {:starred => true}}
     assert_response 200
     @entry.reload
     assert @entry.starred

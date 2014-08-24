@@ -1,31 +1,13 @@
 class Mallard < Sinatra::Base
   get "/entries/:id" do
-    @entry = EntryRepo.find(params[:id])
-    EntryRepo.mark_read(@entry)
-    erb :"entries/show"
+    @entry = Decorator.generate(EntryRepo.find(params[:id]))
+    EntryRepo.update(@entry, {:read => true})
+    erb :"entries/show", :layout => false
   end
 
-  get "/entries/:id/star" do
+  put "/entries/:id" do
     @entry = EntryRepo.find(params[:id])
-    EntryRepo.mark_star(@entry)
-    "ok"
-  end
-
-  get "/entries/:id/unstar" do
-    @entry = EntryRepo.find(params[:id])
-    EntryRepo.mark_unstarr(@entry)
-    "ok"
-  end
-
-  get "/entries/:id/read" do
-    @entry = EntryRepo.find(params[:id])
-    EntryRepo.mark_read(@entry)
-    "ok"
-  end
-
-  get "/entries/:id/unread" do
-    @entry = Entry.find(params[:id])
-    EntryRepo.mark_unread(@entry)
+    EntryRepo.update(@entry, params[:entry])
     "ok"
   end
 end
