@@ -1,4 +1,4 @@
-<h2>Edit a Feed</h2>
+<h2><%= I18n.translate("header.feeds_edit") %></h2>
 
 <form action="/feeds/<%= @feed.id %>" method="post" role="form">
   <input type="hidden" name="_method" value="PUT" />
@@ -13,5 +13,5 @@
       <option value="false" <%= !@feed.sanitize ? 'selected="selected"' : nil %>>No</option>
     </select>
   </div>
-  <button type="submit" class="btn btn-default">Submit</button>
+  <button type="submit" class="btn btn-default"><%= I18n.translate("buttons.submit") %></button>
 </form>

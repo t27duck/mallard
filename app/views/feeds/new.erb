@@ -1,4 +1,4 @@
-<h2>Add a Feed</h2>
+<h2><%= I18n.translate("header.feeds_new") %></h2>
 
 <form action="/feeds" method="post" role="form">
   <div class="form-group">
@@ -12,5 +12,5 @@
       <option value="false" <%= !@feed.sanitize ? 'selected="selected"' : nil %>>No</option>
     </select>
   </div>
-  <button type="submit" class="btn btn-default">Submit</button>
+  <button type="submit" class="btn btn-default"><%= I18n.translate("buttons.submit") %></button>
 </form>

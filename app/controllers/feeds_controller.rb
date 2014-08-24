@@ -12,10 +12,11 @@ class Mallard < Sinatra::Base
   post "/feeds" do
     @feed = FeedRepo.create(params[:url], params[:sanitize])
     if @feed.valid?
-      flash[:info] = "Feed created"
+      flash[:info] = I18n.translate("flash.feed.created")
+      EntryFetcher.new(@feed).fetch
       redirect to("/feeds")
     else
-      flash[:danger] = "Unable to add feed"
+      flash[:danger] = I18n.translate("flash.feed.created_error")
       erb :"feeds/new"
     end
   end
@@ -27,21 +28,21 @@ class Mallard < Sinatra::Base
 
   put "/feeds/:id" do
     FeedRepo.update(FeedRepo.find(params[:id]), params[:title], params[:sanitize])
-    flash[:info] = "Feed updated"
+    flash[:info] = I18n.translate("flash.feed.updated")
     redirect to("/feeds")
   end
 
   delete "/feeds/:id" do
     @feed = FeedRepo.find(params[:id])
     @feed.destroy
-    flash[:info] = "Feed deleted"
+    flash[:info] = I18n.translate("flash.feed.delete")
     redirect to("/feeds")
   end
 
   get "/feeds/:id/fetch" do
     @feed = FeedRepo.find(params[:id])
     EntryFetcher.new(@feed).fetch
-    flash[:info] = "New entries have been fetched for #{@feed.title}"
+    flash[:info] = I18n.translate("flash.feed.fetched", :feed => @feed.title)
     redirect to("/feeds")
   end
 end
