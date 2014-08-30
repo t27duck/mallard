@@ -5,6 +5,8 @@ en:
     delete: "Delete"
     edit: "Edit"
     fetch: "Fetch"
+    next: "Next"
+    prev: "Prev"
     read: "Read"
     star: "Star"
     submit: "Submit"
@@ -17,8 +19,12 @@ en:
   feed:
     entries: "Entries"
     last_checked: "Last Checked"
+    no_entries: "No entires found"
     no_feeds: "No feeds found... you should add some!"
+    sanitize: "Sanitize"
+    title: "Title"
     unread_entries: "Unread"
+    url: "URL"
   flash:
     feed:
       created: "Feed created"
@@ -26,12 +32,23 @@ en:
       delete: "Feed deleted"
       fetched: "New entries fetched for %{feed}"
       updated: "Feed updated"
+  form:
+    no_option: "No"
+    yes_option: "Yes"
   header:
     feeds_edit: "Edit Feed"
     feeds_index: "Feeds"
     feeds_new: "Add Feed"
     login_index: "Login"
     setup_index: "Setup"
+  menu:
+    manage_feeds: "Manage Feeds"
+    read_entries: "Read Entries"
+    starred: "Starred"
+    unread: "Unread"
+  session:
+    password: "Password"
+    password_confirmation: "Password Confirmation"
   time:
     formats:
       last_checked: "%Y-%m-%d %I:%M%p %Z"
