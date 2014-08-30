@@ -7,6 +7,8 @@ require "sinatra/assetpack"
 require "sinatra/contrib/all"
 require "sinatra/flash"
 require "sinatra/reloader"
+require "will_paginate"
+require "will_paginate/active_record"
 
 Dir.glob('./app/{controllers,decorators,helpers,models,repos,util}/*.rb').each { |file| require file }
 I18n.load_path += Dir[File.join(File.dirname(__FILE__), 'config/locales', '*.yml').to_s]
@@ -22,12 +24,12 @@ class Mallard < Sinatra::Base
   helpers do
     include ApplicationHelper
   end
-  
+
   configure do
     enable :method_override
     enable :logging
     enable :sessions unless test?
-    
+
     set :public_dir, "public"
     set :root, File.dirname(__FILE__)
     set :session_secret, ENV["SESSION_TOKEN"] || "8675309LetsGo!"

@@ -2,6 +2,7 @@ ENV['RACK_ENV'] = "test"
 require "minitest/autorun"
 require "rack/test"
 require "database_cleaner"
+require "nokogiri"
 require "ostruct"
 require "mocha/mini_test"
 
@@ -22,7 +23,7 @@ class MiniTest::Test
   def session
     @session ||= {}
   end
-  
+
   include Rack::Test::Methods
 
   include ApplicationHelper
@@ -31,7 +32,7 @@ class MiniTest::Test
     super
     DatabaseCleaner.start
   end
-  
+
   def after_teardown
     DatabaseCleaner.clean
     ENV["BYPASS_LOGIN"] = nil
