@@ -53,3 +53,7 @@ en:
     formats:
       last_checked: "%Y-%m-%d %I:%M%p %Z"
       published_at: "%b %e, %I:%M%p"
+  titles:
+    read_entries: "Read Entries"
+    starred_entries: "Starred Entries"
+    unread_entries: "Unread Entries"

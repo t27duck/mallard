@@ -1,11 +1,12 @@
-<div id="entry-nav" class="pull-right">
-  <a id="prev-entry" href="#" class="btn btn-primary">&laquo; <%= I18n.translate("buttons.prev") %></a>
-  <a id="next-entry" href="#" class="btn btn-primary"><%= I18n.translate("buttons.next") %> &raquo;</a>
-</div>
-<div class="clearfix"></div>
+<h3 class="pull-left"><%= @page_title %></h3>
 <% if @entries.empty? %>
-  <h2 class="text-center"><%= I18n.translate("feed.no_entires") %></h2>
+  <h2 class="text-center"><%= I18n.translate("feed.no_entries") %></h2>
 <% else %>
+  <div id="entry-nav" class="pull-right">
+    <a id="prev-entry" href="#" class="btn btn-primary">&laquo; <%= I18n.translate("buttons.prev") %></a>
+    <a id="next-entry" href="#" class="btn btn-primary"><%= I18n.translate("buttons.next") %> &raquo;</a>
+  </div>
+  <div class="clearfix"></div>
   <div id="entry-list" class="panel-group">
     <% @entries.each do |entry| %>
       <div class="panel">
