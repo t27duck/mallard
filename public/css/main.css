@@ -2,6 +2,10 @@ body {
   padding-top: 60px;
 }
 
+#search-form {
+  margin: 20px;
+}
+
 .video-container {
   position: relative;
   padding-bottom: 56.25%;

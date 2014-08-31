@@ -8,6 +8,7 @@ en:
     next: "Next"
     prev: "Prev"
     read: "Read"
+    search: "Search"
     star: "Star"
     submit: "Submit"
     unread: "Unread"
@@ -35,6 +36,8 @@ en:
   form:
     no_option: "No"
     yes_option: "Yes"
+    placeholders:
+      search_titles: "Search Titles"
   header:
     feeds_edit: "Edit Feed"
     feeds_index: "Feeds"

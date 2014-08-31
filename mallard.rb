@@ -9,12 +9,14 @@ require "sinatra/flash"
 require "sinatra/reloader"
 require "will_paginate"
 require "will_paginate/active_record"
+require "will_paginate-bootstrap"
 
 Dir.glob('./app/{controllers,decorators,helpers,models,repos,util}/*.rb').each { |file| require file }
 I18n.load_path += Dir[File.join(File.dirname(__FILE__), 'config/locales', '*.yml').to_s]
 I18n.enforce_available_locales = false
 
 class Mallard < Sinatra::Base
+  include WillPaginate::Sinatra::Helpers
   register Sinatra::ActiveRecordExtension
   register Sinatra::AssetPack
   register Sinatra::Contrib

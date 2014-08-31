@@ -2,13 +2,29 @@
 <% if @entries.empty? %>
   <h2 class="text-center"><%= I18n.translate("feed.no_entries") %></h2>
 <% else %>
+  <% if @show_search_form %>
+    <form id="search-form" class="form-inline pull-left" role="form" action="<%= request.env["REQUEST_PATH"] %>" method="GET">
+      <div class="form-group">
+        <label class="sr-only" for="search"><%= I18n.translate("form.placeholders.search_titles") %></label>
+        <input type="text" name="search" class="form-control" placeholder="<%= I18n.translate("form.placeholders.search_titles") %>" value="<%= params[:search] %>" />
+      </div>
+      <button type="submit" class="btn btn-default"><%= I18n.translate("buttons.search") %></button>
+    </form>
+  <% end %>
+  <% if @show_pagination %>
+    <div id="pager" class="pull-left">
+      <%= will_paginate @entries, :renderer => BootstrapPagination::Sinatra %>
+    </div>
+  <% end %>
+
   <div id="entry-nav" class="pull-right">
     <a id="prev-entry" href="#" class="btn btn-primary">&laquo; <%= I18n.translate("buttons.prev") %></a>
     <a id="next-entry" href="#" class="btn btn-primary"><%= I18n.translate("buttons.next") %> &raquo;</a>
   </div>
+
   <div class="clearfix"></div>
   <div id="entry-list" class="panel-group">
-    <% @entries.each do |entry| %>
+    <% Decorator.generate(@entries).each do |entry| %>
       <div class="panel">
         <div class="panel-heading">
           <h3 class="panel-title">
