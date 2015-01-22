@@ -7,7 +7,7 @@ class CreateFeeds < ActiveRecord::Migration
       t.boolean :sanitize, :null => false, :default => true
       t.datetime :last_checked
       t.datetime :last_modified
-      t.timestamps
+      t.timestamps :null => false
     end
   end
 end

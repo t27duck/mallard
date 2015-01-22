@@ -1,7 +1,7 @@
 class ConfigInfo < ActiveRecord::Base
 
-  validate :key, :value, :presense => true
-  validate :key, :uniqueness => true
+  validates :key, :value, :presence => true
+  validates :key, :uniqueness => true
 
   def self.include?(key)
     where(:key => key).exists?

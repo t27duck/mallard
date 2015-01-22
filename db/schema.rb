@@ -16,14 +16,14 @@ ActiveRecord::Schema.define(version: 20140811013509) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "config_infos", force: true do |t|
+  create_table "config_infos", force: :cascade do |t|
     t.string "key",   null: false
     t.string "value", null: false
   end
 
   add_index "config_infos", ["key"], name: "index_config_infos_on_key", unique: true, using: :btree
 
-  create_table "entries", force: true do |t|
+  create_table "entries", force: :cascade do |t|
     t.integer  "feed_id",                   null: false
     t.string   "title",                     null: false
     t.text     "url",                       null: false
@@ -38,15 +38,15 @@ ActiveRecord::Schema.define(version: 20140811013509) do
 
   add_index "entries", ["feed_id"], name: "index_entries_on_feed_id", using: :btree
 
-  create_table "feeds", force: true do |t|
+  create_table "feeds", force: :cascade do |t|
     t.string   "title",                        null: false
     t.string   "url",                          null: false
     t.string   "etag",                         null: false
     t.boolean  "sanitize",      default: true, null: false
     t.datetime "last_checked"
     t.datetime "last_modified"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
 end
