@@ -1,10 +1,10 @@
 class Feed < ActiveRecord::Base
   has_many :entries, :dependent => :delete_all
 
-  validates_presence_of :title, :url, :etag
+  validates_presence_of :title, :url
 
   before_validation :set_info, :if => lambda{ |model| model.new_record? }
-  
+
   def feed_object
     @feed_object ||= Feedjira::Feed.fetch_and_parse(url)
   end
@@ -13,7 +13,6 @@ class Feed < ActiveRecord::Base
 
   def set_info
     self.title ||= url
-    self.etag  ||= url
     if feed_object.respond_to?(:title)
       self.title         = feed_object.title
       self.etag          = feed_object.etag

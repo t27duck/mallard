@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20140811013509) do
   create_table "feeds", force: :cascade do |t|
     t.string   "title",                        null: false
     t.string   "url",                          null: false
-    t.string   "etag",                         null: false
+    t.string   "etag"
     t.boolean  "sanitize",      default: true, null: false
     t.datetime "last_checked"
     t.datetime "last_modified"
