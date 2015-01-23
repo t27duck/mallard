@@ -6,6 +6,9 @@ require "nokogiri"
 require "ostruct"
 require "mocha/mini_test"
 
+require 'coveralls'
+Coveralls.wear!
+
 require File.expand_path "../../mallard.rb", __FILE__
 
 require "active_record/fixtures"

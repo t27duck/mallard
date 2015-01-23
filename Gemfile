@@ -26,3 +26,5 @@ gem "sinatra-contrib", "~> 1.4.2"
 gem "sinatra-flash", "~> 0.3.0"
 gem "will_paginate", "~> 3.0.7"
 gem "will_paginate-bootstrap", "~> 1.0.1"
+
+gem "coveralls", require: false

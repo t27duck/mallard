@@ -3,3 +3,4 @@
 .ruby-version
 db/*.sqlite
 config/database.yml
+coverage/*
