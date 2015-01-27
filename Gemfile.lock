@@ -18,7 +18,6 @@ GEM
     backports (3.6.4)
     bcrypt (3.1.9)
     builder (3.2.2)
-    crass (1.0.1)
     curb (0.8.6)
     database_cleaner (1.3.0)
     docile (1.1.5)
@@ -40,8 +39,6 @@ GEM
     multi_json (1.10.1)
     nokogiri (1.6.6.1)
       mini_portile (~> 0.6.0)
-    nokogumbo (1.2.0)
-      nokogiri
     pg (0.17.1)
     rack (1.6.0)
     rack-protection (1.5.3)
@@ -50,10 +47,6 @@ GEM
       rack (>= 1.0)
     raindrops (0.13.0)
     rake (10.4.2)
-    sanitize (3.1.0)
-      crass (~> 1.0.1)
-      nokogiri (>= 1.4.4)
-      nokogumbo (= 1.2.0)
     sax-machine (1.3.0)
     simplecov (0.9.1)
       docile (~> 1.1.0)
@@ -103,11 +96,11 @@ DEPENDENCIES
   database_cleaner (~> 1.3.0)
   feedjira (~> 1.6.0)
   i18n (~> 0.7.0)
+  loofah
   mocha (~> 1.1.0)
   nokogiri (~> 1.6.6.1)
   pg (~> 0.17.1)
   rake
-  sanitize (~> 3.1.0)
   simplecov
   sinatra (~> 1.4.5)
   sinatra-activerecord (~> 2.0.4)
