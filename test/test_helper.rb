@@ -1,13 +1,15 @@
 ENV['RACK_ENV'] = "test"
+require 'coveralls'
+#Coveralls.wear!
+
+require 'simplecov'
+SimpleCov.start
 require "minitest/autorun"
 require "rack/test"
 require "database_cleaner"
 require "nokogiri"
 require "ostruct"
 require "mocha/mini_test"
-
-require 'coveralls'
-Coveralls.wear!
 
 require File.expand_path "../../mallard.rb", __FILE__
 

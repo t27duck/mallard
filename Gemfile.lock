@@ -124,6 +124,7 @@ DEPENDENCIES
   pg (~> 0.17.1)
   rake
   sanitize (~> 3.1.0)
+  simplecov
   sinatra (~> 1.4.5)
   sinatra-activerecord (~> 2.0.4)
   sinatra-assetpack (~> 0.3.3)

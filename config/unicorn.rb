@@ -1,8 +1,6 @@
-worker_processes 1
+worker_processes 2
 timeout 30
 preload_app true
-
-@delayed_job_pid = nil
 
 before_fork do |server, worker|
   # the following is highly recommended for Rails + "preload_app true"
