@@ -33,6 +33,9 @@ en:
       delete: "Feed deleted"
       fetched: "New entries fetched for %{feed}"
       updated: "Feed updated"
+    setup:
+      complete: "Setup complete. Please login."
+      passwords_do_not_match: "Passwords do not match"
   form:
     no_option: "No"
     yes_option: "Yes"
