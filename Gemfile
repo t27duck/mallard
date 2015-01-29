@@ -2,7 +2,6 @@ source "https://rubygems.org"
 
 group :production, :development do
   gem "unicorn", "~> 4.8"
-  gem "pg", "~> 0.17.1"
 end
 
 group :test do
@@ -19,6 +18,7 @@ gem "i18n", "~> 0.7.0"
 gem "nokogiri", "~> 1.6.6.1"
 gem "rake"
 gem "loofah"
+gem "pg", "~> 0.17.1"
 gem "sinatra", "~> 1.4.5"
 gem "sinatra-activerecord", "~> 2.0.4"
 gem "sinatra-assetpack", "~> 0.3.3"
