@@ -19,8 +19,8 @@
   <% end %>
 
   <div id="entry-nav" class="pull-right">
-    <a id="prev-entry" href="#" class="btn btn-primary">&laquo; <%= I18n.translate("buttons.prev") %></a>
-    <a id="next-entry" href="#" class="btn btn-primary"><%= I18n.translate("buttons.next") %> &raquo;</a>
+    <button id="prev-entry" class="btn btn-primary">&laquo; <%= I18n.translate("buttons.prev") %></button>
+    <button id="next-entry" class="btn btn-primary"><%= I18n.translate("buttons.next") %> &raquo;</button>
   </div>
 
   <div class="clearfix"></div>
@@ -29,7 +29,7 @@
       <div class="panel">
         <div class="panel-heading">
           <h3 class="panel-title">
-            <a href="#entry-<%= entry.id %>" data-parent="#entry-list">
+            <a href="#" data-parent="#entry-list">
               <%= entry.title %>
             </a>
           </h3>

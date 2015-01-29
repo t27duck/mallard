@@ -12,6 +12,7 @@ $(document).ready(function() {
   });
 
   $("#next-entry").on("click", function() {
+    event.preventDefault();
     var $current = $(".panel-collapse.in");
     var $next;
     if ($current.size() > 0) {
@@ -25,6 +26,7 @@ $(document).ready(function() {
   });
 
   $("#prev-entry").on("click", function() {
+    event.preventDefault();
     var $current = $(".panel-collapse.in");
     var $prev;
     if ($current.size() > 0) {
@@ -38,6 +40,7 @@ $(document).ready(function() {
   });
 
   $(".panel-heading").on("click", function() {
+    event.preventDefault();
     $(".panel-collapse.in").each(function() {
       $(this).removeClass("in");
       $(this).children(".panel-body").html("");
