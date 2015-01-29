@@ -29,7 +29,7 @@ class LoginControllerTest < MiniTest::Test
   end
 
   def test_login_post_redirects_if_user_logs_in_successfully
-    post "/login", :password => "12345"
+    post "/login", :password => TEST_PASSWORD
     assert_redirected "/"
   end
 

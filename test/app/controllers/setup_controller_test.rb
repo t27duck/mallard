@@ -19,15 +19,15 @@ class SetupControllerTest < MiniTest::Test
   end
 
   def test_posting_to_setup_path_completes_setup
-    password = "12345"
+    password = TEST_PASSWORD
     post "/setup", {:password => password, :password_confirmation => password}
     assert setup_complete?
     assert_redirected "/"
   end
 
   def test_posting_to_setup_path_fails_if_passwords_dont_match
-    password = "12345"
-    password_confirmation = "54321"
+    password = TEST_PASSWORD
+    password_confirmation = TEST_PASSWORD + "abcd"
     post "/setup", {:password => password, :password_confirmation => password_confirmation}
     assert !setup_complete?
     assert_redirected "/setup"

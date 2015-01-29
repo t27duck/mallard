@@ -21,6 +21,8 @@ end
 
 DatabaseCleaner.strategy = :transaction
 
+TEST_PASSWORD = "12345"
+
 class MiniTest::Test
   def session
     @session ||= {}
@@ -46,8 +48,8 @@ class MiniTest::Test
   end
 
   def complete_setup
-    ConfigInfo.create!(:key => "password", :value => BCrypt::Password.create("12345"))
-    ConfigInfo.create!(:key => "auth_token", :value => "12345")
+    ConfigInfoRepo.set("password", BCrypt::Password.create(TEST_PASSWORD))
+    ConfigInfoRepo.set("auth_token", TEST_PASSWORD)
   end
 
   def log_user_in
