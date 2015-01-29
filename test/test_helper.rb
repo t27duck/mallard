@@ -44,7 +44,7 @@ class MiniTest::Test
   end
 
   def app
-    Mallard
+    Sinatra::Application
   end
 
   def complete_setup

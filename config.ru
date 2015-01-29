@@ -3,4 +3,4 @@ require "bundler"
 Bundler.require
 
 require "./mallard"
-run Mallard
+run Sinatra::Application

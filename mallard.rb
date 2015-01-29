@@ -5,6 +5,7 @@ require "sinatra/base"
 require "sinatra/activerecord"
 require "sinatra/assetpack"
 require "sinatra/contrib/all"
+require "sinatra/activerecord"
 require "sinatra/flash"
 require "sinatra/reloader"
 require "will_paginate"
@@ -15,59 +16,54 @@ Dir.glob('./app/{controllers,decorators,helpers,models,repos,util}/*.rb').each {
 I18n.load_path += Dir[File.join(File.dirname(__FILE__), 'config/locales', '*.yml').to_s]
 I18n.enforce_available_locales = false
 
-class Mallard < Sinatra::Base
-  include WillPaginate::Sinatra::Helpers
-  register Sinatra::ActiveRecordExtension
-  register Sinatra::AssetPack
-  register Sinatra::Contrib
-  register Sinatra::Flash
-  register Sinatra::Reloader
+configure do
+  enable :method_override
+  enable :logging
+  enable :sessions unless test?
 
-  helpers do
-    include ApplicationHelper
+  set :public_dir, "public"
+  set :root, File.dirname(__FILE__)
+  set :session_secret, ENV["SESSION_TOKEN"] || "8675309LetsGo!"
+  set :views, "app/views"
+
+  assets do
+    css_compression :simple
+
+    css :application, [
+      "/css/bootstrap.min.css",
+      "/css/bootstrap-theme.min.css",
+      "/css/main.css"
+    ]
+
+    js_compression :jsmin
+
+    js :application, [
+      "/js/jquery-2.1.3.min.js",
+      "/js/jquery.fitvids.js",
+      "/js/jquery.hotkeys.js",
+      "/js/bootstrap.min.js",
+      "/js/application.js"
+    ]
+
+    prebuild true
   end
 
-  configure do
-    enable :method_override
-    enable :logging
-    enable :sessions unless test?
+  before do
+    I18n.locale = ENV["LOCALE"].nil? ? :en : ENV["LOCALE"].to_sym
+    redirect to("/setup") if needs_setup?(request.path)
+    redirect to("/login") if require_login?(request.path) && !logged_in?
+  end
 
-    set :public_dir, "public"
-    set :root, File.dirname(__FILE__)
-    set :session_secret, ENV["SESSION_TOKEN"] || "8675309LetsGo!"
-    set :views, "app/views"
-
-    assets do
-      css_compression :simple
-
-      css :application, [
-        "/css/bootstrap.min.css",
-        "/css/bootstrap-theme.min.css",
-        "/css/main.css"
-      ]
-
-      js_compression :jsmin
-
-      js :application, [
-        "/js/jquery-2.1.3.min.js",
-        "/js/jquery.fitvids.js",
-        "/js/jquery.hotkeys.js",
-        "/js/bootstrap.min.js",
-        "/js/application.js"
-      ]
-
-      prebuild true
-    end
-
-    before do
-      I18n.locale = ENV["LOCALE"].nil? ? :en : ENV["LOCALE"].to_sym
-      redirect to("/setup") if needs_setup?(request.path)
-      redirect to("/login") if require_login?(request.path) && !logged_in?
-    end
-
-    error ActiveRecord::RecordNotFound do
-      status 404
-      body "Not found!"
-    end
+  error ActiveRecord::RecordNotFound do
+    status 404
+    body "Not found!"
   end
 end
+
+helpers do
+  include ApplicationHelper
+end
+
+#class Mallard < Sinatra::Base
+#  include WillPaginate::Sinatra::Helpers
+#end
