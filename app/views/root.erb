@@ -1,29 +1,37 @@
 <h3 class="pull-left"><%= @page_title %></h3>
-<% if @show_search_form %>
-  <form id="search-form" class="form-inline pull-left" role="form" action="<%= request.env["REQUEST_PATH"] %>" method="GET">
-    <div class="form-group">
-      <label class="sr-only" for="search"><%= I18n.translate("form.placeholders.search_titles") %></label>
-      <input type="text" name="search" class="form-control" placeholder="<%= I18n.translate("form.placeholders.search_titles") %>" value="<%= params[:search] %>" />
-    </div>
-    <button type="submit" class="btn btn-default"><%= I18n.translate("buttons.search") %></button>
-  </form>
-<% end %>
-<% if @show_pagination %>
-  <div id="pager" class="pull-left">
-    <%= will_paginate @entries, :renderer => BootstrapPagination::Sinatra %>
-  </div>
-<% end %>
 
-<% if @entries.empty? %>
-  <div class="clearfix"></div>
-  <h2 class="text-center"><%= I18n.translate("feed.no_entries") %></h2>
-<% else %>
+<% if !@entries.empty? %>
   <div id="entry-nav" class="pull-right">
     <button id="prev-entry" class="btn btn-primary">&laquo; <%= I18n.translate("buttons.prev") %></button>
     <button id="next-entry" class="btn btn-primary"><%= I18n.translate("buttons.next") %> &raquo;</button>
   </div>
+<% end %>
 
-  <div class="clearfix"></div>
+<% if @show_search_form %>
+  <form id="search-form" class="form-inline pull-left" role="form" action="<%= request.env["REQUEST_PATH"] %>" method="GET">
+    <div class="form-group">
+      <label class="sr-only" for="search"><%= I18n.translate("form.placeholders.search_titles") %></label>
+      <div class="input-group">
+        <input type="text" name="search" class="form-control" placeholder="<%= I18n.translate("form.placeholders.search_titles") %>" value="<%= params[:search] %>" />
+        <span class="input-group-btn"><button class="btn btn-default"><%= I18n.translate("buttons.search") %></button></span>
+      </div>
+    </div>
+  </form>
+<% end %>
+
+<div class="clearfix"></div>
+
+<% if @entries.empty? %>
+  <h2 class="text-center"><%= I18n.translate("feed.no_entries") %></h2>
+<% end %>
+
+<% if @show_pagination %>
+  <div id="pager" class="text-center">
+    <%= will_paginate @entries, :renderer => BootstrapPagination::Sinatra %>
+  </div>
+<% end %>
+
+<% if !@entries.empty? %>
   <div id="entry-list" class="panel-group">
     <% Decorator.generate(@entries).each do |entry| %>
       <div class="panel">
