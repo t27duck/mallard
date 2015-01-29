@@ -37,6 +37,15 @@
       <%= yield %>
     </div>
 
+    <script type="text/javascript">
+      var i18n = {
+        mark: '<%= I18n.translate("buttons.mark") %>',
+        read: '<%= I18n.translate("buttons.read") %>',
+        star: '<%= I18n.translate("buttons.star") %>',
+        unread: '<%= I18n.translate("buttons.unread") %>',
+        unstar: '<%= I18n.translate("buttons.unstar") %>'
+      };
+    </script>
     <%= js :application %>
   </body>
 </html>

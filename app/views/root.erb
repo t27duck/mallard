@@ -1,5 +1,6 @@
 <h3 class="pull-left"><%= @page_title %></h3>
 <% if @entries.empty? %>
+  <div class="clearfix"></div>
   <h2 class="text-center"><%= I18n.translate("feed.no_entries") %></h2>
 <% else %>
   <% if @show_search_form %>

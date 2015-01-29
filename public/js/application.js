@@ -1,4 +1,4 @@
-$(document).ready(function() { 
+$(document).ready(function() {
   $.ajaxSetup({
     cache: false
   });
@@ -6,11 +6,11 @@ $(document).ready(function() {
   $(document).bind("keyup", "j", function() {
     $("#next-entry").trigger("click");
   });
-  
+
   $(document).bind("keyup", "k", function() {
     $("#prev-entry").trigger("click");
   });
-  
+
   $("#next-entry").on("click", function() {
     var $current = $(".panel-collapse.in");
     var $next;
@@ -40,10 +40,10 @@ $(document).ready(function() {
   $(".panel-heading").on("click", function() {
     $(".panel-collapse.in").each(function() {
       $(this).removeClass("in");
-      $(this).children(".panel-body").html("Loading...");
+      $(this).children(".panel-body").html("");
       $(this).parent().children(".panel-heading").removeClass("selected");
     });
-    
+
     var $this = $(this);
     var $body = $this.parent().children(".panel-collapse");
     var $body_inner = $body.children(".panel-body");
@@ -56,7 +56,7 @@ $(document).ready(function() {
     }
 
     $.ajax({
-      url: "/entries/"+entry_id, 
+      url: "/entries/"+entry_id,
       type: "GET"
     }).done(function(data) {
       $body_inner.html(data);
@@ -81,11 +81,11 @@ $(document).ready(function() {
     if (current === true) {
       new_state = false;
       change_value = -1;
-      new_label = "Star";
+      new_label = i18n.star;
     } else {
       new_state = true;
       change_value = 1;
-      new_label = "Unstar";
+      new_label = i18n.unstar;
     }
     update_entry(entry_id, {"starred": new_state});
     update_counter("starred", change_value);
@@ -99,11 +99,11 @@ $(document).ready(function() {
     if (current === true) {
       new_state = false;
       change_value = 1;
-      new_label = "Mark Read";
+      new_label = i18n.mark + " " + i18n.read;
     } else {
       new_state = true;
       change_value = -1;
-      new_label = "Mark Unread";
+      new_label = i18n.mark + " " + i18n.unread;
     }
     update_entry(entry_id, {"read": new_state});
     update_counter("unread", change_value);
@@ -123,7 +123,7 @@ $(document).ready(function() {
 function update_entry(entry_id, data) {
   $.ajax({
     url: "/entries/"+entry_id,
-    type: "POST", 
+    type: "POST",
     data: {"_method": "put", "entry": data},
     async: false
   });

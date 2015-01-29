@@ -5,6 +5,7 @@ en:
     delete: "Delete"
     edit: "Edit"
     fetch: "Fetch"
+    mark: "Mark"
     next: "Next"
     prev: "Prev"
     read: "Read"
