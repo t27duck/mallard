@@ -9,6 +9,7 @@ group :test do
   gem "database_cleaner", "~> 1.3.0"
   gem "mocha", "~> 1.1.0"
   gem "simplecov"
+  gem "codeclimate-test-reporter", require: nil
 end
 
 gem "activerecord", "~> 4.2.0"
