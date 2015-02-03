@@ -17,9 +17,11 @@ You will also need PostgreSQL to store the feed and entry information.
 
 ## Installing/Updating/Configuring
 
-Check out the repo and navigate to the root of the app. Install the required gems using `bundle`.
+Check out the repo and navigate to the root of the app. Install the required gems using `bundle install`. If this is a production box, use `bundle install --deployment`.
 
-Copy `config/database.example.yml` to `config/database.yml` and update the configuration to fit your needs.
+Copy `config/database.yml.example` to `config/database.yml` and update the production or development configuration to fit your needs.
+
+Copy `config/unicorn.rb.example` to `config/unicorn.rb` and change the paths of the sock and pid.
 
 Create the database by running `RACK_ENV=xxx bundle exec rake db:create`
 
