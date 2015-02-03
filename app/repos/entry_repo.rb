@@ -4,7 +4,7 @@ class EntryRepo
   end
 
   def self.all
-    Entry.order(:published => :desc)
+    Entry.order(:published => :asc)
   end
 
   def self.unread
