@@ -16,7 +16,7 @@ module ApplicationHelper
   def logged_in?
     # Dirty hack to allow login while testing
     return true if ENV["RACK_ENV"] == "test" && !ENV["BYPASS_LOGIN"].nil?
-
+    return false unless ConfigInfoRepo.include?(:auth_token)
     session["auth"] == ConfigInfoRepo.get(:auth_token)
   end
 
