@@ -12,7 +12,7 @@ group :test do
   gem "codeclimate-test-reporter", require: nil
 end
 
-gem "activerecord", "~> 4.2.0"
+gem "activerecord", "~> 4.2.2"
 gem "bcrypt", "~> 3.1.9"
 gem "feedjira", "~> 1.6.0"
 gem "i18n", "~> 0.7.0"
