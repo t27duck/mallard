@@ -5,9 +5,10 @@ class Entry < ActiveRecord::Base
 
   def self.create_from_feedjira(feed_id, entry)
     identifier = determine_identifier(entry)
+    title = entry.title.presence || entry.url
     Entry.create!({
       :feed_id   => feed_id,
-      :title     => entry.title,
+      :title     => title,
       :url       => entry.url,
       :author    => entry.author,
       :published => entry.published,

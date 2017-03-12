@@ -1,3 +1,5 @@
+require 'timeout'
+
 class EntryFetcher
   def self.fetch_all
     FeedRepo.all.each do |feed|
