@@ -11,7 +11,7 @@ It's a sinatra application can run on any Unix-based server.
 
 ## Requirements
 
-The app should run fine on Ruby 1.9.3, 2.0, 2.1, and 2.2. The `bundler` gem is also required to install depedancies.
+The app should run fine on Ruby 2.5 and later. The `bundler` gem is also required to install depedancies.
 
 You will also need PostgreSQL to store the feed and entry information.
 
