@@ -1,4 +1,4 @@
-class CreateConfigInfos < ActiveRecord::Migration
+class CreateConfigInfos < ActiveRecord::Migration[4.2]
   def change
     create_table :config_infos do |t|
       t.string :key, :null => false

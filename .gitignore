@@ -5,3 +5,5 @@ db/*.sqlite
 config/database.yml
 config/unicorn.rb
 coverage/*
+log/*
+tmp/*

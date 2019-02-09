@@ -1,0 +1,28 @@
+version: "3"
+
+volumes:
+  postgres9_data:
+    driver: local
+  bundle_cache:
+    driver: local
+
+services:
+  postgres:
+    image: postgres:9.6-alpine
+    volumes:
+      - postgres9_data:/var/lib/postgresql/data
+    logging:
+      driver: "none"
+  web:
+    build: .
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/app:delegated
+      - bundle_cache:/bundle
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      - RACK_ENV=development

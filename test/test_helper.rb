@@ -19,7 +19,7 @@ require "active_record/fixtures"
 
 ActiveRecord::Base.establish_connection adapter: "sqlite3", database: ":memory:"
 ActiveRecord::Schema.verbose = false
-ActiveRecord::Migrator.migrate(ActiveRecord::Migrator.migrations_paths)
+ActiveRecord::MigrationContext.new(ActiveRecord::Migrator.migrations_paths).migrate
 Dir.glob(File.join(File.dirname(__FILE__), 'fixtures', '*.{yml,csv}')).each do |fixture_file|
   ActiveRecord::FixtureSet.create_fixtures('test/fixtures', File.basename(fixture_file, '.*'))
 end
