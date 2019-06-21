@@ -1,5 +1,0 @@
-feed_one:
-  title: "My feed"
-  etag: "abcd"
-  sanitize: false
-  url: "http://test.com"

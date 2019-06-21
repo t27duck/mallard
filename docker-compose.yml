@@ -1,16 +1,16 @@
 version: "3"
 
 volumes:
-  postgres9_data:
+  postgres11_data:
     driver: local
   bundle_cache:
     driver: local
 
 services:
   postgres:
-    image: postgres:9.6-alpine
+    image: postgres:11-alpine
     volumes:
-      - postgres9_data:/var/lib/postgresql/data
+      - postgres11_data:/var/lib/postgresql/data
     logging:
       driver: "none"
   web:
@@ -21,8 +21,9 @@ services:
       - .:/app:delegated
       - bundle_cache:/bundle
     ports:
-      - "8080:8080"
+      - "3000:3000"
     depends_on:
       - postgres
     environment:
       - RACK_ENV=development
+      - NODE_ENV=development

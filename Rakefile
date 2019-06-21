@@ -1,25 +1,8 @@
-require "bundler"
-Bundler.setup
+# frozen_string_literal: true
 
-require "sinatra/activerecord/rake"
-require "./mallard"
+# Add your own tasks in files placed in lib/tasks ending in .rake,
+# for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
-task :default => :test
+require_relative "config/application"
 
-require "rake/testtask"
-Rake::TestTask.new do |t|
-  t.pattern = "test/**/*_test.rb"
-end
-
-desc "Fetch new entries for all feeds"
-task :fetch do
-  EntryFetcher.fetch_all
-end
-
-desc "Run a console with the app environment loaded"
-task :console do
-  require 'irb'
-  require 'irb/completion'
-  ARGV.clear
-  IRB.start
-end
+Rails.application.load_tasks

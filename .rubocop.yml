@@ -1,0 +1,74 @@
+require: rubocop-performance
+
+AllCops:
+  TargetRubyVersion: 2.6
+  Exclude:
+    - bin/**/*
+    - db/schema.rb
+    - node_modules/**/*
+
+Lint/HandleExceptions:
+  Enabled: false
+
+MethodLength:
+  Max: 35
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/ClassLength:
+  Max: 200
+
+Metrics/ParameterLists:
+  Max: 10
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/BlockLength:
+  Max: 35
+  Exclude:
+    - config/routes.rb
+    - lib/tasks/**/*
+
+Naming/AccessorMethodName:
+  Enabled: false
+
+Naming/PredicateName:
+  Enabled: false
+
+Rails:
+  Enabled: true
+
+Rails/Date:
+  Enabled: false
+
+Rails/InverseOf:
+  Enabled: false
+
+Rails/OutputSafety:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Rails/CreateTableWithTimestamps:
+  Enabled: false
+
+Security/Open:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/GuardClause:
+  Enabled: false
+
+Style/RegexpLiteral:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes

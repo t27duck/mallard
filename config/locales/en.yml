@@ -1,66 +1,33 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+
 en:
-  buttons:
-    add: "Add"
-    are_you_sure: "Are you sure?"
-    delete: "Delete"
-    edit: "Edit"
-    fetch: "Fetch"
-    mark: "Mark"
-    next: "Next"
-    prev: "Prev"
-    read: "Read"
-    search: "Search"
-    star: "Star"
-    submit: "Submit"
-    unread: "Unread"
-    unstar: "Unstar"
-    view: "View"
-  entry:
-    published_at: "at %{date}"
-    written_by: "by %{author}"
-  feed:
-    entries: "Entries"
-    last_checked: "Last Checked"
-    no_entries: "No entires found"
-    no_feeds: "No feeds found... you should add some!"
-    sanitize: "Sanitize"
-    title: "Title"
-    unread_entries: "Unread"
-    url: "URL"
-  flash:
-    feed:
-      created: "Feed created"
-      created_error: "Unable to add feed"
-      delete: "Feed deleted"
-      fetched: "New entries fetched for %{feed}"
-      updated: "Feed updated"
-    setup:
-      complete: "Setup complete. Please login."
-      passwords_do_not_match: "Passwords do not match"
-  form:
-    no_option: "No"
-    yes_option: "Yes"
-    placeholders:
-      search_titles: "Search Titles"
-  header:
-    feeds_edit: "Edit Feed"
-    feeds_index: "Feeds"
-    feeds_new: "Add Feed"
-    login_index: "Login"
-    setup_index: "Setup"
-  menu:
-    manage_feeds: "Manage Feeds"
-    read_entries: "Read Entries"
-    starred: "Starred"
-    unread: "Unread"
-  session:
-    password: "Password"
-    password_confirmation: "Password Confirmation"
-  time:
-    formats:
-      last_checked: "%Y-%m-%d %I:%M%p %Z"
-      published_at: "%b %e, %I:%M%p"
-  titles:
-    read_entries: "Read Entries"
-    starred_entries: "Starred Entries"
-    unread_entries: "Unread Entries"
+  hello: "Hello world"

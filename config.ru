@@ -1,6 +1,7 @@
-require "bundler"
+# frozen_string_literal: true
 
-Bundler.require
+# This file is used by Rack-based servers to start the application.
 
-require "./mallard"
-run Sinatra::Application
+require_relative "config/environment"
+
+run Rails.application

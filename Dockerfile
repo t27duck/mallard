@@ -3,14 +3,20 @@ FROM ruby:2.6-stretch
 
 EXPOSE 8080
 
-RUN \
-  echo "deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main" | tee /etc/apt/sources.list.d/pgdg.list && \
-  wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
-  apt-get update && \
+RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main" > /etc/apt/sources.list.d/pgdg.list && \
+  wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash && \
+  rm -rf /var/lib/apt/lists/*
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+  echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+
+RUN apt-get update && \
   apt-get install -y --no-install-recommends \
-  postgresql-client-9.6 \
+  postgresql-client-11 \
   vim \
   htop \
+  nodejs \
+  yarn \
   && rm -rf /var/lib/apt/lists/*
 
 ENV BUNDLE_PATH=/bundle \
