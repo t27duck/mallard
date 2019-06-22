@@ -24,6 +24,11 @@ services:
       - "3000:3000"
     depends_on:
       - postgres
+    links:
+      - postgres
     environment:
+      - MALLARD_DATABASE_URL=postgres://postgres:postgres@postgres/mallard_development
+      - MALLARD_DATABASE_URL_TEST=postgres://postgres:postgres@postgres/mallard_development
       - RACK_ENV=development
       - NODE_ENV=development
+    command: ["rails", "server", "-b", "0.0.0.0"]

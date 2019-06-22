@@ -1,8 +1,6 @@
 # Debian stretch is version 9 of the OS and is the current stable version
 FROM ruby:2.6-stretch
 
-EXPOSE 8080
-
 RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main" > /etc/apt/sources.list.d/pgdg.list && \
   wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash && \
@@ -27,4 +25,9 @@ ENV PATH="${BUNDLE_BIN}:${PATH}"
 # Where the app files will be mounted
 WORKDIR /app
 
+EXPOSE 3000
+
+COPY docker-entry.sh .
+
+ENTRYPOINT ["/app/docker-entry.sh"]
 CMD ["bash"]
