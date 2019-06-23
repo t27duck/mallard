@@ -15,5 +15,9 @@
     <div id="root"></div>
     <%= yield %>
     <%= javascript_pack_tag 'application' %>
+
+    <% flash.each do |key, value| %>
+      <p><%= key %>: <%= value %></p>
+    <% end %>
   </body>
 </html>

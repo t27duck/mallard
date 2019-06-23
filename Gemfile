@@ -38,3 +38,4 @@ end
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 gem "devise", github: "plataformatec/devise"
+gem "feedjira", "~> 2.2.0"

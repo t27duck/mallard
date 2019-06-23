@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Navigation = () => (
   <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
