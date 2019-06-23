@@ -16,13 +16,13 @@ class FeedsController < ApplicationController
     feed = Feed.new(url: params[:url])
     if feed.set_info && feed.save
       feed.fetch
-      render json: { alert: { type: "notice", message: "Feed saved" } }
+      render json: { alert: { type: "notice", message: "Feed created" } }
     else
       render json: { alert: { type: "alert", message: "Unable to save feed" } }
     end
   end
 
-  def destory
+  def destroy
     feed = Feed.find(params[:id])
     feed.destroy
     render json: { alert: { type: "notice", message: "Feed deleted" } }

@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { getRequest } from '../shared/fetch';
+import Alert from './Alert';
+import { getRequest, postRequest } from '../shared/fetch';
 
 class Feeds extends Component {
   constructor(props) {
     super(props);
     this.state = {
       feeds: [],
-      feedUrl: ''
+      feedUrl: '',
+      notification: {}
     };
   }
 
@@ -15,24 +17,59 @@ class Feeds extends Component {
   }
 
   fetchFeeds = () => {
-    const url = '/feeds/list';
-    getRequest(url, data => {
+    getRequest('/feeds/list', data => {
       this.setState({ feeds: data.feeds });
     });
   };
 
-  handleFeedUrlChange(event) {
+  handleFeedUrlChange = event => {
     this.setState({ feedUrl: event.target.value });
-  }
+  };
+
+  submitCreateFeed = () => {
+    const { feedUrl } = this.state;
+
+    if (feedUrl === '') {
+      return;
+    }
+
+    postRequest('/feeds', 'POST', { url: feedUrl }, data => {
+      this.setState({ notification: data.alert, feedUrl: '' });
+    });
+  };
+
+  fetchFeed = feedId => {
+    const url = `/feeds/${feedId}/fetch`;
+
+    getRequest(url, data => {
+      this.setState({ notification: data.alert });
+    });
+  };
+
+  deleteFeed = feedId => {
+    const url = `/feeds/${feedId}`;
+
+    postRequest(url, 'DELETE', {}, data => {
+      this.setState({ notification: data.alert });
+      this.fetchFeeds();
+    });
+  };
 
   render() {
     const { feeds } = this.state;
     const { feedUrl } = this.state;
+    const { notification } = this.state;
 
     return (
       <div className="container">
         <h2>Feeds</h2>
-        <form>
+        <Alert notification={notification} />
+        <form
+          onSubmit={event => {
+            event.preventDefault();
+            this.submitCreateFeed();
+          }}
+        >
           <div className="form-row align-items-center">
             <div className="col-auto">
               <input
@@ -41,14 +78,14 @@ class Feeds extends Component {
                 placeholder="Feed URL"
                 value={feedUrl}
                 onChange={event => {
-                  this.handleFeedUrlChange(event);
                   event.preventDefault();
+                  this.handleFeedUrlChange(event);
                 }}
               />
             </div>
             <div className="col-auto">
               <button type="submit" className="btn btn-primary mb-2">
-                Submit
+                Add Feed
               </button>
             </div>
           </div>
@@ -65,10 +102,25 @@ class Feeds extends Component {
               <tr key={`feed-${feed.id}`}>
                 <td>{feed.title}</td>
                 <td>
-                  <button type="button" className="btn btn-primary">
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={event => {
+                      event.preventDefault();
+                      this.fetchFeed(feed.id);
+                    }}
+                  >
                     Fetch
                   </button>
-                  <button type="button" className="btn btn-warning">
+                  <button
+                    type="button"
+                    className="btn btn-warning"
+                    data-confirm="Are you sure you want to delete this feed?"
+                    onClick={event => {
+                      event.preventDefault();
+                      this.deleteFeed(feed.id);
+                    }}
+                  >
                     Delete
                   </button>
                 </td>

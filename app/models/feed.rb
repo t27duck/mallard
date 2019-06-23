@@ -5,24 +5,31 @@ class Feed < ApplicationRecord
 
   validates :title, :url, presence: true
 
-  def feed_object
-    @feed_object ||= Feedjira::Feed.fetch_and_parse(url)
-  end
-
   def set_info
     return false if url.blank?
+    return false unless feed_object.respond_to?(:title)
 
-    if feed_object.respond_to?(:title)
-      self.title = feed_object.title
-      self.etag = feed_object.etag
-      self.last_modified = feed_object.last_modified
-      true
-    else
-      false
-    end
+    self.title = feed_object.title
+    true
   rescue StandardError
     false
   end
 
-  def fetch; end
+  def fetch
+    return false if new_record?
+
+    feed_object.entries.each do |entry|
+      Entry.create_from_feedjira(id, entry)
+    end
+
+    update(last_checked: Time.now.utc)
+
+    true
+  end
+
+  private
+
+  def feed_object
+    @feed_object ||= Feedjira::Feed.fetch_and_parse(url)
+  end
 end
