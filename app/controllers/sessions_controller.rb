@@ -6,8 +6,6 @@ class SessionsController < Devise::SessionsController
   protected
 
   def one_user_registered?
-    if User.count.zero?
-      redirect_to new_user_registration_path
-    end
+    redirect_to new_user_registration_path if User.count.zero?
   end
 end

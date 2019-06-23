@@ -1,0 +1,48 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["airbnb", "prettier", "plugin:jest/recommended"],
+  "plugins": ["prettier", "jest"],
+  "rules": {
+    "prettier/prettier": [
+      "warn",
+      {
+        "singleQuote": true,
+        "printWidth": 100
+      }
+    ],
+    "arrow-body-style": ["error", "as-needed"],
+    "no-underscore-dangle": [
+      "error",
+      {
+        "allowAfterThis": true
+      }
+    ],
+    "comma-dangle": ["error", "never"],
+    "react/no-array-index-key": 0,
+    "react/forbid-prop-types": 0,
+    "react/jsx-one-expression-per-line": 0,
+    "react/require-default-props": 0,
+    "import/no-unresolved": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/extensions": 0,
+    "import/first": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "jsx-a11y/label-has-for": 0,
+    "jsx-a11y/no-autofocus": 0,
+    "jsx-a11y/anchor-is-valid": 0,
+    "jsx-a11y/no-noninteractive-element-interactions": 0,
+    "jsx-a11y/anchor-has-content": 0,
+    "jest/prefer-to-have-length": "error"
+  },
+  "env": {
+    "jest": true
+  },
+  "globals": {
+    "document": true,
+    "jest": true,
+    "localStorage": true,
+    "window": true,
+    "fetch": true
+  }
+}

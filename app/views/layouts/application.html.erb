@@ -9,41 +9,11 @@
 
     <%#= stylesheet_link_tag 'application', media: 'all' %>
     <%= stylesheet_pack_tag 'bootstrap' %>
-    <%= javascript_pack_tag 'application' %>
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-      <a class="navbar-brand" href="#">Mallard</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbart" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbar">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Unread</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Read</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Starred</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown-manage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manage</a>
-            <div class="dropdown-menu" aria-labelledby="dropdown-manage">
-              <a class="dropdown-item" href="#">User</a>
-              <a class="dropdown-item" href="#">Feeds</a>
-            </div>
-          </li>
-        </ul>
-        <span class="navbar-text">
-          Logout
-        </span>
-      </div>
-    </nav>
-
+    <div id="root"></div>
     <%= yield %>
+    <%= javascript_pack_tag 'application' %>
   </body>
 </html>
