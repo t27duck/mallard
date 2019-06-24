@@ -15,13 +15,22 @@ class PostList extends Component {
   }
 
   fetchEntries = () => {
-    getRequest('/entries/list', data => {
-      this.setState({ feeds: data.feeds });
+    const { filter } = this.props;
+
+    getRequest(`/entries/${filter}`, entries => {
+      this.setState({ entries });
     });
   };
 
   render() {
-    return null;
+    const { entries } = this.state;
+    return (
+      <>
+        {entries.map(entry => (
+          <div key={`entry-${entry.id}`}>{entry.title}</div>
+        ))}
+      </>
+    );
   }
 }
 

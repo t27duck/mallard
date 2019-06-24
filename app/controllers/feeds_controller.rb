@@ -3,7 +3,7 @@
 class FeedsController < ApplicationController
   def list
     feeds = Feed.order(:title)
-    render json: { feeds: feeds }
+    render json: feeds
   end
 
   def fetch

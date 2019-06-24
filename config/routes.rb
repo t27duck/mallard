@@ -12,6 +12,14 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :entries, only: %i[show update] do
+    collection do
+      get :unread
+      get :read
+      get :starred
+    end
+  end
+
   get "/:page", to: "site#index"
 
   root "site#index"

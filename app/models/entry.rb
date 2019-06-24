@@ -6,6 +6,10 @@ class Entry < ApplicationRecord
   validates :feed, :title, :url, :published_at, :guid, presence: true
   validates :feed_id, uniqueness: { scope: :guid }
 
+  scope :read, -> { where(read: true) }
+  scope :starred, -> { where(starred: true) }
+  scope :unread, -> { where(read: false) }
+
   def self.create_from_feedjira(feed_id, entry)
     identifier = entry.entry_id || entry.url
     return if Entry.exists?(feed_id: feed_id, guid: identifier)

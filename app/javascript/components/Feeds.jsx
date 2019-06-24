@@ -17,8 +17,8 @@ class Feeds extends Component {
   }
 
   fetchFeeds = () => {
-    getRequest('/feeds/list', data => {
-      this.setState({ feeds: data.feeds });
+    getRequest('/feeds/list', feeds => {
+      this.setState({ feeds });
     });
   };
 
