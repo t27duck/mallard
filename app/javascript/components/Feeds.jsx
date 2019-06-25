@@ -1,26 +1,20 @@
 import React, { Component } from 'react';
-import Alert from './Alert';
-import { getRequest, postRequest } from '../shared/fetch';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchFeeds, addFeed, deleteFeed, fetchFeed } from '../redux/feed_manager';
 
 class Feeds extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      feeds: [],
-      feedUrl: '',
-      notification: {}
+      feedUrl: ''
     };
   }
 
   componentDidMount() {
-    this.fetchFeeds();
+    const { _fetchFeeds } = this.props;
+    _fetchFeeds();
   }
-
-  fetchFeeds = () => {
-    getRequest('/feeds/list', feeds => {
-      this.setState({ feeds });
-    });
-  };
 
   handleFeedUrlChange = event => {
     this.setState({ feedUrl: event.target.value });
@@ -28,42 +22,32 @@ class Feeds extends Component {
 
   submitCreateFeed = () => {
     const { feedUrl } = this.state;
+    const { _addFeed } = this.props;
 
     if (feedUrl === '') {
       return;
     }
 
-    postRequest('/feeds', 'POST', { url: feedUrl }, data => {
-      this.setState({ notification: data.alert, feedUrl: '' });
-    });
+    _addFeed({ url: feedUrl });
   };
 
   fetchFeed = feedId => {
-    const url = `/feeds/${feedId}/fetch`;
-
-    getRequest(url, data => {
-      this.setState({ notification: data.alert });
-    });
+    const { _fetchFeed } = this.props;
+    _fetchFeed(feedId);
   };
 
   deleteFeed = feedId => {
-    const url = `/feeds/${feedId}`;
-
-    postRequest(url, 'DELETE', {}, data => {
-      this.setState({ notification: data.alert });
-      this.fetchFeeds();
-    });
+    const { _deleteFeed } = this.props;
+    _deleteFeed(feedId);
   };
 
   render() {
-    const { feeds } = this.state;
+    const { feeds } = this.props;
     const { feedUrl } = this.state;
-    const { notification } = this.state;
 
     return (
       <div className="container">
         <h2>Feeds</h2>
-        <Alert notification={notification} />
         <form
           onSubmit={event => {
             event.preventDefault();
@@ -133,4 +117,17 @@ class Feeds extends Component {
   }
 }
 
-export default Feeds;
+Feeds.propTypes = {
+  _fetchFeeds: PropTypes.func,
+  _fetchFeed: PropTypes.func,
+  _addFeed: PropTypes.func,
+  _deleteFeed: PropTypes.func,
+  feeds: PropTypes.array
+};
+
+const mapStateToProps = state => ({ feeds: state.feedManager.feeds });
+
+export default connect(
+  mapStateToProps,
+  { _fetchFeeds: fetchFeeds, _addFeed: addFeed, _deleteFeed: deleteFeed, _fetchFeed: fetchFeed }
+)(Feeds);

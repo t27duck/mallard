@@ -11,7 +11,10 @@ import './bootstrap_custom.js';
 import '../stylesheets/application';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { ConnectedRouter } from 'connected-react-router';
+import { Provider } from 'react-redux';
 import App from '../components/App';
+import configureStore, { history } from '../redux/store';
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
@@ -20,4 +23,16 @@ import App from '../components/App';
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-ReactDOM.render(<App />, document.getElementById('root'));
+document.addEventListener('DOMContentLoaded', () => {
+  const node = document.getElementById('root');
+  const data = JSON.parse(node.getAttribute('data'));
+  const store = configureStore(data);
+  ReactDOM.render(
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <App />
+      </ConnectedRouter>
+    </Provider>,
+    node
+  );
+});

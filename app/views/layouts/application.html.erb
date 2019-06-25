@@ -9,15 +9,19 @@
 
     <%#= stylesheet_link_tag 'application', media: 'all' %>
     <%= stylesheet_pack_tag 'bootstrap' %>
+    <%= javascript_pack_tag 'application' %>
   </head>
 
   <body>
-    <div id="root"></div>
+    <%= content_tag :div,
+      nil,
+      id: 'root',
+      class: 'root',
+      data: {
+        isSignedIn: user_signed_in?,
+        notifications: flash.map {|type, msg| { type: type, message: msg } if msg.present? }.compact
+      }.to_json
+    %>
     <%= yield %>
-    <%= javascript_pack_tag 'application' %>
-
-    <% flash.each do |key, value| %>
-      <p><%= key %>: <%= value %></p>
-    <% end %>
   </body>
 </html>
