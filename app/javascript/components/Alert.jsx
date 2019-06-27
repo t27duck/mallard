@@ -36,8 +36,8 @@ class Alert extends React.Component {
 }
 
 Alert.propTypes = {
-  notifications: PropTypes.array,
-  _setNotificationsWithTimers: PropTypes.func
+  notifications: PropTypes.array.isRequired,
+  _setNotificationsWithTimers: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

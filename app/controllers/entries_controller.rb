@@ -16,7 +16,7 @@ class EntriesController < ApplicationController
   end
 
   def show
-    render json: { entry: @entry }
+    render json: @entry
   end
 
   def update

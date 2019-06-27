@@ -7,3 +7,8 @@ body {
 button {
   margin-right: 1rem;
 }
+
+#entry-list {
+  overflow-y: auto;
+  margin-bottom: 5px;
+}

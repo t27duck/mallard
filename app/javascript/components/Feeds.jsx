@@ -118,11 +118,11 @@ class Feeds extends Component {
 }
 
 Feeds.propTypes = {
-  _fetchFeeds: PropTypes.func,
-  _fetchFeed: PropTypes.func,
-  _addFeed: PropTypes.func,
-  _deleteFeed: PropTypes.func,
-  feeds: PropTypes.array
+  _fetchFeeds: PropTypes.func.isRequired,
+  _fetchFeed: PropTypes.func.isRequired,
+  _addFeed: PropTypes.func.isRequired,
+  _deleteFeed: PropTypes.func.isRequired,
+  feeds: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({ feeds: state.feedManager.feeds });
