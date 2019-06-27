@@ -15,14 +15,28 @@ class EntryList extends Component {
     _fetchEntries(filter);
     this.updateDimensions();
     window.addEventListener('resize', this.updateDimensions);
+    window.addEventListener('keydown', this.handleKeyEvent, false);
   }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateDimensions);
+    window.removeEventListener('keydown', this.handleKeyEvent, false);
   }
 
   updateDimensions = () => {
     this.setState({ entryHeight: window.innerHeight - 135 });
+  };
+
+  handleKeyEvent = event => {
+    switch (event.keyCode) {
+      case 74: // j
+        this.handleNextPrev(1);
+        break;
+      case 75: // k
+        this.handleNextPrev(-1);
+        break;
+      default:
+    }
   };
 
   title = () => {
@@ -84,6 +98,32 @@ class EntryList extends Component {
     );
   };
 
+  entryNavigation = () => (
+    <div className="float-right">
+      <a
+        href="#"
+        className="btn btn-primary"
+        onClick={event => {
+          event.preventDefault();
+          this.handleNextPrev(-1);
+        }}
+      >
+        &laquo; Prev
+      </a>
+      &nbsp;
+      <a
+        href="#"
+        className="btn btn-primary"
+        onClick={event => {
+          event.preventDefault();
+          this.handleNextPrev(1);
+        }}
+      >
+        Next &raquo;
+      </a>
+    </div>
+  );
+
   render() {
     const { entries, selectedIndex } = this.props;
     const { entryHeight } = this.state;
@@ -94,29 +134,7 @@ class EntryList extends Component {
           <div className="float-left">
             <h2>{this.title()}</h2>
           </div>
-          <div className="float-right">
-            <a
-              href="#"
-              className="btn btn-primary"
-              onClick={event => {
-                event.preventDefault();
-                this.handleNextPrev(-1);
-              }}
-            >
-              Prev
-            </a>
-            &nbsp;
-            <a
-              href="#"
-              className="btn btn-primary"
-              onClick={event => {
-                event.preventDefault();
-                this.handleNextPrev(1);
-              }}
-            >
-              Next
-            </a>
-          </div>
+          {entries.length > 0 && this.entryNavigation()}
         </div>
         <div id="entry-list" style={{ height: `${entryHeight}px` }}>
           {entries.map((entry, index) => (

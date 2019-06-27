@@ -47,7 +47,7 @@ const entryListReducer = (state = initialState, action) => {
     case ENTRIES_FETCHED:
       return { ...state, ...{ entries: action.entries } };
     case CLEAR_ENTRIES:
-      return { ...state, ...{ entries: [] } };
+      return { ...state, ...{ entries: [], viewedEntry: {}, selectedIndex: -1 } };
     case ENTRY_FETCHED:
       return { ...state, ...{ viewedEntry: action.entry, selectedIndex: action.newIndex } };
     default:
