@@ -24,9 +24,10 @@ class EntryList extends Component {
   }
 
   updateDimensions = () => {
-    // const heightOffset = document.getElementById('entry-list').offsetTop;
-    this.setState({ entryHeight: window.innerHeight - 135 });
+    this.setState({ entryHeight: window.innerHeight - this.entryHeightOffset() });
   };
+
+  entryHeightOffset = () => (this.enableSearch() ? 185 : 135);
 
   handleKeyEvent = event => {
     switch (event.keyCode) {
@@ -38,6 +39,21 @@ class EntryList extends Component {
         break;
       default:
     }
+  };
+
+  enableSearch = () => {
+    const { filter } = this.props;
+    return filter === 'read';
+  };
+
+  totalPages = () => {
+    if (!this.enableSearch()) {
+      return 0;
+    }
+
+    const { total } = this.props;
+
+    return Math.ceil(total / 20);
   };
 
   title = () => {
@@ -68,6 +84,37 @@ class EntryList extends Component {
     const entryId = entries[newIndex].id;
 
     _fetchEntry(newIndex, entryId);
+  };
+
+  handlePagination = value => {
+    const { page, search } = this.state;
+    const { filter, _fetchEntries } = this.props;
+    let newPage = page + value;
+
+    if (newPage < 0) {
+      newPage = 0;
+    }
+
+    if (newPage > this.totalPages() - 1) {
+      newPage = this.totalPages() - 1;
+    }
+
+    this.setState({ page: newPage });
+
+    _fetchEntries(filter, newPage, search);
+  };
+
+  handleSearchChange = event => {
+    this.setState({ search: event.target.value });
+  };
+
+  handleSearchSubmit = () => {
+    const { search } = this.state;
+    const { filter, _fetchEntries } = this.props;
+
+    this.setState({ page: 0 });
+
+    _fetchEntries(filter, 0, search);
   };
 
   entryBody = () => {
@@ -125,6 +172,77 @@ class EntryList extends Component {
     </div>
   );
 
+  searchAndPagination = () => {
+    const { page, search } = this.state;
+    return (
+      <div className="clearfix">
+        <div className="float-left">
+          <form
+            onSubmit={event => {
+              event.preventDefault();
+              this.handleSearchSubmit();
+            }}
+          >
+            <div className="form-row">
+              <div className="input-group input-group-sm">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Title Search"
+                  value={search}
+                  onChange={event => {
+                    event.preventDefault();
+                    this.handleSearchChange(event);
+                  }}
+                />
+                <div className="input-group-append">
+                  <button type="submit" className="btn btn-primary">
+                    Search
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div className="float-right">
+          <nav>
+            <ul className="pagination pagination-sm">
+              <li className="page-item">
+                <a
+                  href="#"
+                  className="page-link"
+                  onClick={event => {
+                    event.preventDefault();
+                    this.handlePagination(-1);
+                  }}
+                >
+                  &laquo; Prev
+                </a>
+              </li>
+              <li className="page-item">
+                <a className="page-link">
+                  {page + 1} / {this.totalPages()}
+                </a>
+              </li>
+              <li className="page-item">
+                <a
+                  href="#"
+                  className="page-link"
+                  onClick={event => {
+                    event.preventDefault();
+                    this.handlePagination(1);
+                  }}
+                >
+                  Next &raquo;
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    );
+  };
+
   render() {
     const { entries, selectedIndex } = this.props;
     const { entryHeight } = this.state;
@@ -137,6 +255,7 @@ class EntryList extends Component {
           </div>
           {entries.length > 0 && this.entryNavigation()}
         </div>
+        {this.enableSearch() && this.searchAndPagination()}
         <div id="entry-list" style={{ height: `${entryHeight}px` }}>
           {entries.map((entry, index) => (
             <div className="card" key={`entry-${entry.id}`} id={`entry-${entry.id}`}>
@@ -164,11 +283,13 @@ EntryList.propTypes = {
   entries: PropTypes.array.isRequired,
   viewedEntry: PropTypes.object.isRequired,
   selectedIndex: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
   filter: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
   entries: state.entryList.entries,
+  total: state.entryList.total,
   selectedIndex: state.entryList.selectedIndex,
   viewedEntry: state.entryList.viewedEntry
 });

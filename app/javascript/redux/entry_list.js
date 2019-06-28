@@ -2,10 +2,11 @@ import { ENTRIES_FETCHED, CLEAR_ENTRIES, ENTRY_FETCHED } from './action_types';
 import { getRequest } from '../shared/fetch';
 
 // Action creators
-export function entriesFetched(entries) {
+export function entriesFetched(payload) {
   return {
     type: ENTRIES_FETCHED,
-    entries
+    entries: payload.entries,
+    total: payload.total || 0
   };
 }
 
@@ -21,9 +22,15 @@ export const clearEntries = () => async dispatch => {
   dispatch({ type: CLEAR_ENTRIES });
 };
 
-export const fetchEntries = filter => async dispatch => {
-  getRequest(`/entries/${filter}.json`, entries => {
-    dispatch(entriesFetched(entries.entries));
+export const fetchEntries = (filter, page = 0, search = '') => async dispatch => {
+  const esc = encodeURIComponent;
+  const params = { page, search };
+  const query = Object.keys(params)
+    .map(k => `${esc(k)}=${esc(params[k])}`)
+    .join('&');
+
+  getRequest(`/entries/${filter}.json?${query}`, entries => {
+    dispatch(entriesFetched(entries));
   });
 };
 
@@ -46,7 +53,7 @@ const initialState = {
 const entryListReducer = (state = initialState, action) => {
   switch (action.type) {
     case ENTRIES_FETCHED:
-      return { ...state, ...{ entries: action.entries } };
+      return { ...state, ...{ entries: action.entries, total: action.total } };
     case CLEAR_ENTRIES:
       return { ...state, ...{ entries: [], viewedEntry: {}, selectedIndex: -1, total: 0 } };
     case ENTRY_FETCHED:
