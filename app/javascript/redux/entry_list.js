@@ -23,7 +23,7 @@ export const clearEntries = () => async dispatch => {
 
 export const fetchEntries = filter => async dispatch => {
   getRequest(`/entries/${filter}.json`, entries => {
-    dispatch(entriesFetched(entries));
+    dispatch(entriesFetched(entries.entries));
   });
 };
 
@@ -39,7 +39,8 @@ export const fetchEntry = (newIndex, entryId) => async dispatch => {
 const initialState = {
   entries: [],
   viewedEntry: {},
-  selectedIndex: -1
+  selectedIndex: -1,
+  total: 0
 };
 
 const entryListReducer = (state = initialState, action) => {
@@ -47,7 +48,7 @@ const entryListReducer = (state = initialState, action) => {
     case ENTRIES_FETCHED:
       return { ...state, ...{ entries: action.entries } };
     case CLEAR_ENTRIES:
-      return { ...state, ...{ entries: [], viewedEntry: {}, selectedIndex: -1 } };
+      return { ...state, ...{ entries: [], viewedEntry: {}, selectedIndex: -1, total: 0 } };
     case ENTRY_FETCHED:
       return { ...state, ...{ viewedEntry: action.entry, selectedIndex: action.newIndex } };
     default:

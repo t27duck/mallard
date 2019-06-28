@@ -6,7 +6,7 @@ import { fetchEntries, clearEntries, fetchEntry } from '../redux/entry_list';
 class EntryList extends Component {
   constructor(props) {
     super(props);
-    this.state = { entryHeight: 0 };
+    this.state = { entryHeight: 0, page: 0, search: '' };
   }
 
   componentDidMount() {
@@ -24,6 +24,7 @@ class EntryList extends Component {
   }
 
   updateDimensions = () => {
+    // const heightOffset = document.getElementById('entry-list').offsetTop;
     this.setState({ entryHeight: window.innerHeight - 135 });
   };
 
