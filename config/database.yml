@@ -83,5 +83,3 @@ test:
 production:
   <<: *default
   database: mallard_production
-  username: mallard
-  password: <%= ENV['MALLARD_DATABASE_PASSWORD'] %>
