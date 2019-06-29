@@ -7,8 +7,9 @@ class Entry < ApplicationRecord
   validates :feed_id, uniqueness: { scope: :guid }
 
   scope :read, -> { where(read: true) }
-  scope :starred, -> { where(starred: true) }
   scope :unread, -> { where(read: false) }
+  scope :starred, -> { where(starred: true) }
+  scope :unstarred, -> { where(starred: false) }
   scope :search_title, ->(term) { where(arel_table[:title].matches("%#{sanitize_sql_like(term)}%")) }
 
   def self.create_from_feedjira(feed_id, entry)
