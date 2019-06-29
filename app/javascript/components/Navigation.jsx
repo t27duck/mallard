@@ -28,7 +28,7 @@ const Navigation = props => {
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
                 <Link className="nav-link" to="/">
-                  Unread [{totalUnread}]
+                  Unread <span className="badge badge-light">{totalUnread}</span>
                 </Link>
               </li>
               <li className="nav-item">
@@ -38,7 +38,7 @@ const Navigation = props => {
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/starred">
-                  Starred [{totalStarred}]
+                  Starred <span className="badge badge-light">{totalStarred}</span>
                 </Link>
               </li>
               <li className="nav-item">

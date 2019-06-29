@@ -4,11 +4,23 @@
 // that code so it'll be compiled.
 
 require('@rails/ujs').start();
-require('@rails/activestorage').start();
-require('bootstrap/dist/js/bootstrap');
+// require('@rails/activestorage').start();
 
-import './bootstrap_custom.js';
-import '../stylesheets/application';
+// require('bootstrap/dist/js/bootstrap');
+// import 'bootstrap/js/dist/alert';
+// import 'bootstrap/js/dist/button';
+// import 'bootstrap/js/dist/carousel';
+// import 'bootstrap/js/dist/collapse';
+// import 'bootstrap/js/dist/dropdown';
+// import 'bootstrap/js/dist/index';
+// import 'bootstrap/js/dist/modal';
+// import 'bootstrap/js/dist/popover';
+// import 'bootstrap/js/dist/scrollspy';
+// import 'bootstrap/js/dist/tab';
+// import 'bootstrap/js/dist/toast';
+// import 'bootstrap/js/dist/tooltip';
+// import 'bootstrap/js/dist/util';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { ConnectedRouter } from 'connected-react-router';
