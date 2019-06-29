@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchFeeds, addFeed, deleteFeed, fetchFeed } from '../redux/feed_manager';
+import { fetchFeeds, addFeed, updateFeed, deleteFeed, fetchFeed } from '../redux/feed_manager';
 
 class Feeds extends Component {
   constructor(props) {
@@ -29,6 +29,13 @@ class Feeds extends Component {
     }
 
     _addFeed({ url: feedUrl });
+  };
+
+  submitToggleSanitize = (feedId, sanitize) => {
+    const { _updateFeed } = this.props;
+    const params = { feed: { sanitize: !sanitize } };
+
+    _updateFeed(feedId, params);
   };
 
   fetchFeed = feedId => {
@@ -102,7 +109,7 @@ class Feeds extends Component {
                   </button>
                   <button
                     type="button"
-                    className="btn btn-warning"
+                    className="btn btn-danger"
                     data-confirm="Are you sure you want to delete this feed?"
                     onClick={event => {
                       event.preventDefault();
@@ -110,6 +117,16 @@ class Feeds extends Component {
                     }}
                   >
                     Delete
+                  </button>
+                  <button
+                    type="button"
+                    className={`btn btn-${feed.sanitize ? 'secondary' : 'warning'}`}
+                    onClick={event => {
+                      event.preventDefault();
+                      this.submitToggleSanitize(feed.id, feed.sanitize);
+                    }}
+                  >
+                    {feed.sanitize ? 'Sanitized' : 'Not Sanitized'}
                   </button>
                 </td>
               </tr>
@@ -126,6 +143,7 @@ Feeds.propTypes = {
   _fetchFeed: PropTypes.func.isRequired,
   _addFeed: PropTypes.func.isRequired,
   _deleteFeed: PropTypes.func.isRequired,
+  _updateFeed: PropTypes.func.isRequired,
   feeds: PropTypes.array.isRequired
 };
 
@@ -133,5 +151,11 @@ const mapStateToProps = state => ({ feeds: state.feedManager.feeds });
 
 export default connect(
   mapStateToProps,
-  { _fetchFeeds: fetchFeeds, _addFeed: addFeed, _deleteFeed: deleteFeed, _fetchFeed: fetchFeed }
+  {
+    _fetchFeeds: fetchFeeds,
+    _addFeed: addFeed,
+    _deleteFeed: deleteFeed,
+    _fetchFeed: fetchFeed,
+    _updateFeed: updateFeed
+  }
 )(Feeds);

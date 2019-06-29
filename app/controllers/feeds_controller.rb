@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 class FeedsController < ApplicationController
+  before_action :fetch_feed, only: %i[fetch create update detroy]
+
   def list
-    feeds = Feed.with_entry_count.order(:title)
-    render json: feeds
+    render json: feed_list
   end
 
   def fetch
-    feed = Feed.find(params[:id])
-    feed.fetch
-    render json: { alert: { type: "notice", message: "New entries fetched" } }
+    @feed.fetch
+    render json: { feeds: feed_list, alert: { type: "notice", message: "New entries fetched" } }
   end
 
   def create
@@ -22,9 +22,27 @@ class FeedsController < ApplicationController
     end
   end
 
+  def update
+    @feed.update(feed_params)
+    render json: { feeds: feed_list, alert: { type: "notice", message: "Feed updated" } }
+  end
+
   def destroy
-    feed = Feed.find(params[:id])
-    feed.destroy
+    @feed.destroy
     render json: { alert: { type: "notice", message: "Feed deleted" } }
+  end
+
+  private
+
+  def fetch_feed
+    @feed = Feed.find(params[:id])
+  end
+
+  def feed_params
+    params.require(:feed).permit(:sanitize)
+  end
+
+  def feed_list
+    Feed.with_entry_count.order(:title)
   end
 end

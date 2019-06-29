@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "registrations", sessions: "sessions" }
 
-  resources :feeds, only: %i[create destroy] do
+  resources :feeds, only: %i[create update destroy] do
     collection do
       get :list
     end

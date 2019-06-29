@@ -46,6 +46,7 @@ class Entry < ApplicationRecord
   end
 
   def as_json(options = {})
-    super.merge(published_at: published_at.strftime("%b %-d, %I:%M%p"))
+    prepared_content = feed.sanitize? ? ActionController::Base.helpers.sanitize(content) : content
+    super.merge(published_at: published_at.strftime("%b %-d, %I:%M%p"), content: prepared_content)
   end
 end

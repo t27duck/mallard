@@ -19,6 +19,14 @@ export const fetchFeeds = () => async dispatch => {
 export const fetchFeed = feedId => async dispatch => {
   getRequest(`/feeds/${feedId}/fetch.json`, data => {
     dispatch(addNotificationWithTimer(data.alert));
+    dispatch(feedsFetched(data.feeds));
+  });
+};
+
+export const updateFeed = (feedId, params) => async dispatch => {
+  postRequest(`/feeds/${feedId}.json`, 'PATCH', params, data => {
+    dispatch(addNotificationWithTimer(data.alert));
+    dispatch(feedsFetched(data.feeds));
   });
 };
 

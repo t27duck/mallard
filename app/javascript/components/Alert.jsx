@@ -23,7 +23,7 @@ class Alert extends React.Component {
 
     return (
       filteredNotifications.length > 0 && (
-        <div className="alerts">
+        <div className="container-fluid">
           {filteredNotifications.map((alert, index) => (
             <div key={index} className={`alert alert-${alertType(alert.type)}`}>
               {alert.message}
