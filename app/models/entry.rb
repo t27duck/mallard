@@ -44,4 +44,8 @@ class Entry < ApplicationRecord
   def minimum_hash
     slice(:id, :title)
   end
+
+  def as_json(options = {})
+    super.merge(published_at: published_at.strftime("%b %-d, %I:%M%p"))
+  end
 end
