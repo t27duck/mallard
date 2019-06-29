@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchEntries, clearEntries, fetchEntry } from '../redux/entry_list';
+import { fetchEntries, clearEntries, fetchEntry, updateEntry } from '../redux/entry_list';
 
 class EntryList extends Component {
   constructor(props) {
@@ -117,19 +117,38 @@ class EntryList extends Component {
     _fetchEntries(filter, 0, search);
   };
 
+  handleEntryUpdate = (entryId, params) => {
+    const { _updateEntry } = this.props;
+    _updateEntry(entryId, { entry: params });
+  };
+
   entryBody = () => {
     const { viewedEntry } = this.props;
-
+    const { read, starred } = viewedEntry;
     return (
       <div className="card-body">
         <div className="card-title clearfix">
           <div className="float-left">
-            <a href="#" className="btn btn-primary">
-              Mark Unread
+            <a
+              href="#"
+              className="btn btn-primary"
+              onClick={event => {
+                event.preventDefault();
+                this.handleEntryUpdate(viewedEntry.id, { read: !read });
+              }}
+            >
+              Mark {read ? 'Unread' : 'Read'}
             </a>
             &nbsp;
-            <a href="#" className="btn btn-primary">
-              Star
+            <a
+              href="#"
+              className="btn btn-primary"
+              onClick={event => {
+                event.preventDefault();
+                this.handleEntryUpdate(viewedEntry.id, { starred: !starred });
+              }}
+            >
+              {starred ? 'Unstar' : 'Star'}
             </a>
           </div>
           <div className="float-right">
@@ -280,6 +299,7 @@ EntryList.propTypes = {
   _fetchEntries: PropTypes.func.isRequired,
   _clearEntries: PropTypes.func.isRequired,
   _fetchEntry: PropTypes.func.isRequired,
+  _updateEntry: PropTypes.func.isRequired,
   entries: PropTypes.array.isRequired,
   viewedEntry: PropTypes.object.isRequired,
   selectedIndex: PropTypes.number.isRequired,
@@ -296,5 +316,10 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { _fetchEntries: fetchEntries, _clearEntries: clearEntries, _fetchEntry: fetchEntry }
+  {
+    _fetchEntries: fetchEntries,
+    _clearEntries: clearEntries,
+    _fetchEntry: fetchEntry,
+    _updateEntry: updateEntry
+  }
 )(EntryList);

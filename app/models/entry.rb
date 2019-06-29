@@ -27,6 +27,19 @@ class Entry < ApplicationRecord
     )
   end
 
+  def self.stats
+    data = ApplicationRecord.connection.execute(<<~SQL).pluck("unread", "starred").first
+      SELECT
+        COUNT(1) FILTER (WHERE read = 'f') AS unread,
+        COUNT(1) FILTER (WHERE starred) AS starred
+      FROM entries
+    SQL
+    {
+      total_unread: data[0],
+      total_starred: data[1]
+    }
+  end
+
   def minimum_hash
     slice(:id, :title)
   end

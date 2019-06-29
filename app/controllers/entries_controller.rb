@@ -4,27 +4,28 @@ class EntriesController < ApplicationController
   before_action :fetch_entry, only: %i[show update]
 
   def unread
-    render json: { entries: fetch_entries("unread") }
+    render json: { entries: fetch_entries("unread") }.merge(Entry.stats)
   end
 
   def read
     render json: {
       entries: fetch_entries("read", search: params[:search], page: params[:page].to_i),
       total: read_total(search: params[:search])
-    }
+    }.merge(Entry.stats)
   end
 
   def starred
-    render json: { entries: fetch_entries("starred") }
+    render json: { entries: fetch_entries("starred") }.merge(Entry.stats)
   end
 
   def show
-    render json: @entry
+    @entry.update(read: true)
+    render json: { entry: @entry }.merge(Entry.stats)
   end
 
   def update
     @entry.update(entry_params)
-    head :ok
+    render json: { entry: @entry }.merge(Entry.stats)
   end
 
   private

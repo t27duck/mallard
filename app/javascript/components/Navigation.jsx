@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 const Navigation = props => {
-  const { isSignedIn } = props;
+  const { isSignedIn, totalUnread, totalStarred } = props;
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
       <Link className="navbar-brand" to="/">
@@ -28,7 +28,7 @@ const Navigation = props => {
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
                 <Link className="nav-link" to="/">
-                  Unread
+                  Unread [{totalUnread}]
                 </Link>
               </li>
               <li className="nav-item">
@@ -38,7 +38,7 @@ const Navigation = props => {
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/starred">
-                  Starred
+                  Starred [{totalStarred}]
                 </Link>
               </li>
               <li className="nav-item">
@@ -60,13 +60,17 @@ const Navigation = props => {
 };
 
 const mapStateToProps = state => ({
-  isSignedIn: state.isSignedIn
+  isSignedIn: state.isSignedIn,
+  totalUnread: state.entryList.totalUnread,
+  totalStarred: state.entryList.totalStarred
 });
 
 const ConnectedNavigation = connect(mapStateToProps)(Navigation);
 
 Navigation.propTypes = {
-  isSignedIn: PropTypes.bool
+  isSignedIn: PropTypes.bool,
+  totalUnread: PropTypes.number,
+  totalStarred: PropTypes.number
 };
 
 export default ConnectedNavigation;
