@@ -39,7 +39,7 @@ class EntryBody extends Component {
             </a>
           </div>
           <div className="float-right">
-            <a href="#" className="btn btn-primary">
+            <a className="btn btn-primary" href={viewedEntry.url} target="_blank">
               View
             </a>
           </div>
