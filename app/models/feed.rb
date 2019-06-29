@@ -6,6 +6,10 @@ class Feed < ApplicationRecord
 
   validates :title, :url, presence: true
 
+  scope :with_entry_count, lambda {
+    select("feeds.*, (SELECT COUNT(1) FROM entries WHERE entries.feed_id = feeds.id) AS entry_count")
+  }
+
   def set_info
     return false if url.blank?
     return false unless feed_object.respond_to?(:title)
@@ -38,6 +42,10 @@ class Feed < ApplicationRecord
       id: Entry.where(feed_id: id).unstarred.read.order(published_at: :desc)
         .limit(entry_count_in_fetch + ADDITIONAL_UNREAD_ENTRIES_TO_KEEP)
     ).delete_all
+  end
+
+  def as_json(options = {})
+    super.merge(last_checked: last_checked.strftime("%b %-d, %I:%M%p"))
   end
 
   private

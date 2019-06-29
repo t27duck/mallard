@@ -2,7 +2,7 @@
 
 class FeedsController < ApplicationController
   def list
-    feeds = Feed.order(:title)
+    feeds = Feed.with_entry_count.order(:title)
     render json: feeds
   end
 

@@ -78,6 +78,8 @@ class Feeds extends Component {
           <thead>
             <tr>
               <th>Feed</th>
+              <th className="d-none d-sm-table-cell">Entries</th>
+              <th className="d-none d-sm-table-cell">Last Checked</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -85,6 +87,8 @@ class Feeds extends Component {
             {feeds.map(feed => (
               <tr key={`feed-${feed.id}`}>
                 <td>{feed.title}</td>
+                <td className="d-none d-sm-table-cell">{feed.entry_count}</td>
+                <td className="d-none d-sm-table-cell">{feed.last_checked}</td>
                 <td>
                   <button
                     type="button"
