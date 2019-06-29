@@ -31,17 +31,17 @@ const Navigation = props => {
                   Unread <span className="badge badge-light">{totalUnread}</span>
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className="nav-item active">
                 <Link className="nav-link" to="/read">
                   Read
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className="nav-item active">
                 <Link className="nav-link" to="/starred">
                   Starred <span className="badge badge-light">{totalStarred}</span>
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className="nav-item active">
                 <Link className="nav-link" to="/feeds">
                   Feeds
                 </Link>
