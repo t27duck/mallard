@@ -7,9 +7,9 @@ const Navigation = props => {
   const { isSignedIn, totalUnread, totalStarred } = props;
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-      <Link className="navbar-brand" to="/">
+      <a className="navbar-brand" href="/">
         Mallard
-      </Link>
+      </a>
       <button
         className="navbar-toggler"
         type="button"
