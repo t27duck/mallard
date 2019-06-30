@@ -80,7 +80,9 @@ const entryListReducer = (state = initialState, action) => {
           entries: action.entries,
           total: action.total,
           totalUnread: action.totalUnread,
-          totalStarred: action.totalStarred
+          totalStarred: action.totalStarred,
+          viewedEntry: {},
+          selectedIndex: -1
         }
       };
     case CLEAR_ENTRIES:
