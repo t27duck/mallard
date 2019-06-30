@@ -28,7 +28,7 @@ services:
       - postgres
     environment:
       - MALLARD_DATABASE_URL=postgres://postgres:postgres@postgres/mallard_development
-      - MALLARD_DATABASE_URL_TEST=postgres://postgres:postgres@postgres/mallard_development
+      - MALLARD_DATABASE_URL_TEST=postgres://postgres:postgres@postgres/mallard_test
       - RACK_ENV=development
       - NODE_ENV=development
     command: ["rails", "server", "-b", "0.0.0.0"]
