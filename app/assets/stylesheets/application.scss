@@ -49,8 +49,19 @@ button {
   overflow-y: auto;
   margin-bottom: 5px;
 
-  img {
-    max-width: 100%; // Part 1: Set a maximum relative to the parent
-    height: auto;  // Part 2: Scale the height according to the width, otherwise you get stretching
+  @include media-breakpoint-down(xs) {
+    img {
+      max-width: 100%; // Part 1: Set a maximum relative to the parent
+      height: auto; // Part 2: Scale the height according to the width, otherwise you get stretching
+    }
+
+    iframe,
+    embed,
+    object,
+    video {
+      width: 100%;
+      height: auto;
+      border: 0;
+    }
   }
 }
