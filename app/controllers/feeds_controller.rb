@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class FeedsController < ApplicationController
-  before_action :fetch_feed, only: %i[fetch create update destroy]
+  before_action :fetch_feed, only: %i[fetch update destroy]
 
   def list
     render json: feed_list
