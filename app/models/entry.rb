@@ -15,6 +15,7 @@ class Entry < ApplicationRecord
   def self.create_from_feedjira(feed_id, entry)
     identifier = entry.entry_id || entry.url
     return if Entry.exists?(feed_id: feed_id, guid: identifier)
+    return if entry.url.blank?
 
     title = entry.title.presence || entry.url
     Entry.create!(
