@@ -105,7 +105,7 @@ GEM
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     pg (1.2.3)
-    puma (4.3.6)
+    puma (5.0.2)
       nio4r (~> 2.0)
     rack (2.2.3)
     rack-proxy (0.6.5)
@@ -193,7 +193,7 @@ DEPENDENCIES
   feedjira (~> 2.2.0)
   json (>= 2.3.0)
   pg (>= 0.18, < 2.0)
-  puma (~> 4)
+  puma (~> 5)
   rails (~> 6.0.3)
   sass-rails (~> 6)
   tzinfo-data
