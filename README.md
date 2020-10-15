@@ -7,7 +7,7 @@ It's a Rails + React application designed to run on a Unix-based server or conta
 
 ## Requirements
 
-* A supported version of Ruby (preferably 2.5 or later) with `bundler`
+* Ruby (preferably 2.7 or later) with `bundler`
 * Node.js and yarn (for Javascript dependencies and compliation)
 * PostgreSQL (perferably 9.6 or later)
 
