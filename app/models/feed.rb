@@ -52,9 +52,9 @@ class Feed < ApplicationRecord
 
   def feed_object
     @feed_object ||= begin
-                       Feedjira::Feed.fetch_and_parse(url)
-                     rescue StandardError
-                       nil
-                     end
+      Feedjira::Feed.fetch_and_parse(url)
+    rescue StandardError
+      nil
+    end
   end
 end
