@@ -1,17 +1,26 @@
-require: rubocop-performance
+require:
+  - rubocop-performance
+  - rubocop-rails
 
 AllCops:
   TargetRubyVersion: 2.6
+  NewCops: enable
   Exclude:
     - bin/**/*
     - db/schema.rb
     - node_modules/**/*
     - app/views/**/*
 
-Lint/HandleExceptions:
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - config/initializers/devise.rb
+
+
+Lint/SuppressedException:
   Enabled: false
 
-MethodLength:
+Metrics/MethodLength:
   Max: 35
 
 Metrics/AbcSize:
@@ -22,11 +31,6 @@ Metrics/ClassLength:
 
 Metrics/ParameterLists:
   Max: 10
-
-Metrics/LineLength:
-  Max: 120
-  Exclude:
-    - config/initializers/devise.rb
 
 Metrics/BlockLength:
   Max: 35
