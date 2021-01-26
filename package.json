@@ -2,26 +2,19 @@
   "name": "mallard",
   "private": true,
   "dependencies": {
-    "@babel/preset-react": "^7.10.4",
-    "@rails/activestorage": "^6.0.3-2",
-    "@rails/ujs": "^6.0.3",
-    "@rails/webpacker": "^5.1.1",
-    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "bootstrap": "^4.3.1",
-    "connected-react-router": "^6.8.0",
-    "jquery": "^3.5.1",
-    "popper.js": "^1.15.0",
-    "prop-types": "^15.7.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-redux": "^7.2.0",
-    "react-router-dom": "^5.1.2",
-    "redux": "^4.0.5",
-    "redux-devtools-extension": "^2.13.8",
-    "redux-thunk": "^2.3.0"
+    "@hotwired/turbo-rails": "^7.0.0-beta.5",
+    "@rails/ujs": "^6.1.0",
+    "@rails/webpacker": "5.2.1",
+    "@tailwindcss/forms": "^0.2.1",
+    "@tailwindcss/postcss7-compat": "^2.0.2",
+    "autoprefixer": "^9",
+    "el-transition": "^0.0.7",
+    "postcss": "^7",
+    "stimulus": "^2.0.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   },
   "version": "0.1.0",
   "devDependencies": {
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.2"
   }
 }

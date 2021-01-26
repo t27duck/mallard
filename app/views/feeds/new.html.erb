@@ -1,0 +1,5 @@
+<div>New feed</div>
+
+<%= turbo_frame_tag "form-modal", "target" => "_top", "data-turbo" => "false" do %>
+  <%= render partial: "form", locals: { feed: @feed } %>
+<% end %>

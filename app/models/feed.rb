@@ -6,13 +6,21 @@ class Feed < ApplicationRecord
 
   validates :title, :url, presence: true
 
-  scope :with_entry_count, lambda {
-    select("feeds.*, (SELECT COUNT(1) FROM entries WHERE entries.feed_id = feeds.id) AS entry_count")
-  }
-
   def set_info
-    return false if url.blank?
-    return false unless feed_object.respond_to?(:title)
+    if url.blank?
+      errors.add(:url, :blank)
+      return false
+    end
+
+    if !feed_object
+      errors.add(:base, "Unable to parse feed")
+      return false
+    end
+
+    unless feed_object.respond_to?(:title)
+      errors.add(:title, :blank)
+      return false
+    end
 
     self.title = feed_object.title
     true
@@ -44,8 +52,9 @@ class Feed < ApplicationRecord
     ).delete_all
   end
 
-  def as_json(options = {})
-    super.merge(last_checked: last_checked.strftime("%b %-d, %I:%M%p"))
+  # TODO: Maybe counter cache one day
+  def entries_count
+    entries.count
   end
 
   private

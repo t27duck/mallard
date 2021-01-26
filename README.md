@@ -3,7 +3,7 @@ Mallard
 
 ### Mallard is a self-hosted, no-nonsense, straight-forward RSS reader.
 
-It's a Rails + React application designed to run on a Unix-based server or container.
+It's a Rails with Hotwire application designed to run on a Unix-based server or container.
 
 ## Requirements
 

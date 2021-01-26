@@ -1,31 +1,34 @@
 # frozen_string_literal: true
 
 class EntriesController < ApplicationController
+  PER_PAGE = 10
+
   before_action :fetch_entry, only: %i[show update]
 
   def unread
-    render json: { entries: fetch_entries("unread") }.merge(Entry.stats)
+    @entries = fetch_entries("unread")
+    @entry_type = "Unread"
+    render :index
   end
 
   def read
-    render json: {
-      entries: fetch_entries("read", search: params[:search], page: params[:page].to_i),
-      total: read_total(search: params[:search])
-    }.merge(Entry.stats)
+    @section = "read"
+    @entry_type = "Read"
+    @pagination_and_search = true
+    @entries = fetch_entries("read", search: params[:search], page: params[:page].to_i)
+    @total_pages = total_pages(search: params[:search])
+    render :index
   end
 
   def starred
-    render json: { entries: fetch_entries("starred") }.merge(Entry.stats)
-  end
-
-  def show
-    @entry.update(read: true)
-    render json: { entry: @entry }.merge(Entry.stats)
+    @section = "starred"
+    @entry_type = "Starred"
+    @entries = fetch_entries("starred")
+    render :index
   end
 
   def update
     @entry.update(entry_params)
-    render json: { entry: @entry }.merge(Entry.stats)
   end
 
   private
@@ -43,13 +46,13 @@ class EntriesController < ApplicationController
 
     entries = Entry.public_send(scope).order(:published_at)
     entries = entries.search_title(search) if search.presence
-    entries = entries.limit(20).offset(20 * page) if page
-    entries.map(&:minimum_hash)
+    entries = entries.limit(PER_PAGE).offset(PER_PAGE * page) if page
+    entries.select(:id, :title)
   end
 
-  def read_total(search: nil)
+  def total_pages(search: nil)
     entries = Entry.read
     entries = entries.search_title(search) if search.presence
-    entries.count
+    (entries.count / PER_PAGE.to_f).to_i + 1
   end
 end
