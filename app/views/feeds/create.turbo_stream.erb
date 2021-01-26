@@ -1,0 +1,3 @@
+<%= turbo_stream.append "feed-table-body", partial: "feed_row", locals: { feed: @feed } %>
+<%= turbo_stream.update "flash-messages", partial: "shared/flash_messages", locals: { notice: "Feed created" } %>
+<%= render partial: "shared/counts" %>

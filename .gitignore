@@ -4,9 +4,6 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
-.DS_STORE
-Thumbs.db
-
 # Ignore bundler config.
 /.bundle
 
@@ -16,9 +13,14 @@ Thumbs.db
 !/log/.keep
 !/tmp/.keep
 
-# Ignore uploaded files in development.
-/storage/*
-!/storage/.keep
+.DS_STORE
+Thumbs.db
+
+# Ignore pidfiles, but keep the directory.
+/tmp/pids/*
+!/tmp/pids/
+!/tmp/pids/.keep
+
 
 /public/assets
 .byebug_history

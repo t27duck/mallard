@@ -1,0 +1,54 @@
+<div data-controller="entries">
+  <div data-entries-target="controls">
+    <div class="flex justify-between font-bold space-x-3 my-3 mr-2 sm:mr-0">
+      <div class="text-3xl"><%= @entry_type %> Entries</div>
+      <div>
+        <%= link_to "&laquo; Prev".html_safe, "#", class: "button-primary mr-3", data: { action: "click->entries#prev" } %>
+        <%= link_to "Next &raquo;".html_safe, "#", class: "button-primary", data: { action: "click->entries#next" } %>
+      </div>
+    </div>
+
+    <% if @pagination_and_search %>
+      <div class="flex justify-between space-x-3 my-3 mx-2 sm:mx-0">
+        <div>
+          <%= pagination %>
+        </div>
+        <div>
+          <%= form_with url: read_entries_path, method: :get do %>
+            <div class="flex rounded-md shadow-sm">
+              <div class="relative flex items-stretch flex-grow focus-within:z-10">
+                <%= text_field_tag "search", "", class: "focus:ring-indigo-500 focus:border-indigo-500 block w-36 lg:w-full rounded-none rounded-l-md sm:text-sm border-gray-300", placeholder: "Search" %>
+              </div>
+              <%= button_tag class: "-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border text-sm font-medium rounded-r-md primary-color" do %>
+                <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                </svg>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div id="entry-list" data-entries-target="list">
+    <% if @entries.present? %>
+      <ul class="space-y-2 my-2 mr-2">
+        <% @entries.each do |entry| %>
+          <li class="sm:rounded-md shadow">
+            <%= form_with model: entry do |f| %>
+              <%= hidden_field_tag "refresh_body", "true" %>
+              <%= f.hidden_field :read, value: "true" %>
+              <%= link_to "#", class: "block bg-gray-100 overflow-hidden px-4 py-4 sm:px-6", data: { "entries-target" => "title", "action" => "click->entries#clearOpened click->entries#viewEntry" } do %>
+                <%= entry.title %>
+              <% end %>
+            <% end %>
+            <%= turbo_frame_tag dom_id(entry) %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <div class="text-center text-3xl">No entries found</div>
+    <% end %>
+  </div>
+</div>

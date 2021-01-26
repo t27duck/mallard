@@ -1,0 +1,52 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.nav-entry-active {
+  @apply bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium block;
+}
+
+.nav-entry {
+  @apply text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium block;
+}
+
+.button {
+  @apply inline-flex items-center px-2.5 py-1.5 border border-transparent font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2;
+}
+
+.primary-color {
+  @apply text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500;
+}
+
+.button-primary {
+  @apply button primary-color;
+}
+
+.button-danger {
+  @apply button text-white bg-red-600 hover:bg-red-700 focus:ring-red-500;
+}
+
+.button-plain {
+  @apply button bg-gray-300 hover:bg-gray-400 focus:ring-gray-500;
+}
+
+#entry-list {
+  overflow-y: auto;
+
+  // Width hard-coded from tailwind's sm breakpoint + 1
+  @media (max-width: 641px) {
+    img {
+      max-width: 100%; // Part 1: Set a maximum relative to the parent
+      height: auto; // Part 2: Scale the height according to the width, otherwise you get stretching
+    }
+
+    iframe,
+    embed,
+    object,
+    video {
+      width: 100%;
+      height: auto;
+      border: 0;
+    }
+  }
+}

@@ -1,18 +1,21 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :users, controllers: { registrations: "registrations", sessions: "sessions" }
+  devise_for :users, controllers: {
+    sessions: "sessions"
+  }, skip: [:registrations]
+  devise_scope :user do
+    # Rebuilds the registration paths without the cancel or destroy endpoints
+    resource :registration, only: [:new, :create], controller: "registrations"
+  end
 
-  resources :feeds, only: %i[create update destroy] do
-    collection do
-      get :list
-    end
+  resources :feeds do
     member do
       get :fetch
     end
   end
 
-  resources :entries, only: %i[show update] do
+  resources :entries, only: %i[update] do
     collection do
       get :unread
       get :read
@@ -20,7 +23,5 @@ Rails.application.routes.draw do
     end
   end
 
-  get "/:page", to: "site#index"
-
-  root "site#index"
+  root "entries#unread"
 end

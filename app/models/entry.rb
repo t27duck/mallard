@@ -42,12 +42,7 @@ class Entry < ApplicationRecord
     }
   end
 
-  def minimum_hash
-    slice(:id, :title)
-  end
-
-  def as_json(options = {})
-    prepared_content = feed.sanitize? ? ActionController::Base.helpers.sanitize(content) : content
-    super.merge(published_at: published_at.strftime("%b %-d, %I:%M%p"), content: prepared_content)
+  def santitized_content
+    feed.sanitize? ? ActionController::Base.helpers.sanitize(content) : content
   end
 end

@@ -1,0 +1,6 @@
+<% if params[:refresh_body] %>
+  <%= turbo_stream.update dom_id(@entry), partial: "entry_body", locals: { entry: @entry } %>
+<% else %>
+  <%= turbo_stream.update "entry-meta", partial: "entry_meta", locals: { entry: @entry } %>
+<% end %>
+<%= render partial: "shared/counts" %>
