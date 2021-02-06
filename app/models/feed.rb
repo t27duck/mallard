@@ -75,7 +75,9 @@ class Feed < ApplicationRecord
     req = Net::HTTP::Get.new(uri.request_uri)
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = (uri.scheme == "https")
-    response = http.request(req)
+    http.open_timeout = 5
+    http.read_timeout = 5
+    response = http.start { http.request(req) }
     response.body
   rescue StandardError
     nil

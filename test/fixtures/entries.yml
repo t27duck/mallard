@@ -1,0 +1,43 @@
+one:
+  feed: one
+  title: A post
+  url: https://website.com/posts/1
+  guid: https://website.com/posts/1
+  author: Someone
+  content: This is a post
+  read: false
+  starred: false
+  published_at: <%= 2.days.ago %>
+
+unread:
+  feed: one
+  title: An unread post
+  url: https://website.com/posts/0
+  guid: https://website.com/posts/0
+  author: Someone
+  content: This is an unread post
+  read: false
+  starred: false
+  published_at: <%= 2.days.ago %>
+
+read:
+  feed: one
+  title: A read post
+  url: https://website.com/posts/2
+  guid: https://website.com/posts/2
+  author: Someone
+  content: This is a read post
+  read: true
+  starred: false
+  published_at: <%= 3.days.ago %>
+
+starred:
+  feed: one
+  title: A starred post
+  url: https://website.com/posts/3
+  guid: https://website.com/posts/3
+  author: Someone
+  content: This is a starred post
+  read: false
+  starred: true
+  published_at: <%= 5.days.ago %>

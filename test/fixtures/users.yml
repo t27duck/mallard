@@ -1,0 +1,3 @@
+one:
+  username: <%= USERNAME %>
+  encrypted_password: <%= Devise::Encryptor.digest(User, TEST_PASSWORD) %>

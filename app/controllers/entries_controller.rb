@@ -3,7 +3,7 @@
 class EntriesController < ApplicationController
   PER_PAGE = 10
 
-  before_action :fetch_entry, only: %i[show update]
+  before_action :fetch_entry, only: %i[update]
 
   def unread
     @entries = fetch_entries("unread")

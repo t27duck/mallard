@@ -1,0 +1,4 @@
+one:
+  title: A feed
+  url: https://feedpress.me/somesite
+  sanitize: true
