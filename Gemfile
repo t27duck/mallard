@@ -43,5 +43,5 @@ end
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "devise", "4.7.3"
-gem "feedjira", "~> 2.2.0"
+gem "feedjira"
 gem "turbo-rails"

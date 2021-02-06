@@ -61,9 +61,23 @@ class Feed < ApplicationRecord
 
   def feed_object
     @feed_object ||= begin
-      Feedjira::Feed.fetch_and_parse(url)
+      body = feed_net_request
+      return nil if body.blank?
+
+      Feedjira.parse(body)
     rescue StandardError
       nil
     end
+  end
+
+  def feed_net_request
+    uri = URI.parse(url)
+    req = Net::HTTP::Get.new(uri.request_uri)
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = (uri.scheme == "https")
+    response = http.request(req)
+    response.body
+  rescue StandardError
+    nil
   end
 end
