@@ -8,11 +8,11 @@ module ApplicationHelper
   def pagination
     tag.nav class: "relative z-0 inline-flex shadow-sm" do
       prev_link + number_of_pages + next_link
-    end.html_safe
+    end
   end
 
   def prev_link
-    page = params[:page].to_i == 0 ? params[:page].to_i : (params[:page].to_i - 1)
+    page = params[:page].to_i.zero? ? params[:page].to_i : (params[:page].to_i - 1)
     link_to read_entries_path(page: page, search: params[:search]), class: "primary-color relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50" do
       "&laquo;".html_safe
     end

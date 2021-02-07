@@ -20,6 +20,17 @@ unread:
   starred: false
   published_at: <%= 2.days.ago %>
 
+unread2:
+  feed: one
+  title: Another unread post
+  url: https://website.com/posts/4
+  guid: https://website.com/posts/4
+  author: Someone
+  content: This is another unread post
+  read: false
+  starred: false
+  published_at: <%= 1.days.ago %>
+
 read:
   feed: one
   title: A read post

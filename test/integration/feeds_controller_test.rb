@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "test_helper"
+require "ostruct"
 
 class FeedsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -19,7 +20,7 @@ class FeedsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should fetch feed entries" do
-    Feedjira.stub(:parse, Struct.new(:title, :entries).new("A feed", [])) do
+    Feedjira.stub(:parse, OpenStruct.new(title: "A feed", entries: [])) do
       get fetch_feed_url(@feed)
     end
 
@@ -27,8 +28,8 @@ class FeedsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create feed" do
-    Feedjira.stub(:parse, Struct.new(:title, :entries).new("A feed", [])) do
-      assert_difference('Feed.count') do
+    Feedjira.stub(:parse, OpenStruct.new(title: "A feed", entries: [])) do
+      assert_difference("Feed.count") do
         post feeds_url, params: { feed: { url: "https://website.com/feed" } }
       end
     end
@@ -50,7 +51,7 @@ class FeedsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy feed" do
-    assert_difference('Feed.count', -1) do
+    assert_difference("Feed.count", -1) do
       delete feed_url(@feed)
     end
 

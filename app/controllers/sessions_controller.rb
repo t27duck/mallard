@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SessionsController < Devise::SessionsController
-  before_action :one_user_registered?, only: %i[new create]
+  before_action :one_user_registered?, only: [:new, :create]
   before_action :configure_permitted_parameters
 
   protected

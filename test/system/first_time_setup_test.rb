@@ -7,6 +7,10 @@ class FirstTimeSetupTest < ApplicationSystemTestCase
     User.delete_all
   end
 
+  teardown do
+    sign_out User.last if User.last.present?
+  end
+
   test "It prompts user to set a password and logs user in" do
     visit root_path
 

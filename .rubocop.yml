@@ -1,0 +1,68 @@
+require:
+  - rubocop-minitest
+  - rubocop-performance
+  - rubocop-rails
+
+Rails:
+  Enabled: true
+
+Rails/UnknownEnv:
+  Environments:
+    - production
+    - development
+    - test
+
+AllCops:
+  TargetRubyVersion: 2.7
+  # Auto-enable all new pending cops between releases
+  NewCops: enable
+  # Mostly disabling the majority of the Rails-generated configuration files
+  # We should try to at least manually maintain the frozen string litteral
+  # magic comment rule, if possible
+  Exclude:
+    - 'config/application.rb'
+    - 'config/boot.rb'
+    - 'config/puma.rb'
+    - 'config/environments/**/*'
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+    - 'db/**/*'
+    - 'bin/**/*'
+    - 'app/javascript/**/*'
+    - 'tmp/**/*'
+
+Layout/LineLength:
+  Exclude:
+    - 'app/helpers/**/*'
+
+Metrics/AbcSize:
+  Max: 20
+
+Metrics/MethodLength:
+  Max: 20
+
+Rails/HelperInstanceVariable:
+  Enabled: false
+
+Rails/LexicallyScopedActionFilter:
+  Exclude:
+    - 'app/controllers/registrations_controller.rb'
+    - 'app/controllers/sessions_controller.rb'
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+Style/WordArray:
+  EnforcedStyle: brackets

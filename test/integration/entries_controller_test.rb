@@ -32,6 +32,6 @@ class EntriesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     entry.reload
-    assert_equal true, entry.read
+    assert entry.read
   end
 end

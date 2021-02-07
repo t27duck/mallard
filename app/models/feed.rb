@@ -12,7 +12,7 @@ class Feed < ApplicationRecord
       return false
     end
 
-    if !feed_object
+    unless feed_object
       errors.add(:base, "Unable to parse feed")
       return false
     end
@@ -53,18 +53,15 @@ class Feed < ApplicationRecord
   end
 
   # TODO: Maybe counter cache one day
-  def entries_count
-    entries.count
-  end
+  delegate :count, to: :entries, prefix: true
 
   private
 
   def feed_object
     @feed_object ||= begin
       body = feed_net_request
-      return nil if body.blank?
 
-      Feedjira.parse(body)
+      Feedjira.parse(body) if body.present?
     rescue StandardError
       nil
     end

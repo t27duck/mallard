@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :entries, only: %i[update] do
+  resources :entries, only: [:update] do
     collection do
       get :unread
       get :read

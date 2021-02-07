@@ -3,7 +3,7 @@
 class EntriesController < ApplicationController
   PER_PAGE = 10
 
-  before_action :fetch_entry, only: %i[update]
+  before_action :fetch_entry, only: [:update]
 
   def unread
     @entries = fetch_entries("unread")
@@ -42,7 +42,7 @@ class EntriesController < ApplicationController
   end
 
   def fetch_entries(scope, page: nil, search: nil)
-    scope = "unread" unless %w[unread read starred].include?(scope)
+    scope = "unread" unless ["unread", "read", "starred"].include?(scope)
 
     entries = Entry.public_send(scope).order(:published_at)
     entries = entries.search_title(search) if search.presence
