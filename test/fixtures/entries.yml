@@ -49,6 +49,6 @@ starred:
   guid: https://website.com/posts/3
   author: Someone
   content: This is a starred post
-  read: false
+  read: true
   starred: true
   published_at: <%= 5.days.ago %>
