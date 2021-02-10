@@ -7,7 +7,7 @@ one:
   content: This is a post
   read: false
   starred: false
-  published_at: <%= 2.days.ago %>
+  published_at: <%= 3.days.ago %>
 
 unread:
   feed: one
