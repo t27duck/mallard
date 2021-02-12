@@ -50,3 +50,57 @@
     }
   }
 }
+
+.entry-contents {
+  p, div, h1, h2, h3, h4, h5, h6 {
+    @apply my-2
+  }
+
+  h1 {
+    @apply text-5xl;
+  }
+
+  h2 {
+    @apply text-4xl;
+  }
+
+  h3 {
+    @apply text-3xl;
+  }
+
+  h4 {
+    @apply text-2xl;
+  }
+
+  h5 {
+    @apply text-xl;
+  }
+
+  h6 {
+    @apply text-lg;
+  }
+
+  small {
+    @apply text-sm;
+  }
+
+  b, strong {
+    @apply font-bold
+  }
+
+  i, em {
+    @apply italic
+  }
+
+  blockquote {
+    @apply text-sm p-5 text-gray-400 italic border-l-4 border-gray-400;
+  }
+
+  ul {
+    @apply list-disc list-inside;
+  }
+
+  ol {
+    @apply list-decimal list-inside;
+  }
+}
