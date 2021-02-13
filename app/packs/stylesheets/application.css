@@ -33,11 +33,11 @@
 #entry-list {
   overflow-y: auto;
 
-  // Width hard-coded from tailwind's sm breakpoint + 1
+  /* Width hard-coded from tailwind's sm breakpoint + 1 */
   @media (max-width: 641px) {
     img {
-      max-width: 100%; // Part 1: Set a maximum relative to the parent
-      height: auto; // Part 2: Scale the height according to the width, otherwise you get stretching
+      max-width: 100%; /* Part 1: Set a maximum relative to the parent */
+      height: auto; /* Part 2: Scale the height according to the width, otherwise you get stretching */
     }
 
     iframe,
