@@ -41,9 +41,11 @@ export default class extends Controller {
   }
 
   updateDimensions() {
-    // 100 is arbitrary, but seems to make things look good enough.
-    const offset = this.controlsTarget.offsetHeight + 100
-    this.listTarget.style.height = (window.innerHeight - offset) + "px"
+    if (this.hasControlsTarget) {
+      // 100 is arbitrary, but seems to make things look good enough.
+      const offset = this.controlsTarget.offsetHeight + 100
+      this.listTarget.style.height = (window.innerHeight - offset) + "px"
+    }
   }
 
   viewEntry(event) {
