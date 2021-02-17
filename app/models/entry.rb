@@ -25,7 +25,7 @@ class Entry < ApplicationRecord
       author: entry.author,
       published_at: entry.published,
       guid: identifier,
-      content: entry.content || entry.summary
+      content: entry.content || entry.summary || "No content for entry. Visit URL."
     )
   end
 
