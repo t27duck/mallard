@@ -68,13 +68,9 @@ class Feed < ApplicationRecord
   end
 
   def feed_net_request
-    uri = URI.parse(url)
-    req = Net::HTTP::Get.new(uri.request_uri)
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = (uri.scheme == "https")
-    http.open_timeout = 5
-    http.read_timeout = 5
-    response = http.start { http.request(req) }
+    response = HTTParty.get(url, timeout: 5)
+    return nil unless response.code == 200
+
     response.body
   rescue StandardError
     nil

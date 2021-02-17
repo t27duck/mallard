@@ -28,9 +28,11 @@ class FeedsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create feed" do
-    Feedjira.stub(:parse, OpenStruct.new(title: "A feed", entries: [])) do
-      assert_difference("Feed.count") do
-        post feeds_url, params: { feed: { url: "https://website.com/feed" } }
+    HTTParty.stub(:get, OpenStruct.new(code: 200, body: "<xml></xml>")) do
+      Feedjira.stub(:parse, OpenStruct.new(title: "A feed", entries: [])) do
+        assert_difference("Feed.count") do
+          post feeds_url, params: { feed: { url: "https://website.com/feed" } }
+        end
       end
     end
 
