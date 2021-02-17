@@ -61,16 +61,18 @@ class Feed < ApplicationRecord
     @feed_object ||= begin
       body = feed_net_request
 
-      Feedjira.parse(body) if body.present?
+      Feedjira.parse(body) if body.present? || Rails.env.test?
     rescue StandardError
       nil
     end
   end
 
   def feed_net_request
-    # Set a body for responses that have no content length header
-    response = HTTParty.get(url, body: {}, timeout: 5)
-    return nil unless response.code == 200
+    response = Faraday.new(url: url, request: { timeout: 5 }) do |conn|
+      conn.use FaradayMiddleware::FollowRedirects
+      conn.adapter(*Faraday.default_adapter)
+    end.get
+    return nil unless response.status == 200
 
     response.body
   rescue StandardError

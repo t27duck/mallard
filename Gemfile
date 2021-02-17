@@ -48,6 +48,7 @@ end
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "devise", "4.7.3"
+gem "faraday"
+gem "faraday_middleware"
 gem "feedjira"
-gem "httparty"
 gem "turbo-rails"
