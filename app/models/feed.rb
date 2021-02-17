@@ -68,7 +68,8 @@ class Feed < ApplicationRecord
   end
 
   def feed_net_request
-    response = HTTParty.get(url, timeout: 5)
+    # Set a body for responses that have no content length header
+    response = HTTParty.get(url, body: {}, timeout: 5)
     return nil unless response.code == 200
 
     response.body
