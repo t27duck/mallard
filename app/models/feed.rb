@@ -88,9 +88,9 @@ class Feed < ApplicationRecord
     response = http.start { http.request(req) }
 
     case response
-    when Net::HTTPSuccess then
+    when Net::HTTPSuccess
       response
-    when Net::HTTPRedirection then
+    when Net::HTTPRedirection
       location = response["location"]
       make_request(location, limit - 1)
     end
