@@ -44,15 +44,19 @@ class EntriesController < ApplicationController
   def fetch_entries(scope, page: nil, search: nil)
     scope = "unread" unless ["unread", "read", "starred"].include?(scope)
 
-    entries = Entry.public_send(scope).order(:published_at)
-    entries = entries.search_title(search) if search.presence
+    entries = Entry.public_send(scope)
+    entries = if search.presence
+                entries.search_entry(search)
+              else
+                entries.order(:published_at)
+              end
     entries = entries.limit(PER_PAGE).offset(PER_PAGE * page) if page
     entries.select(:id, :title)
   end
 
   def total_pages(search: nil)
     entries = Entry.read
-    entries = entries.search_title(search) if search.presence
+    entries = entries.search_entry(search) if search.presence
     (entries.count / PER_PAGE.to_f).to_i + 1
   end
 end

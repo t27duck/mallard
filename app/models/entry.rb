@@ -10,7 +10,15 @@ class Entry < ApplicationRecord
   scope :unread, -> { where(read: false) }
   scope :starred, -> { where(starred: true) }
   scope :unstarred, -> { where(starred: false) }
-  scope :search_title, ->(term) { where(arel_table[:title].matches("%#{sanitize_sql_like(term)}%")) }
+
+  include PgSearch::Model
+  pg_search_scope :search_entry,
+                  against: { title: "A", content: "B" },
+                  using: {
+                    tsearch: {
+                      dictionary: "english", tsvector_column: "searchable"
+                    }
+                  }
 
   def self.create_from_feedjira(feed_id, entry)
     identifier = entry.entry_id || entry.url
