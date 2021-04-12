@@ -9,6 +9,22 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
+--
+-- Name: entries_weighted_search_trigger(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.entries_weighted_search_trigger() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+begin
+  new.searchable :=
+    setweight(to_tsvector('pg_catalog.english', coalesce(new.title,'')), 'A') ||
+    setweight(to_tsvector('pg_catalog.english', coalesce(new.content,'')), 'C');
+  return new;
+end
+$$;
+
+
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
@@ -40,7 +56,7 @@ CREATE TABLE public.entries (
     published_at timestamp without time zone NOT NULL,
     read boolean DEFAULT false NOT NULL,
     starred boolean DEFAULT false NOT NULL,
-    searchable tsvector GENERATED ALWAYS AS ((setweight(to_tsvector('english'::regconfig, (COALESCE(title, ''::character varying))::text), 'A'::"char") || setweight(to_tsvector('english'::regconfig, COALESCE(content, ''::text)), 'B'::"char"))) STORED
+    searchable tsvector
 );
 
 
@@ -220,6 +236,13 @@ CREATE INDEX index_entries_on_searchable ON public.entries USING gin (searchable
 --
 
 CREATE UNIQUE INDEX index_users_on_username ON public.users USING btree (username);
+
+
+--
+-- Name: entries entries_tsvectorupdate; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER entries_tsvectorupdate BEFORE INSERT OR UPDATE ON public.entries FOR EACH ROW EXECUTE FUNCTION public.entries_weighted_search_trigger();
 
 
 --

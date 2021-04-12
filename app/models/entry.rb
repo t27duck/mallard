@@ -13,7 +13,7 @@ class Entry < ApplicationRecord
 
   include PgSearch::Model
   pg_search_scope :search_entry,
-                  against: { title: "A", content: "B" },
+                  against: { title: "A", content: "C" },
                   using: {
                     tsearch: {
                       dictionary: "english", tsvector_column: "searchable"
