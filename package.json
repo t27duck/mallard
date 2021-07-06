@@ -13,7 +13,7 @@
     "mini-css-extract-plugin": "^2.1.0",
     "postcss": "^8.3.5",
     "postcss-import": "^14.0.2",
-    "postcss-loader": "^6.1.0",
+    "postcss-loader": "^6.1.1",
     "postcss-nested": "^5.0.5",
     "stimulus": "^2.0.0",
     "tailwindcss": "^2.2.4",
