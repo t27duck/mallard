@@ -14,7 +14,7 @@
     "postcss": "^8.3.6",
     "postcss-import": "^14.0.2",
     "postcss-loader": "^6.1.1",
-    "postcss-nested": "^5.0.5",
+    "postcss-nested": "^5.0.6",
     "stimulus": "^2.0.0",
     "tailwindcss": "^2.2.7",
     "webpack": "^5.47.0",
