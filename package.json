@@ -17,7 +17,7 @@
     "postcss-nested": "^5.0.6",
     "stimulus": "^2.0.0",
     "tailwindcss": "^2.2.7",
-    "webpack": "^5.47.1",
+    "webpack": "^5.48.0",
     "webpack-cli": "^4.7.2"
   },
   "version": "0.1.0",
