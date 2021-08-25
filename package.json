@@ -2,9 +2,9 @@
   "name": "mallard",
   "private": true,
   "dependencies": {
-    "@hotwired/turbo-rails": "^7.0.0-rc.1",
+    "@hotwired/turbo-rails": "^7.0.0-rc.2",
     "@rails/ujs": "^6.1.4",
-    "@rails/webpacker": "^6.0.0-beta.7",
+    "@rails/webpacker": "^6.0.0-rc.5",
     "@tailwindcss/forms": "^0.3.3",
     "autoprefixer": "^10.3.2",
     "css-loader": "^6.2.0",
@@ -22,8 +22,7 @@
   },
   "version": "0.1.0",
   "devDependencies": {
-    "@webpack-cli/serve": "^1.5.2",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-dev-server": "^4.0.0"
   },
   "babel": {
     "presets": [
