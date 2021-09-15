@@ -2,7 +2,7 @@
   "name": "mallard",
   "private": true,
   "dependencies": {
-    "@hotwired/turbo-rails": "^7.0.0-rc.3",
+    "@hotwired/turbo-rails": "^7.0.0-rc.4",
     "@rails/ujs": "^6.1.4",
     "@rails/webpacker": "^6.0.0-rc.5",
     "@tailwindcss/forms": "^0.3.3",
