@@ -15,7 +15,7 @@
     "mini-css-extract-plugin": "^2.4.5",
     "postcss": "^8.4.1",
     "postcss-import": "^14.0.2",
-    "postcss-loader": "^6.2.0",
+    "postcss-loader": "^6.2.1",
     "postcss-nested": "^5.0.6",
     "tailwindcss": "^2.2.19",
     "webpack": "^5.64.4",
