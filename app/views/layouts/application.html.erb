@@ -18,7 +18,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex items-center justify-between h-16">
             <div class="flex items-center">
-              <div class="flex-shrink-0">
+              <div class="shrink-0">
                 <%= link_to "Mallard", root_path, class: "text-white hover:text-gray-400", data: { turbo: "false" } %>
               </div>
               <div class="hidden sm:block sm:ml-6">
@@ -53,11 +53,11 @@
                   <div class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5" role="menu" aria-orientation="vertical" aria-labelledby="user-menu"
                     data-navbar-target="userMenu"
                     data-transition-enter="transition ease-out duration-100"
-                    data-transition-enter-start="transform opacity-0 scale-95"
-                    data-transition-enter-end="transform opacity-100 scale-100"
+                    data-transition-enter-start="opacity-0 scale-95"
+                    data-transition-enter-end="opacity-100 scale-100"
                     data-transition-leave="transition ease-in duration-75"
-                    data-transition-leave-start="transform opacity-100 scale-100"
-                    data-transition-leave-end="transform opacity-0 scale-95"
+                    data-transition-leave-start="opacity-100 scale-100"
+                    data-transition-leave-end="opacity-0 scale-95"
                   >
                     <%= link_to "Sign out", destroy_user_session_path, method: :delete, data: { confirm: "Want to sign out?" }, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
                   </div>
@@ -96,10 +96,10 @@
           </div>
           <div class="pt-4 pb-3 border-t border-gray-700">
             <div class="flex items-center px-5">
-              <div class="flex-shrink-0">
+              <div class="shrink-0">
                 <img class="h-10 w-10 rounded-full" src="/apple-touch-icon.png" alt="">
               </div>
-              <%= link_to "Sign out", "#", data: { confirm: "Want to sign out?" }, class: "ml-auto flex-shrink-0 px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700" %>
+              <%= link_to "Sign out", "#", data: { confirm: "Want to sign out?" }, class: "ml-auto shrink-0 px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700" %>
             </div>
           </div>
         </div>
