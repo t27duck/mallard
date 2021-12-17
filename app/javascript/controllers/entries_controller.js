@@ -1,4 +1,3 @@
-import Rails from "@rails/ujs";
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
@@ -54,7 +53,7 @@ export default class extends Controller {
     const li = event.target.closest("li")
     // Start watching for dom changes within the LI. A change means the frame rendered.
     this.observer.observe(li, { childList: true, subtree: true });
-    Rails.fire(form, "submit");
+    form.requestSubmit()
   }
 
   next(event) {

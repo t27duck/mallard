@@ -46,7 +46,7 @@ class FeedsController < ApplicationController
 
   def destroy
     @feed.destroy
-    redirect_to feeds_path, notice: "Feed deleted"
+    redirect_to feeds_path, notice: "Feed deleted", status: :see_other
   end
 
   private

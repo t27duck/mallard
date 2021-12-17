@@ -1,8 +1,8 @@
 module.exports = {
   content: [
-    './app/**/*.html.erb',
+    './app/views/**/*.html.erb',
     './app/helpers/**/*.rb',
-    './app/packs/**/*.js'
+    './app/javascript/**/*.js'
   ],
   plugins: [
     require('@tailwindcss/forms')
