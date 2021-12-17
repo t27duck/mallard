@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "net/http"
+
 class Feed < ApplicationRecord
   ADDITIONAL_UNREAD_ENTRIES_TO_KEEP = 5
   has_many :entries, dependent: :delete_all
