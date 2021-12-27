@@ -3,7 +3,7 @@
 class Entry < ApplicationRecord
   belongs_to :feed
 
-  validates :feed, :title, :url, :published_at, :guid, presence: true
+  validates :title, :url, :published_at, :guid, presence: true
   validates :feed_id, uniqueness: { scope: :guid }
 
   scope :read, -> { where(read: true) }
