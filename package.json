@@ -3,7 +3,7 @@
   "private": true,
   "dependencies": {
     "@hotwired/stimulus": "^3.0.1",
-    "@hotwired/turbo-rails": "^7.1.0",
+    "@hotwired/turbo-rails": "^7.1.1",
     "@tailwindcss/forms": "^0.4.0",
     "autoprefixer": "^10.4.2",
     "el-transition": "^0.0.7",
