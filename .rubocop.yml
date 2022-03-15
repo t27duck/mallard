@@ -52,6 +52,9 @@ Rails/LexicallyScopedActionFilter:
     - 'app/controllers/registrations_controller.rb'
     - 'app/controllers/sessions_controller.rb'
 
+Rails/I18nLocaleTexts:
+  Enabled: false
+
 Style/ClassAndModuleChildren:
   Enabled: false
 
