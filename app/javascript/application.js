@@ -1,6 +1,6 @@
-// Entry point for the build script in your package.json
-import { Turbo } from "@hotwired/turbo-rails"
-import "./controllers"
+// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
+import "@hotwired/turbo-rails"
+import "controllers"
 
 document.addEventListener("DOMContentLoaded", () => {
   // The default of 500ms is too long and
