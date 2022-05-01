@@ -7,9 +7,8 @@ It's a Rails with Hotwire application designed to run on a Unix-based server or 
 
 ## Requirements
 
-* Ruby (preferably 2.7 or later) with `bundler`
-* Node.js and yarn (for Javascript dependencies and compliation)
-* PostgreSQL (perferably 9.6 or later)
+* Ruby (2.7 or later) with `bundler`
+* PostgreSQL (10 or later)
 
 ## Setup
 
@@ -17,10 +16,10 @@ It's a Rails with Hotwire application designed to run on a Unix-based server or 
 * If wanting to run in production mode:
   * Be sure an environment variable called `SECRET_KEY_BASE` is set for cookie signing
   * Set the environment variable `RAILS_ENV` to "production"
-  * Run `rake asset:precompile` to install frontend components and compile CSS and Javascript
+  * Run `rake asset:precompile` to compile CSS
 * Run `rake db:create db:schema:load` to create the database
   * If updating, run `rake db:migrate` to catch the database structure up to date.
-* Run `rails server` to start the server (default port 3000)
+* Run `bin/dev` to start CSS build watching and the web server or `rails server` to start only the server (default port 3000)
 
 ## Entry fetching and maintenance
 
