@@ -4,18 +4,12 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.0.1",
     "@hotwired/turbo-rails": "^7.1.1",
-    "@tailwindcss/forms": "^0.5.0",
-    "autoprefixer": "^10.4.5",
     "el-transition": "^0.0.7",
     "esbuild": "^0.14.38",
-    "esbuild-rails": "^1.0.3",
-    "postcss": "^8.4.12",
-    "postcss-import": "^14.1.0",
-    "tailwindcss": "^3.0.24"
+    "esbuild-rails": "^1.0.3"
   },
   "scripts": {
-    "build": "node esbuild.config.js",
-    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --postcss"
+    "build": "node esbuild.config.js"
   },
   "browserslist": [
     "defaults"

@@ -86,8 +86,6 @@ GEM
     childprocess (4.1.0)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
-    cssbundling-rails (1.1.0)
-      railties (>= 6.0.0)
     debug (1.5.0)
       irb (>= 1.3.6)
       reline (>= 0.2.7)
@@ -226,6 +224,8 @@ GEM
     stimulus-rails (1.0.4)
       railties (>= 6.0.0)
     strscan (3.0.1)
+    tailwindcss-rails (2.0.8)
+      railties (>= 6.0.0)
     thor (1.2.1)
     timeout (0.2.0)
     turbo-rails (1.0.1)
@@ -258,7 +258,6 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   capybara
-  cssbundling-rails
   debug
   devise (~> 4.8.1)
   feedjira
@@ -273,6 +272,7 @@ DEPENDENCIES
   rubocop-rails
   selenium-webdriver
   stimulus-rails
+  tailwindcss-rails
   turbo-rails
   tzinfo-data
   web-console

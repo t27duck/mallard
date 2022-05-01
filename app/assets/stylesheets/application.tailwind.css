@@ -1,6 +1,6 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .nav-entry-active {
   @apply bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium block;
@@ -24,75 +24,75 @@
 
 #entry-list {
   overflow-y: auto;
+}
 
-  /* Width hard-coded from tailwind's sm breakpoint + 1 */
-  @media (max-width: 641px) {
-    img {
-      max-width: 100%; /* Part 1: Set a maximum relative to the parent */
-      height: auto; /* Part 2: Scale the height according to the width, otherwise you get stretching */
-    }
+/* Width hard-coded from tailwind's sm breakpoint + 1 */
+@media (max-width: 641px) {
+  #entry-list img {
+    max-width: 100%; /* Part 1: Set a maximum relative to the parent */
+    height: auto; /* Part 2: Scale the height according to the width, otherwise you get stretching */
+  }
 
-    iframe,
-    embed,
-    object,
-    video {
-      width: 100%;
-      height: auto;
-      border: 0;
-    }
+  #entry-list iframe,
+  #entry-list embed,
+  #entry-list object,
+  #entry-list video {
+    width: 100%;
+    height: auto;
+    border: 0;
   }
 }
 
-.entry-contents {
-  p, div, h1, h2, h3, h4, h5, h6 {
-    @apply my-2
-  }
-
-  h1 {
-    @apply text-5xl;
-  }
-
-  h2 {
-    @apply text-4xl;
-  }
-
-  h3 {
-    @apply text-3xl;
-  }
-
-  h4 {
-    @apply text-2xl;
-  }
-
-  h5 {
-    @apply text-xl;
-  }
-
-  h6 {
-    @apply text-lg;
-  }
-
-  small {
-    @apply text-sm;
-  }
-
-  b, strong {
-    @apply font-bold
-  }
-
-  i, em {
-    @apply italic
-  }
-
-  blockquote {
-    @apply text-sm p-5 text-gray-400 italic border-l-4 border-gray-400;
-  }
-
-  ul {
-    @apply list-disc list-inside;
-  }
-
-  ol {
-    @apply list-decimal list-inside;
-  }
+.entry-contents p, .entry-contents div, .entry-contents h1, .entry-contents h2,
+.entry-contents h3, .entry-contents h4, .entry-contents h5, .entry-contents h6 {
+  @apply my-2
 }
+
+.entry-contents h1 {
+  @apply text-5xl;
+}
+
+.entry-contents h2 {
+  @apply text-4xl;
+}
+
+.entry-contents h3 {
+  @apply text-3xl;
+}
+
+.entry-contents h4 {
+  @apply text-2xl;
+}
+
+.entry-contents h5 {
+  @apply text-xl;
+}
+
+.entry-contents h6 {
+  @apply text-lg;
+}
+
+.entry-contents small {
+  @apply text-sm;
+}
+
+.entry-contents b, .entry-contents strong {
+  @apply font-bold
+}
+
+.entry-contents i, .entry-contents em {
+  @apply italic
+}
+
+.entry-contents blockquote {
+  @apply text-sm p-5 text-gray-400 italic border-l-4 border-gray-400;
+}
+
+.entry-contents ul {
+  @apply list-disc list-inside;
+}
+
+.entry-contents ol {
+  @apply list-decimal list-inside;
+}
+
