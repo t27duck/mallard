@@ -2,8 +2,8 @@
 
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-                       sessions: "sessions"
-                     }, skip: [:registrations]
+    sessions: "sessions"
+  }, skip: [:registrations]
   devise_scope :user do
     # Rebuilds the registration paths without the cancel or destroy endpoints
     resource :registration, only: [:new, :create], controller: "registrations"
