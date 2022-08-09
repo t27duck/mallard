@@ -96,7 +96,7 @@ GEM
       responders
       warden (~> 1.2.3)
     digest (3.1.0)
-    erubi (1.10.0)
+    erubi (1.11.0)
     feedjira (3.2.1)
       loofah (>= 2.3.1)
       sax-machine (>= 1.0)
@@ -138,7 +138,7 @@ GEM
       net-protocol
       timeout
     nio4r (2.5.8)
-    nokogiri (1.13.7)
+    nokogiri (1.13.8)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     orm_adapter (0.5.0)
@@ -228,7 +228,7 @@ GEM
     stimulus-rails (1.1.0)
       railties (>= 6.0.0)
     strscan (3.0.3)
-    tailwindcss-rails (2.0.10)
+    tailwindcss-rails (2.0.11)
       railties (>= 6.0.0)
     thor (1.2.1)
     timeout (0.3.0)
@@ -236,7 +236,7 @@ GEM
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
       railties (>= 6.0.0)
-    tzinfo (2.0.4)
+    tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.2.0)
     warden (1.2.9)
