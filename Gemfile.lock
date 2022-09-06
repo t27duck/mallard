@@ -121,7 +121,7 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.2)
     mini_portile2 (2.8.0)
-    minitest (5.16.2)
+    minitest (5.16.3)
     msgpack (1.5.4)
     net-imap (0.2.3)
       digest
@@ -228,7 +228,7 @@ GEM
     stimulus-rails (1.1.0)
       railties (>= 6.0.0)
     strscan (3.0.3)
-    tailwindcss-rails (2.0.12)
+    tailwindcss-rails (2.0.13)
       railties (>= 6.0.0)
     thor (1.2.1)
     timeout (0.3.0)
