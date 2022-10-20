@@ -97,7 +97,7 @@ GEM
       warden (~> 1.2.3)
     digest (3.1.0)
     erubi (1.11.0)
-    feedjira (3.2.1)
+    feedjira (3.2.2)
       loofah (>= 2.3.1)
       sax-machine (>= 1.0)
     globalid (1.0.0)
@@ -138,7 +138,7 @@ GEM
       net-protocol
       timeout
     nio4r (2.5.8)
-    nokogiri (1.13.8)
+    nokogiri (1.13.9)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     orm_adapter (0.5.0)
