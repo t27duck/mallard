@@ -31,6 +31,7 @@ class ViewingEntriesTest < ApplicationSystemTestCase
     assert_text "Unread Entries"
 
     click_on @entry2.title
+
     assert_text @entry2.content
     click_on "Next"
 
@@ -43,6 +44,7 @@ class ViewingEntriesTest < ApplicationSystemTestCase
     assert_text "Unread Entries"
 
     click_on @entry2.title
+
     assert_text @entry2.content
     click_on "Prev"
 
