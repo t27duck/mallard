@@ -9,18 +9,21 @@ class EntriesControllerTest < ActionDispatch::IntegrationTest
 
   test "should get unread entries" do
     get unread_entries_url
+
     assert_response :success
     assert_select "a", entries(:unread).title
   end
 
   test "should get read entries" do
     get read_entries_url
+
     assert_response :success
     assert_select "a", entries(:read).title
   end
 
   test "should get starred entries" do
     get starred_entries_url
+
     assert_response :success
     assert_select "a", entries(:starred).title
   end
@@ -29,9 +32,11 @@ class EntriesControllerTest < ActionDispatch::IntegrationTest
     entry = entries(:one)
 
     patch entry_url(entry, format: :turbo_stream), params: { entry: { read: true } }
+
     assert_response :success
 
     entry.reload
+
     assert entry.read
   end
 end

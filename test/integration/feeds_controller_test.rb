@@ -11,11 +11,13 @@ class FeedsControllerTest < ActionDispatch::IntegrationTest
 
   test "should get index" do
     get feeds_url
+
     assert_response :success
   end
 
   test "should get new" do
     get new_feed_url
+
     assert_response :success
   end
 
@@ -39,14 +41,17 @@ class FeedsControllerTest < ActionDispatch::IntegrationTest
 
   test "should get edit" do
     get edit_feed_url(@feed)
+
     assert_response :success
   end
 
   test "should update feed" do
     patch feed_url(@feed), params: { feed: { title: "New Title" } }
+
     assert_redirected_to feeds_url
 
     @feed.reload
+
     assert_equal "New Title", @feed.title
   end
 
