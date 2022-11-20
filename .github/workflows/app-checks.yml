@@ -34,7 +34,7 @@ jobs:
           bundler-cache: true # Runs bundle and caches gems
       - uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '18'
 
       - name: Run rubocop
         run: bundle exec rubocop
