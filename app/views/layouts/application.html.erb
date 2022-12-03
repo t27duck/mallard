@@ -99,7 +99,7 @@
               <div class="shrink-0">
                 <img class="h-10 w-10 rounded-full" src="/apple-touch-icon.png" alt="">
               </div>
-              <%= link_to "Sign out", "#", data: { confirm: "Want to sign out?" }, class: "ml-auto shrink-0 px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700" %>
+              <%= link_to "Sign out", session_path, data: { turbo_method: "delete", turbo_confirm: "Want to sign out?" }, class: "ml-auto shrink-0 px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700" %>
             </div>
           </div>
         </div>
