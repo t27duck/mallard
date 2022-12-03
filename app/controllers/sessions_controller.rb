@@ -1,18 +1,33 @@
 # frozen_string_literal: true
 
-class SessionsController < Devise::SessionsController
-  before_action :one_user_registered?, only: [:new, :create]
-  before_action :configure_permitted_parameters
+class SessionsController < ApplicationController
+  skip_before_action :authenticate_user!
+
+  before_action :one_user_registered?
+
+  def new
+  end
+
+  def create
+    user = User.take
+
+    if user&.authenticate(params[:password])
+      sign_in(user)
+      redirect_to root_path
+    else
+      flash.now.alert = "Incorrect password."
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    cookies.delete(:signin)
+    redirect_to root_path, status: :see_other
+  end
 
   protected
 
   def one_user_registered?
-    redirect_to new_registration_path if User.count.zero?
-  end
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_in) do |user_params|
-      user_params.permit(:username, :remember_me, :password)
-    end
+    redirect_to setup_path if User.count.zero?
   end
 end

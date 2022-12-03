@@ -5,7 +5,7 @@ require "ostruct"
 
 class FeedsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    sign_in users(:one)
+    sign_in
     @feed = feeds(:one)
   end
 

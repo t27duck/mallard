@@ -11,15 +11,14 @@
 
   <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
     <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-      <%= form_with(model: resource, scope: resource_name, url: registration_path, class: "space-y-6") do |f| %>
-        <%= f.hidden_field :username %>
-        <% if resource.errors.any? %>
+      <%= form_with model: @user, url: setup_path, class: "space-y-6" do |f| %>
+        <% if @user.errors.any? %>
           <aside class="bg-red-200 text-red-900 rounded p-2 my-4">
             <h2 class="text-bold text-lg">
               Cannot create account
             </h2>
             <ul>
-              <% resource.errors.full_messages.each do |message| %>
+              <% @user.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
               <% end %>
             </ul>

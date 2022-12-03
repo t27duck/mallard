@@ -59,7 +59,7 @@
                     data-transition-leave-start="opacity-100 scale-100"
                     data-transition-leave-end="opacity-0 scale-95"
                   >
-                    <%= link_to "Sign out", destroy_user_session_path, method: :delete, data: { confirm: "Want to sign out?" }, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
+                    <%= link_to "Sign out", session_path, data: { turbo_method: "delete", turbo_confirm: "Want to sign out?" }, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
                   </div>
                 </div>
               </div>
@@ -107,10 +107,8 @@
     <% end %>
 
   <div class="max-w-full mx-1 sm:mx-auto sm:px-6 lg:px-8">
-    <% unless devise_controller? %>
-      <%= turbo_frame_tag "flash-messages" do %>
-        <%= render partial: "shared/flash_messages", locals: { alert: alert, notice: notice } %>
-      <% end %>
+    <%= turbo_frame_tag "flash-messages" do %>
+      <%= render partial: "shared/flash_messages", locals: { alert: alert, notice: notice } %>
     <% end %>
 
     <%= yield %>

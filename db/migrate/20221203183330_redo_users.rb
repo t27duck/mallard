@@ -1,7 +1,16 @@
-# frozen_string_literal: true
+class RedoUsers < ActiveRecord::Migration[7.0]
+  def up
+    drop_table :users
 
-class DeviseCreateUsers < ActiveRecord::Migration[6.0]
-  def change
+    create_table :users do |t|
+      t.string :password_digest, null: false
+      t.string :token, null: false
+    end
+  end
+
+  def down
+    drop_table :users
+
     create_table :users do |t|
       ## Database authenticatable
       t.string :username, null: false, default: "user"

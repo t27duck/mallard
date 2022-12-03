@@ -1,14 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :users, controllers: {
-    sessions: "sessions"
-  }, skip: [:registrations]
-  devise_scope :user do
-    # Rebuilds the registration paths without the cancel or destroy endpoints
-    resource :registration, only: [:new, :create], controller: "registrations"
-  end
-
+  resource :setup, only: [:show, :create]
+  resource :session, only: [:new, :create, :destroy]
   resources :feeds do
     member do
       get :fetch

@@ -4,7 +4,7 @@ require "test_helper"
 
 class EntriesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    sign_in users(:one)
+    sign_in
   end
 
   test "should get unread entries" do

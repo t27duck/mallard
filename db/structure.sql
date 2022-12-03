@@ -129,11 +129,8 @@ CREATE TABLE public.schema_migrations (
 
 CREATE TABLE public.users (
     id bigint NOT NULL,
-    username character varying DEFAULT 'user'::character varying NOT NULL,
-    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
-    remember_created_at timestamp without time zone,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    password_digest character varying NOT NULL,
+    token character varying NOT NULL
 );
 
 
@@ -232,13 +229,6 @@ CREATE INDEX index_entries_on_searchable ON public.entries USING gin (searchable
 
 
 --
--- Name: index_users_on_username; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_users_on_username ON public.users USING btree (username);
-
-
---
 -- Name: entries entries_tsvectorupdate; Type: TRIGGER; Schema: public; Owner: -
 --
 
@@ -261,6 +251,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190629121354'),
 ('20190629121539'),
 ('20210411232547'),
-('20210411232703');
+('20210411232703'),
+('20221203183330');
 
 

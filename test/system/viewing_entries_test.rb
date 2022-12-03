@@ -4,15 +4,10 @@ require "application_system_test_case"
 
 class ViewingEntriesTest < ApplicationSystemTestCase
   setup do
-    @user = users(:one)
-    sign_in @user
+    sign_in_via_browser
     @entry1 = entries(:one)
     @entry2 = entries(:unread)
     @entry3 = entries(:unread2)
-  end
-
-  teardown do
-    sign_out @user
   end
 
   test "User can click on an entry and view the body" do

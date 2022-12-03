@@ -21,5 +21,7 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
-  include Devise::Test::IntegrationHelpers
+  def sign_in
+    post session_path, params: { password: TEST_PASSWORD }
+  end
 end
