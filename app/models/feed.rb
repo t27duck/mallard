@@ -39,7 +39,7 @@ class Feed < ApplicationRecord
       Entry.create_from_feedjira(id, entry)
     end
 
-    new_count = incoming_entries.size > entry_count_in_fetch ? incoming_entries.size : entry_count_in_fetch
+    new_count = [incoming_entries.size, entry_count_in_fetch].max
     update(last_checked: Time.now.utc, entry_count_in_fetch: new_count)
 
     true
