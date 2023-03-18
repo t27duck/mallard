@@ -7,7 +7,7 @@ It's a Rails with Hotwire application designed to run on a Unix-based server or 
 
 ## Requirements
 
-* Ruby (2.7 or later) with `bundler`
+* Ruby (as specified in .ruby-version)
 * PostgreSQL (10 or later)
 
 ## Setup
