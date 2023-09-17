@@ -3,11 +3,11 @@
 namespace :entries do
   desc "Fetch new entries"
   task fetch: :environment do
-    Feed.all.each(&:fetch)
+    Feed.find_each(&:fetch)
   end
 
   desc "Remove old read entries"
   task clean: :environment do
-    Feed.all.each(&:clean)
+    Feed.find_each(&:clean)
   end
 end
