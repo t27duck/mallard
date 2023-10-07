@@ -13,17 +13,13 @@ Rails/UnknownEnv:
     - test
 
 AllCops:
-  TargetRubyVersion: 2.7
+  TargetRubyVersion: 3.2
   # Auto-enable all new pending cops between releases
   NewCops: enable
   # Mostly disabling the majority of the Rails-generated configuration files
   # We should try to at least manually maintain the frozen string litteral
   # magic comment rule, if possible
   Exclude:
-    - 'config/application.rb'
-    - 'config/boot.rb'
-    - 'config/puma.rb'
-    - 'config/environments/**/*'
     - 'node_modules/**/*'
     - 'vendor/**/*'
     - 'db/**/*'
@@ -63,6 +59,12 @@ Style/Documentation:
 
 Style/EmptyMethod:
   EnforcedStyle: expanded
+
+Style/GlobalStdStream:
+  Enabled: false
+
+Style/HashSyntax:
+  Enabled: false
 
 Style/OpenStructUse:
   Enabled: false
