@@ -114,7 +114,7 @@ GEM
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
     io-console (0.6.0)
-    irb (1.8.1)
+    irb (1.8.2)
       rdoc
       reline (>= 0.3.8)
     json (2.6.3)
@@ -249,7 +249,7 @@ GEM
       railties (>= 6.0.0)
     thor (1.2.2)
     timeout (0.4.0)
-    turbo-rails (1.4.0)
+    turbo-rails (1.5.0)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
       railties (>= 6.0.0)
