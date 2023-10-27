@@ -40,6 +40,9 @@ Metrics/CyclomaticComplexity:
 Metrics/MethodLength:
   Max: 20
 
+Metrics/PerceivedComplexity:
+  Max: 10
+
 Rails/HelperInstanceVariable:
   Enabled: false
 
