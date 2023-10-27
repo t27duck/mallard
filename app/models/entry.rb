@@ -29,7 +29,7 @@ class Entry < ApplicationRecord
 
     Entry.create!(
       feed_id: feed_id,
-      title: entry.title.presence || entry.url,
+      title: entry.title.presence || url,
       url: url,
       author: entry.author,
       published_at: entry.published,
