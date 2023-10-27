@@ -24,7 +24,7 @@ class Entry < ApplicationRecord
     identifier = entry.entry_id || entry.url
     return if Entry.exists?(feed_id: feed_id, guid: identifier)
     
-    url = enttry.url || entry.try(:enclusure_url)
+    url = entry.url || entry.try(:enclusure_url)
     return if url.blank? || entry.published.blank?
 
     Entry.create!(
