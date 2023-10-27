@@ -21,7 +21,7 @@ class Entry < ApplicationRecord
                   }
 
   def self.create_from_feedjira(feed_id, entry)
-    url = entry.url || entry.try(:enclusure_url)
+    url = entry.url || entry.try(:enclosure_url)
     identifier = entry.entry_id || url
     return if Entry.exists?(feed_id: feed_id, guid: identifier)
     return if url.blank? || entry.published.blank?
