@@ -23,13 +23,13 @@ class Entry < ApplicationRecord
   def self.create_from_feedjira(feed_id, entry)
     identifier = entry.entry_id || entry.url
     return if Entry.exists?(feed_id: feed_id, guid: identifier)
+    
     url = enttry.url || entry.try(:enclusure_url)
-    return if url || entry.published.blank?
+    return if url.blank? || entry.published.blank?
 
-    title = entry.title.presence || entry.url
     Entry.create!(
       feed_id: feed_id,
-      title: title,
+      title: entry.title.presence || entry.url,
       url: url,
       author: entry.author,
       published_at: entry.published,
