@@ -8,11 +8,11 @@ class ApplicationController < ActionController::Base
   private
 
   def sign_in(user)
-    cookies.encrypted[:signin] = { value: user.token, expires: 1.year, httponly: true }
+    cookies.signed.permanent[:signin] = { value: user.token, httponly: true, same_site: :lax }
   end
 
   def user_signed_in?
-    @user_signed_in ||= User.exists?(token: cookies.encrypted[:signin])
+    @user_signed_in ||= User.exists?(token: cookies.signed[:signin])
   end
 
   def authenticate_user!
