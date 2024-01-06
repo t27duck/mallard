@@ -8,7 +8,7 @@ It's a Rails with Hotwire application designed to run on a Unix-based server or 
 ## Requirements
 
 * Ruby (as specified in .ruby-version)
-* PostgreSQL (10 or later)
+* PostgreSQL (12 or later)
 
 ## Setup
 
@@ -19,7 +19,7 @@ It's a Rails with Hotwire application designed to run on a Unix-based server or 
   * Run `rake asset:precompile` to compile CSS
 * Run `rake db:create db:schema:load` to create the database
   * If updating, run `rake db:migrate` to catch the database structure up to date.
-* Run `bin/dev` to start CSS build watching and the web server or `rails server` to start only the server (default port 3000)
+* Run `rails s` to start CSS build watching (dev mode puma plugin) and the web server (default port 3000)
 
 ## Entry fetching and maintenance
 
