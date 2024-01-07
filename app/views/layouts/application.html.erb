@@ -26,14 +26,14 @@
                   <%= link_to unread_entries_path, class: nav_entry_class(nil), data: { turbo: "false" } do %>
                     Unread
                     <span id="unread-count" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                      0
+                      <%= stats[:total_unread] %>
                     </span>
                   <% end %>
                   <%= link_to "Read", read_entries_path, class: nav_entry_class("read"), data: { turbo: "false" } %>
                   <%= link_to starred_entries_path, class: nav_entry_class("starred"), data: { turbo: "false" } do %>
                     Starred
                     <span id="starred-count" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                      0
+                      <%= stats[:total_starred] %>
                     </span>
                   <% end %>
                   <%= link_to "Feeds", feeds_path, class: nav_entry_class("feeds"), data: { turbo: "false" } %>
@@ -82,14 +82,14 @@
             <%= link_to unread_entries_path, class: nav_entry_class(nil), data: { turbo: "false" } do %>
               Unread
               <span id="mobile-unread-count" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                0
+                <%= stats[:total_unread] %>
               </span>
             <% end %>
             <%= link_to "Read", read_entries_path, class: nav_entry_class("read"), data: { turbo: "false" } %>
             <%= link_to starred_entries_path, class: nav_entry_class("starred"), data: { turbo: "false" } do %>
               Starred
               <span id="mobile-starred-count" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                0
+                <%= stats[:total_starred] %>
               </span>
             <% end %>
             <%= link_to "Feeds", feeds_path, class: nav_entry_class("feeds"), data: { turbo: "false" } %>
@@ -111,9 +111,5 @@
 
     <%= yield %>
   </div>
-
-  <% if user_signed_in? %>
-    <%= render partial: "shared/counts" %>
-  <% end %>
   </body>
 </html>

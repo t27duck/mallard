@@ -3,4 +3,7 @@
 <% else %>
   <%= turbo_stream.update "entry-meta", partial: "entry_meta", locals: { entry: @entry } %>
 <% end %>
-<%= render partial: "shared/counts" %>
+<%= turbo_stream.update "unread-count", stats[:total_unread] %>
+<%= turbo_stream.update "starred-count", stats[:total_starred] %>
+<%= turbo_stream.update "mobile-unread-count", stats[:total_unread] %>
+<%= turbo_stream.update "mobile-starred-count", stats[:total_starred] %>

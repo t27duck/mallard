@@ -3,7 +3,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
-  helper_method :user_signed_in?
+  helper_method :user_signed_in?, :stats
 
   private
 
@@ -17,5 +17,9 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     redirect_to new_session_path unless user_signed_in?
+  end
+
+  def stats
+    @stats ||= Entry.stats
   end
 end
