@@ -13,6 +13,11 @@
   </head>
 
   <body>
+    <dialog data-controller="dialog" data-action="open.dialog@window->dialog#open close.dialog@window->dialog#close click->dialog#clickOutside turbo:submit-end->dialog#submitEnd">
+      <div class="p-8">
+        <%= turbo_frame_tag :modal %>
+      </div>
+    </dialog>
     <% if user_signed_in? %>
       <nav class="bg-gray-800" data-controller="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

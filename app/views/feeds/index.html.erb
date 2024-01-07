@@ -1,44 +1,29 @@
-<div data-controller="modal" data-modal-prevent-default-action-opening-value="false">
-  <div class="flex flex-col my-3 overflow-x-auto sm:-mx-6 lg:-mx-8">
-    <div class="align-middle min-w-full sm:px-6 lg:px-8 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-      <div class="flex justify-between">
-        <div class="text-3xl font-bold">Feeds</div>
-        <%= link_to "New Feed", new_feed_path, data: { "turbo-frame" => "form-modal", "action" => "click->modal#open" }, class: "float-right my-2 mr-2 button-primary" %>
-      </div>
-      <table class="min-w-full divide-y divide-gray-200">
-        <thead class="bg-gray-50">
-          <tr>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Feed
-            </th>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">
-              Entries
-            </th>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">
-              Last Checked
-            </th>
-            <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Actions
-            </th>
-          </tr>
-        </thead>
-        <tbody id="feed-table-body">
-          <%= render partial: "feed_row", collection: @feeds, as: :feed %>
-        </tbody>
-      </table>
+<div class="flex flex-col my-3 overflow-x-auto sm:-mx-6 lg:-mx-8">
+  <div class="align-middle min-w-full sm:px-6 lg:px-8 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+    <div class="flex justify-between">
+      <div class="text-3xl font-bold">Feeds</div>
+      <%= link_to "New Feed", new_feed_path, data: { turbo_frame: "modal", controller: "event", event_name_value: "open.dialog", action: "click->event#emit" }, class: "float-right my-2 mr-2 button-primary" %>
     </div>
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+        <tr>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Feed
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">
+            Entries
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">
+            Last Checked
+          </th>
+          <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Actions
+          </th>
+        </tr>
+      </thead>
+      <tbody id="feed-table-body">
+        <%= render partial: "feed_row", collection: @feeds, as: :feed %>
+      </tbody>
+    </table>
   </div>
-
-  <div data-modal-target="container" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard" class="hidden animated fadeIn fixed inset-0 overflow-y-auto items-center justify-center" style="z-index: 9999">
-    <!-- Modal Inner Container -->
-    <div class="max-h-screen w-full max-w-lg relative">
-      <!-- Modal Card -->
-      <div class="m-1 bg-white rounded shadow">
-        <div class="p-8">
-          <%= turbo_frame_tag "form-modal", data: { action: "turbo:submit-end->modal#onFormSubmitComplete" } %>
-        </div>
-      </div>
-    </div>
-  </div>
-
 </div>
