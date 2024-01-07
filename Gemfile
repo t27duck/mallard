@@ -70,6 +70,7 @@ group :development do
   gem "rubocop-minitest"
   gem "rubocop-performance"
   gem "rubocop-rails"
+  gem "rubocop-rails-omakase"
 end
 
 group :test do

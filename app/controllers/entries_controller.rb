@@ -47,9 +47,9 @@ class EntriesController < ApplicationController
     entries = Entry.public_send(scope)
     entries = if search.presence
                 entries.search_entry(search)
-              else
+    else
                 entries.order(:published_at)
-              end
+    end
     entries = entries.limit(PER_PAGE).offset(PER_PAGE * page) if page
     entries.select(:id, :title)
   end
