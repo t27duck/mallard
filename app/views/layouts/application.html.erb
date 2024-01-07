@@ -15,92 +15,68 @@
   <body>
     <% if user_signed_in? %>
       <nav class="bg-gray-800" data-controller="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex items-center justify-between h-16">
-            <div class="flex items-center">
-              <div class="shrink-0">
-                <%= link_to "Mallard", root_path, class: "text-white hover:text-gray-400", data: { turbo: "false" } %>
-              </div>
-              <div class="hidden sm:block sm:ml-6">
-                <div class="flex space-x-4">
-                  <%= link_to unread_entries_path, class: nav_entry_class(nil), data: { turbo: "false" } do %>
-                    Unread
-                    <span id="unread-count" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                      <%= stats[:total_unread] %>
-                    </span>
-                  <% end %>
-                  <%= link_to "Read", read_entries_path, class: nav_entry_class("read"), data: { turbo: "false" } %>
-                  <%= link_to starred_entries_path, class: nav_entry_class("starred"), data: { turbo: "false" } do %>
-                    Starred
-                    <span id="starred-count" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                      <%= stats[:total_starred] %>
-                    </span>
-                  <% end %>
-                  <%= link_to "Feeds", feeds_path, class: nav_entry_class("feeds"), data: { turbo: "false" } %>
-                </div>
-              </div>
-            </div>
-            <div class="hidden sm:ml-6 sm:block">
-              <div class="flex items-center">
-                <!-- Profile dropdown -->
-                <div class="ml-3 relative">
-                  <div>
-                    <button data-action="click->navbar#toggleUserMenu" class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu" aria-haspopup="true">
-                      <span class="sr-only">Open user menu</span>
-                      <img class="h-8 w-8 rounded-full" src="/apple-touch-icon.png" alt="">
-                    </button>
-                  </div>
-                  <div class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5" role="menu" aria-orientation="vertical" aria-labelledby="user-menu"
-                    data-navbar-target="userMenu"
-                    data-transition-enter="transition ease-out duration-100"
-                    data-transition-enter-start="opacity-0 scale-95"
-                    data-transition-enter-end="opacity-100 scale-100"
-                    data-transition-leave="transition ease-in duration-75"
-                    data-transition-leave-start="opacity-100 scale-100"
-                    data-transition-leave-end="opacity-0 scale-95"
-                  >
-                    <%= link_to "Sign out", session_path, data: { turbo_method: "delete", turbo_confirm: "Want to sign out?" }, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="-mr-2 flex sm:hidden">
-              <!-- Mobile menu button -->
-              <button data-action="click->navbar#toggleMobileMenu" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-expanded="false">
-                <span class="sr-only">Open main menu</span>
-                <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              </button>
+        <div class="px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+          <div class="flex items-center space-x-6">
+            <%= link_to "Mallard", root_path, class: "block shrink-0 text-white hover:text-gray-400" %>
+            <div class="hidden sm:flex space-x-4">
+              <%= link_to unread_entries_path, class: nav_entry_class(nil) do %>
+                Unread
+                <span id="unread-count" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                  <%= stats[:total_unread] %>
+                </span>
+              <% end %>
+              <%= link_to "Read", read_entries_path, class: nav_entry_class("read") %>
+              <%= link_to starred_entries_path, class: nav_entry_class("starred") do %>
+                Starred
+                <span id="starred-count" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                  <%= stats[:total_starred] %>
+                </span>
+              <% end %>
+              <%= link_to "Feeds", feeds_path, class: nav_entry_class("feeds"), data: { turbo: "false" } %>
             </div>
           </div>
+          <div class="hidden sm:flex items-center">
+            <!-- Profile dropdown -->
+            <div class="relative">
+              <button data-action="click->navbar#toggleUserMenu" class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu" aria-haspopup="true">
+                <span class="sr-only">Open user menu</span>
+                <img class="h-8 w-8 rounded-full" src="/apple-touch-icon.png" alt="">
+              </button>
+              <div class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5" data-navbar-target="userMenu">
+                <%= link_to "Sign out", session_path, data: { turbo_method: "delete", turbo_confirm: "Want to sign out?" }, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
+              </div>
+            </div>
+          </div>
+          <!-- Mobile menu button -->
+          <button data-action="click->navbar#toggleMobileMenu" class="inline-flex sm:hidden items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
         </div>
 
         <!-- Mobile menu -->
         <div data-navbar-target="mobileMenu" class="hidden sm:hidden">
-          <div class="px-2 pt-2 pb-3 space-y-1">
-            <%= link_to unread_entries_path, class: nav_entry_class(nil), data: { turbo: "false" } do %>
+          <div class="pt-2 pb-3 space-y-1">
+            <%= link_to unread_entries_path, class: nav_entry_class(nil) do %>
               Unread
               <span id="mobile-unread-count" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
                 <%= stats[:total_unread] %>
               </span>
             <% end %>
-            <%= link_to "Read", read_entries_path, class: nav_entry_class("read"), data: { turbo: "false" } %>
-            <%= link_to starred_entries_path, class: nav_entry_class("starred"), data: { turbo: "false" } do %>
+            <%= link_to "Read", read_entries_path, class: nav_entry_class("read") %>
+            <%= link_to starred_entries_path, class: nav_entry_class("starred") do %>
               Starred
               <span id="mobile-starred-count" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
                 <%= stats[:total_starred] %>
               </span>
             <% end %>
-            <%= link_to "Feeds", feeds_path, class: nav_entry_class("feeds"), data: { turbo: "false" } %>
+            <%= link_to "Feeds", feeds_path, class: nav_entry_class("feeds") %>
           </div>
-          <div class="pt-4 pb-3 border-t border-gray-700">
-            <div class="flex items-center px-5">
-              <div class="shrink-0">
-                <img class="h-10 w-10 rounded-full" src="/apple-touch-icon.png" alt="">
-              </div>
-              <%= link_to "Sign out", session_path, data: { turbo_method: "delete", turbo_confirm: "Want to sign out?" }, class: "ml-auto shrink-0 px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700" %>
-            </div>
+          <div class="flex items-center px-5 pt-4 pb-3 border-t border-gray-700">
+            <img class="h-10 w-10 rounded-full" src="/apple-touch-icon.png" alt="">
+            <%= link_to "Sign out", session_path, data: { turbo_method: "delete", turbo_confirm: "Want to sign out?" }, class: "ml-auto shrink-0 px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700" %>
           </div>
         </div>
       </nav>
@@ -127,8 +103,8 @@
       </aside>
     <% end %>
 
-    <div class="max-w-full mx-1 sm:mx-auto sm:px-6 lg:px-8">
+    <main class="max-w-full mx-1 sm:mx-auto sm:px-6 lg:px-8">
       <%= yield %>
-    </div>
+    </main>
   </body>
 </html>
