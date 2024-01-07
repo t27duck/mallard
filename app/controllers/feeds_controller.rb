@@ -24,10 +24,7 @@ class FeedsController < ApplicationController
     @feed = Feed.new(feed_params)
     if @feed.set_info && @feed.save
       @feed.fetch
-      respond_to do |format|
-        format.html { redirect_to feeds_path, notice: "Feed created" }
-        format.turbo_stream { render :create }
-      end
+      redirect_to feeds_path, notice: "Feed created"
     else
       render :new, status: :unprocessable_entity
     end
@@ -35,10 +32,7 @@ class FeedsController < ApplicationController
 
   def update
     if @feed.update(feed_params)
-      respond_to do |format|
-        format.html { redirect_to feeds_path, notice: "Feed updated" }
-        format.turbo_stream { render :update }
-      end
+      redirect_to feeds_path, notice: "Feed updated"
     else
       render :edit, status: :unprocessable_entity
     end

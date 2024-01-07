@@ -107,9 +107,7 @@
     <% end %>
 
   <div class="max-w-full mx-1 sm:mx-auto sm:px-6 lg:px-8">
-    <%= turbo_frame_tag "flash-messages" do %>
-      <%= render partial: "shared/flash_messages", locals: { alert: alert, notice: notice } %>
-    <% end %>
+    <%= render partial: "shared/flash_messages", locals: { alert: alert, notice: notice } %>
 
     <%= yield %>
   </div>

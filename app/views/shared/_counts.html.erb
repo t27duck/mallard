@@ -1,9 +1,4 @@
-<%
-  # Turbo's JS should remove the <turbo-stream> tags from the DOM and
-  # process them accordingly.
-
-  stats = Entry.stats
-%>
+<% stats = Entry.stats %>
 <%= turbo_stream.update "unread-count", stats[:total_unread] %>
 <%= turbo_stream.update "starred-count", stats[:total_starred] %>
 <%= turbo_stream.update "mobile-unread-count", stats[:total_unread] %>

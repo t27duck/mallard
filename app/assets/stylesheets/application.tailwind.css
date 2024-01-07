@@ -52,7 +52,7 @@
   @apply text-5xl;
 }
 
-.entry-contents h2 {
+.entry-contents h2, h2 {
   @apply text-4xl;
 }
 
