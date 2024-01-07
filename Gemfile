@@ -54,6 +54,15 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: [:mri, :mingw, :x64_mingw]
+
+  # Ruby code linter
+  gem "rubocop-minitest"
+  gem "rubocop-performance"
+  gem "rubocop-rails"
+  gem "rubocop-rails-omakase"
+
+  # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
+  gem "brakeman", require: false
 end
 
 group :development do
@@ -65,12 +74,6 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
-
-  # Ruby code linter
-  gem "rubocop-minitest"
-  gem "rubocop-performance"
-  gem "rubocop-rails"
-  gem "rubocop-rails-omakase"
 end
 
 group :test do
