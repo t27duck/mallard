@@ -6,3 +6,6 @@ AllCops:
 
 Layout/SpaceInsideArrayLiteralBrackets:
   Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
