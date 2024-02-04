@@ -92,7 +92,7 @@ class Feed < ApplicationRecord
     case response
     when Net::HTTPSuccess
       response
-    when Net::HTTPRedirection
+    when Net::HTTPRedirection, Net::HTTPFound
       location = response["location"]
       make_request(location, limit - 1)
     end
