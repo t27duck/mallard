@@ -28,6 +28,14 @@
           </div>
         </div>
       </div>
+      <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+        <div class="sm:col-span-4">
+          <%= f.label :url, class: "block text-sm font-medium text-gray-700" %>
+          <div class="mt-1 flex rounded-md shadow-sm">
+            <%= f.url_field :url, required: true, class: "flex-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300" %>
+          </div>
+        </div>
+      </div>
     <% end %>
 
     <div class="pt-6">
