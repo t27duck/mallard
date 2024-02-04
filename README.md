@@ -8,7 +8,7 @@ It's a Rails with Hotwire application designed to run on a Unix-based server or 
 ## Requirements
 
 * Ruby (as specified in .ruby-version)
-* PostgreSQL (12 or later)
+* SQLite 3.8 or later
 
 ## Setup
 
