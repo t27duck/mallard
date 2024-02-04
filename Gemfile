@@ -83,4 +83,3 @@ group :test do
 end
 
 gem "feedjira"
-gem "pg_search"

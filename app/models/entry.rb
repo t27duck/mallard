@@ -10,15 +10,7 @@ class Entry < ApplicationRecord
   scope :unread, -> { where(read: false) }
   scope :starred, -> { where(starred: true) }
   scope :unstarred, -> { where(starred: false) }
-
-  include PgSearch::Model
-  pg_search_scope :search_entry,
-                  against: { title: "A", content: "C" },
-                  using: {
-                    tsearch: {
-                      dictionary: "english", tsvector_column: "searchable"
-                    }
-                  }
+  scope :search_entry, ->(term) { where("LOWER(title) LIKE ?", "%#{term}%") }
 
   def self.create_from_feedjira(feed_id, entry)
     url = entry.url || entry.try(:enclosure_url)

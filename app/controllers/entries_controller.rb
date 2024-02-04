@@ -2,6 +2,7 @@
 
 class EntriesController < ApplicationController
   PER_PAGE = 10
+  VALID_SCOPES = ["unread", "read", "starred"].freeze
 
   before_action :fetch_entry, only: [:update]
 
@@ -42,16 +43,12 @@ class EntriesController < ApplicationController
   end
 
   def fetch_entries(scope, page: nil, search: nil)
-    scope = "unread" unless ["unread", "read", "starred"].include?(scope)
+    scope = "unread" unless VALID_SCOPES.include?(scope)
 
     entries = Entry.public_send(scope)
-    entries = if search.presence
-                entries.search_entry(search)
-    else
-                entries.order(:published_at)
-    end
+    entries = entries.search_entry(search) if search.present?
     entries = entries.limit(PER_PAGE).offset(PER_PAGE * page) if page
-    entries.select(:id, :title)
+    entries.order(:published_at).select(:id, :title)
   end
 
   def total_pages(search: nil)
