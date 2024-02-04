@@ -32,7 +32,7 @@ class Entry < ApplicationRecord
   def self.stats
     data = ApplicationRecord.connection.execute(<<~SQL.squish).pick("unread", "starred")
       SELECT
-        COUNT(1) FILTER (WHERE read = 'f') AS unread,
+        COUNT(1) FILTER (WHERE NOT read) AS unread,
         COUNT(1) FILTER (WHERE starred) AS starred
       FROM entries
     SQL
