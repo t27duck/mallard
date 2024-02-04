@@ -10,7 +10,7 @@ class Entry < ApplicationRecord
   scope :unread, -> { where(read: false) }
   scope :starred, -> { where(starred: true) }
   scope :unstarred, -> { where(starred: false) }
-  scope :search_entry, ->(term) { where("LOWER(title) LIKE ?", "%#{term}%") }
+  scope :search_entry, ->(term) { where("LOWER(title) LIKE ?", "%#{term}%").or(where("LOWER(content) LIKE ?", "%#{term}%")) }
 
   def self.create_from_feedjira(feed_id, entry)
     url = entry.url || entry.try(:enclosure_url)
