@@ -32,7 +32,7 @@ class FeedsController < ApplicationController
 
   def update
     if @feed.update(feed_params)
-      redirect_to feeds_path, notice: "Feed updated"
+      redirect_to feeds_path
     else
       render :edit, status: :unprocessable_entity
     end
@@ -40,7 +40,7 @@ class FeedsController < ApplicationController
 
   def destroy
     @feed.destroy
-    redirect_to feeds_path, notice: "Feed deleted", status: :see_other
+    redirect_to feeds_path, notice: "Feed removed", status: :see_other
   end
 
   private

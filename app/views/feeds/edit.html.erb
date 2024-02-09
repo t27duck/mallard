@@ -1,3 +1,5 @@
-<div class="text-3xl font-bold mt-3">Edit feed</div>
+<div class="text-3xl font-bold mt-3 mx-2">Edit feed</div>
 
-<%= render partial: "form", locals: { feed: @feed } %>
+<%= turbo_frame_tag dom_id(@feed), target: "_top" do %>
+  <%= render partial: "form", locals: { feed: @feed } %>
+<% end %>
