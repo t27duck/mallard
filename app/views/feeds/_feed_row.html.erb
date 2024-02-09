@@ -2,10 +2,10 @@
   <div class="flex flex-col sm:flex-row sm:justify-between items-center space-y-2 sm:space-y-0">
     <div class="space-y-1 w-full sm:w-1/3">
       <div class="font-medium"><%= feed.title %></div>
-      <%= link_to feed.url, target: "_blank", class: "text-sm" do %>
+      <span class="text-sm">
         <img class="h-4 w-4 rounded-full inline" src="/apple-touch-icon.png" alt="Feed">
         <%= feed.url %>
-      <% end %>
+      </span>
     </div>
     <div class="space-y-1 w-full sm:w-1/3">
       <div>
