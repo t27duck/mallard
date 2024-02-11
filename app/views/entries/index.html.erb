@@ -8,23 +8,11 @@
       </div>
     </div>
 
-    <% if @pagination_and_search %>
+    <% if @pagination %>
       <div class="flex justify-between space-x-2 my-3 mx-2 sm:mx-0">
         <div>
           <%= pagination %>
         </div>
-        <%= form_with url: read_entries_path, method: :get do %>
-          <div class="flex rounded-md shadow-sm">
-            <div class="relative flex items-stretch grow focus-within:z-10">
-              <%= text_field_tag "search", params[:search], class: "focus:ring-indigo-500 focus:border-indigo-500 block w-36 lg:w-full rounded-none rounded-l-md text-sm border-gray-300", placeholder: "Search" %>
-            </div>
-            <%= button_tag class: "-ml-px relative inline-flex items-center space-x-2 p-2 border text-sm font-medium rounded-r-md primary-color" do %>
-              <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-              </svg>
-            <% end %>
-          </div>
-        <% end %>
       </div>
     <% end %>
   </div>

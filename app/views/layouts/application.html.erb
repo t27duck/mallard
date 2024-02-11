@@ -20,7 +20,7 @@
     <% if user_signed_in? %>
       <nav class="bg-gray-800" data-controller="navbar">
         <div class="px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-          <div class="flex items-center space-x-6">
+          <div class="flex items-center space-x-4 md:space-x-6">
             <%= link_to "Mallard", root_path, class: "block shrink-0 text-white hover:text-gray-400" %>
             <div class="hidden sm:flex space-x-4">
               <%= link_to unread_entries_path, class: nav_entry_class(nil) do %>
@@ -36,17 +36,18 @@
                   <%= stats[:total_starred] %>
                 </span>
               <% end %>
-              <%= link_to "Feeds", feeds_path, class: nav_entry_class("feeds"), data: { turbo: "false" } %>
+              <%= render partial: "shared/search_form" %>
             </div>
           </div>
           <div class="hidden sm:flex items-center">
             <!-- Profile dropdown -->
             <div class="relative">
-              <button data-action="click->navbar#toggleUserMenu" class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu" aria-haspopup="true">
+              <button data-action="click->navbar#toggleUserMenu" class="bg-gray-800 flex text-sm rounded-full" id="user-menu" aria-haspopup="true">
                 <span class="sr-only">Open user menu</span>
                 <img class="h-8 w-8 rounded-full" src="/apple-touch-icon.png" alt="">
               </button>
               <div class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5" data-navbar-target="userMenu">
+                <%= link_to "Manage Feeds", feeds_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", data: { turbo: "false" } %>
                 <%= link_to "Sign out", session_path, data: { turbo_method: "delete", turbo_confirm: "Want to sign out?" }, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
               </div>
             </div>
@@ -76,7 +77,8 @@
                 <%= stats[:total_starred] %>
               </span>
             <% end %>
-            <%= link_to "Feeds", feeds_path, class: nav_entry_class("feeds") %>
+            <%= link_to "Manage Feeds", feeds_path, class: nav_entry_class("feeds") %>
+            <div class="mx-2"><%= render partial: "shared/search_form" %></div>
           </div>
           <div class="flex items-center px-5 pt-4 pb-3 border-t border-gray-700">
             <img class="h-10 w-10 rounded-full" src="/apple-touch-icon.png" alt="">
