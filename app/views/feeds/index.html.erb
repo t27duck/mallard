@@ -3,5 +3,5 @@
   <%= link_to "New Feed", new_feed_path, class: "button-primary" %>
 </div>
 <div class="mt-20 space-y-4">
-  <%= render partial: "feed_row", collection: [@feeds, @feeds, @feeds, @feeds, @feeds, @feeds].flatten, as: :feed %>
+  <%= render partial: "feed_row", collection: @feeds, as: :feed %>
 </div>
