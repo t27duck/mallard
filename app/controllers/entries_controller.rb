@@ -18,7 +18,7 @@ class EntriesController < ApplicationController
     @section = "read"
     @entry_type = "Read"
     @pagination = true
-    @entries = fetch_entries("read", search: params[:search], page: params[:page])
+    @entries = fetch_entries("read", search: params[:search], page: params[:page] || 0)
     @total_pages = total_pages("read", search: params[:search])
     render :index
   end
