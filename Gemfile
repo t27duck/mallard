@@ -83,3 +83,4 @@ group :test do
 end
 
 gem "feedjira"
+gem "nokogiri"

@@ -9,3 +9,8 @@ Layout/SpaceInsideArrayLiteralBrackets:
 
 Style/FrozenStringLiteralComment:
   Enabled: true
+
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - app/helpers/application_helper.rb

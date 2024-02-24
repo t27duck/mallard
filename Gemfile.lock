@@ -296,6 +296,7 @@ DEPENDENCIES
   debug
   feedjira
   importmap-rails
+  nokogiri
   propshaft
   puma (~> 6.4)
   rails (~> 7.1.3)

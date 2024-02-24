@@ -50,14 +50,14 @@ class EntriesController < ApplicationController
     scope = "unread" unless VALID_SCOPES.include?(scope)
 
     entries = Entry.public_send(scope)
-    entries = entries.search_entry(search) if search.present?
+    entries = entries.full_search(search) if search.present?
     entries = entries.limit(PER_PAGE).offset(PER_PAGE * page.to_i) if page
     entries.order(:published_at).select(:id, :title)
   end
 
   def total_pages(search: nil)
     entries = Entry.read
-    entries = entries.search_entry(search) if search.present?
+    entries = entries.full_search(search) if search.present?
     (entries.count / PER_PAGE.to_f).to_i + 1
   end
 end
