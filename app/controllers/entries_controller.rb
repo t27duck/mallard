@@ -9,7 +9,7 @@ class EntriesController < ApplicationController
   def unread
     @entries = fetch_entries("unread", search: params[:search], page: params[:page])
     @pagination = params[:search].present?
-    @total_pages = total_pages(search: params[:search])
+    @total_pages = total_pages("unread", search: params[:search])
     @entry_type = "Unread"
     render :index
   end
@@ -17,9 +17,9 @@ class EntriesController < ApplicationController
   def read
     @section = "read"
     @entry_type = "Read"
-    @pagination = params[:search].present?
+    @pagination = true
     @entries = fetch_entries("read", search: params[:search], page: params[:page])
-    @total_pages = total_pages(search: params[:search])
+    @total_pages = total_pages("read", search: params[:search])
     render :index
   end
 
@@ -27,7 +27,7 @@ class EntriesController < ApplicationController
     @section = "starred"
     @entry_type = "Starred"
     @pagination = params[:search].present?
-    @total_pages = total_pages(search: params[:search])
+    @total_pages = total_pages("starred", search: params[:search])
     @entries = fetch_entries("starred", search: params[:search], page: params[:page])
     render :index
   end
@@ -55,8 +55,10 @@ class EntriesController < ApplicationController
     entries.order(:published_at).select(:id, :title)
   end
 
-  def total_pages(search: nil)
-    entries = Entry.read
+  def total_pages(scope, search: nil)
+    scope = "unread" unless VALID_SCOPES.include?(scope)
+
+    entries = Entry.public_send(scope)
     entries = entries.full_search(search) if search.present?
     (entries.count / PER_PAGE.to_f).to_i + 1
   end
