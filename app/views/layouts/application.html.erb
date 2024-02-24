@@ -18,7 +18,7 @@
 
   <body>
     <% if user_signed_in? %>
-      <nav class="bg-gray-800" data-controller="navbar">
+      <nav class="bg-gray-800 <%= @sticky_navbar ? "fixed top-0 w-full" : nil %>" data-controller="navbar">
         <div class="px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
           <div class="flex items-center space-x-4 md:space-x-6">
             <%= link_to "Mallard", root_path, class: "block shrink-0 text-white hover:text-gray-400" %>

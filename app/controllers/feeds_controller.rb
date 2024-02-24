@@ -3,6 +3,7 @@
 class FeedsController < ApplicationController
   before_action :fetch_feed, only: [:fetch, :edit, :update, :destroy]
   before_action :set_section
+  before_action :sticky_navbar
 
   def index
     @feeds = Feed.order(:title)

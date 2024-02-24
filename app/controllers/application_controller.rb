@@ -22,4 +22,8 @@ class ApplicationController < ActionController::Base
   def stats
     @stats ||= Entry.stats
   end
+
+  def sticky_navbar
+    @sticky_navbar = true
+  end
 end
