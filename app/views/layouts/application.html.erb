@@ -38,6 +38,11 @@
               <% end %>
               <%= render partial: "shared/search_form" %>
             </div>
+            <% if @pagination %>
+              <div class="flex sm:hidden">
+                <%= pagination %>
+              </div>
+            <% end %>
           </div>
           <div class="hidden sm:flex items-center">
             <!-- Profile dropdown -->
