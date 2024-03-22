@@ -4,7 +4,13 @@
       <div class="font-medium"><%= feed.title %></div>
       <span class="text-sm">
         <img class="h-4 w-4 rounded-full inline" src="/apple-touch-icon.png" alt="Feed">
-        <%= feed.url %>
+        <%= link_to feed.url,
+          "#",
+          class: "underline",
+          data: {
+            controller: "new-window-link", action: "click->new-window-link#click", new_window_link_url_value: feed.url
+          }
+        %>
       </span>
     </div>
     <div class="space-y-1 w-full sm:w-1/3">
