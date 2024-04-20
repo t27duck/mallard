@@ -82,6 +82,8 @@ class Entry < ApplicationRecord
   private
 
   def update_search_index
+    return unless SEARCHABLE_ATTRIBUTES.any? { |attr| public_send("#{attr}_previously_changed?") }
+
     attrs = SEARCHABLE_ATTRIBUTES.each_with_object({}) { |attr, acc|
       acc[attr] = Nokogiri::HTML(public_send(attr)).text.gsub(/[^\dA-Za-z ]/, "") || ""
     }
