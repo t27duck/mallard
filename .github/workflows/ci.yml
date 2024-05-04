@@ -20,7 +20,7 @@ jobs:
           bundler-cache: true
 
       - name: Scan for security vulnerabilities in Ruby dependencies
-        run: bin/brakeman
+        run: bin/brakeman --no-pager
 
   scan_js:
     runs-on: ubuntu-latest
@@ -91,7 +91,7 @@ jobs:
           RAILS_ENV: test
           # DATABASE_URL: postgres://postgres:postgres@localhost:5432
           # REDIS_URL: redis://localhost:6379/0
-        run: bin/rails db:setup test test:system
+        run: bin/rails db:test:prepare test test:system
 
       - name: Keep screenshots from failed system tests
         uses: actions/upload-artifact@v4
