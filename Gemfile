@@ -4,14 +4,14 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", github: "rails/rails", branch: "main"
-# gem "rails", "~> 7.1.3"
+# gem "rails", github: "rails/rails", branch: "main"
+gem "rails", "~> 7.1.3"
 
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 
 # Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 2.0"
+gem "sqlite3", "< 2"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 6.4"
