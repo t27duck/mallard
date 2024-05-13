@@ -11,6 +11,11 @@ class ApplicationController < ActionController::Base
     cookies.signed.permanent[:signin] = { value: user.token, httponly: true, same_site: :lax }
   end
 
+  def sign_out
+    cookies.delete(:signin)
+    reset_session
+  end
+
   def user_signed_in?
     @user_signed_in ||= User.exists?(token: cookies.signed[:signin])
   end

@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    cookies.delete(:signin)
+    sign_out
     redirect_to root_path, status: :see_other
   end
 
