@@ -23,7 +23,7 @@
           <div class="flex items-center space-x-4 md:space-x-6">
             <%= link_to "Mallard", root_path, class: "block shrink-0 text-white hover:text-gray-400" %>
             <div class="hidden sm:flex space-x-4">
-              <%= link_to unread_entries_path, class: nav_entry_class(nil) do %>
+              <%= link_to unread_entries_path, class: nav_entry_class("unread") do %>
                 Unread
                 <span id="unread-count" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
                   <%= stats[:total_unread] %>
