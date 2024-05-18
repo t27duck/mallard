@@ -24,4 +24,4 @@ jobs:
           SSH_HOST: ${{ secrets.SSH_HOST }}
 
       - name: Connect and Deploy
-        run: ssh prod 'ruby deploy/mallard.rb'
+        run: ssh prod  '/bin/bash -l -c "ruby deploy/mallard.rb"'
