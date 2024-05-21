@@ -1,4 +1,4 @@
-<%= form_with url: search_form_path, method: :get, class: "w-full sm:w-auto" do %>
+<%= form_with url: search_form_path, method: :get, id: nil, class: "w-full sm:w-auto" do %>
   <div class="flex rounded-md shadow-sm">
     <%= text_field_tag "search", params[:search], class: "focus-within:z-10 block w-full sm:w-28 md:w-full rounded-none rounded-l-md text-sm border-gray-300", placeholder: "Search" %>
     <%= button_tag class: "-ml-px relative inline-flex items-center space-x-2 p-2 border text-sm font-medium rounded-r-md bg-gray-100" do %>
