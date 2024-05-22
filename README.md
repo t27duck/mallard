@@ -23,6 +23,8 @@ It's a Rails with Hotwire application designed to run on a Unix-based server or 
 
 ## Entry fetching and maintenance
 
-Run `rake entries:fetch` to pull any new entries from all feeds. This is commonly done through a cron job.
+The puma configuration file is set up through a plugin to pull new entries for all feeds every 20 minutes (relative to the time the server was started).
+
+Alternatively, run `rake entries:fetch` to pull any new entries from all feeds. This would be commonly done through a cron job.
 
 Run `rake entries:clean` periodically to delete older entries.
