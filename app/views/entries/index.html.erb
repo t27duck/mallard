@@ -1,15 +1,17 @@
 <div data-controller="entries">
   <div data-entries-target="controls">
     <div class="flex justify-between space-x-3 my-3 mx-2 sm:mx-0">
-      <h1 class="text-3xl font-bold"><%= @entry_type %> <span class="hidden sm:inline">Entries</span></h1>
+      <h1 class="text-3xl font-bold">
+        <%= translate("headings.#{@section}_html") %>
+      </h1>
       <% if @pagination %>
         <div class="hidden sm:block">
           <%= pagination %>
         </div>
       <% end %>
       <div class="space-x-3">
-        <%= link_to "&laquo; Prev".html_safe, "#", class: "button-primary", data: { action: "click->entries#prev" } %>
-        <%= link_to "Next &raquo;".html_safe, "#", class: "button-primary", data: { action: "click->entries#next" } %>
+        <%= link_to "&laquo; #{translate("buttons.prev")}".html_safe, "#", class: "button-primary", data: { action: "click->entries#prev" } %>
+        <%= link_to "#{translate("buttons.next")} &raquo;".html_safe, "#", class: "button-primary", data: { action: "click->entries#next" } %>
       </div>
     </div>
   </div>
@@ -31,7 +33,7 @@
         <% end %>
       </ul>
     <% else %>
-      <div class="text-center text-3xl">No entries found</div>
+      <div class="text-center text-3xl"><%= translate("messages.no_results") %></div>
     <% end %>
   </div>
 </div>

@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
       sign_in(user)
       redirect_to root_path
     else
-      flash.now.alert = "Incorrect password."
+      flash.now.alert = translate("flash.incorrect_password")
       render :new, status: :unprocessable_entity
     end
   end

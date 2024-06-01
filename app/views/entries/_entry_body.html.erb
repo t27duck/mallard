@@ -1,8 +1,8 @@
 <div data-entries-target="opened" class="bg-white px-4 py-4 sm:px-6 entry-body">
   <%= render partial: "entry_meta", locals: { entry: entry } %>
   <div class="font-medium text-gray-500 mt-1">
-    <%= entry.author ? "by #{entry.author}" : nil %>
-    <%= entry.published_at ? "at #{entry.published_at.strftime("%b %-d %Y, %I:%M%p")}" : nil %>
+    <%= entry.author ? translate("entry_meta.written_by", author: entry.author) : nil %>
+    <%= entry.published_at ? translate("entry_meta.published_at", date_string: entry.published_at.strftime("%b %-d %Y, %I:%M%p")) : nil %>
   </div>
   <div class="my-2 entry-contents">
     <%= entry.santitized_content.html_safe %>

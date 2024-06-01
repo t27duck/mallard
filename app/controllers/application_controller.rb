@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
+  around_action :switch_locale
 
   helper_method :user_signed_in?, :stats
 
@@ -30,5 +31,10 @@ class ApplicationController < ActionController::Base
 
   def sticky_navbar
     @sticky_navbar = true
+  end
+
+  def switch_locale(&action)
+    locale = ENV["MALLARD_LOCALE"].presence || I18n.default_locale
+    I18n.with_locale(locale, &action)
   end
 end

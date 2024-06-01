@@ -7,7 +7,6 @@ class EntriesController < ApplicationController
 
   def unread
     @section = "unread"
-    @entry_type = "Unread"
     @pagination = params[:search].present?
     @entries = fetch_entries(Entry.unread)
     @total_pages = total_pages(Entry.unread)
@@ -16,7 +15,6 @@ class EntriesController < ApplicationController
 
   def read
     @section = "read"
-    @entry_type = "Read"
     @pagination = true
     @entries = fetch_entries(Entry.read)
     @total_pages = total_pages(Entry.read)
@@ -25,7 +23,6 @@ class EntriesController < ApplicationController
 
   def starred
     @section = "starred"
-    @entry_type = "Starred"
     @pagination = params[:search].present?
     @total_pages = total_pages(Entry.starred)
     @entries = fetch_entries(Entry.starred)

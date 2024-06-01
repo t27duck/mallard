@@ -15,18 +15,18 @@
     </div>
     <div class="space-y-1 w-full sm:w-1/3">
       <div>
-        Entries:
+        <%= translate("labels.entries") %>:
         <%= feed.entries_count %>
       </div>
       <div>
-        Last Checked:
+        <%= translate("labels.last_checked") %>:
         <%= feed.last_checked&.strftime("%b %-d %Y, %I:%M%p") %>
       </div>
     </div>
     <div class="w-full sm:w-auto">
-      <%= link_to "Fetch", fetch_feed_path(feed), class: "button-primary", data: { turbo_frame: "_top" } %>
-      <%= link_to "Edit", edit_feed_path(feed), class: "button-primary" %>
-      <%= button_to "Delete", feed_path(feed), method: :delete, data: { turbo_confirm: "Are you sure?", turbo_frame: "_top" }, class: "button-danger", form_class: "inline" %>
+      <%= link_to translate("buttons.view"), fetch_feed_path(feed), class: "button-primary", data: { turbo_frame: "_top" } %>
+      <%= link_to translate("buttons.edit"), edit_feed_path(feed), class: "button-primary" %>
+      <%= button_to translate("buttons.delete"), feed_path(feed), method: :delete, data: { turbo_confirm: translate("confirmations.are_you_sure"), turbo_frame: "_top" }, class: "button-danger", form_class: "inline" %>
     </div>
   </div>
 <% end %>

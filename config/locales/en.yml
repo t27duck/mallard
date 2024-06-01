@@ -31,6 +31,66 @@
 
 en:
   activerecord:
+    models:
+      feed: "Feed"
     attributes:
       feed:
+        sanitize: "Sanitize"
+        title: "Title"
         url: "Feed URL"
+      user:
+        password: "Password"
+        password_confirmation: "Password Confirmation"
+  buttons:
+    cancel: "Cancel"
+    delete: "Delete"
+    edit: "Edit"
+    fetch: "Fetch"
+    mark_read: "Mark Read"
+    mark_unread: "Mark Unread"
+    new_feed: "New Feed"
+    next: "Next"
+    prev: "Prev"
+    search: "Search"
+    set_password: "Set Password"
+    star: "Star"
+    view: "View"
+    unstarr: "Unstarr"
+  confirmations:
+    are_you_sure: "Are you sure?"
+  entry_meta:
+    published_at: "at %{date_string}"
+    written_by: "by %{author}"
+  flash:
+    entries_fetched: "New entries fetched"
+    feed_created: "Feed created"
+    feed_removed: "Feed removed"
+    incorect_password: "Incorrect Password"
+  headings:
+    mallard: "Mallard"
+    password_setup: "Password Setup"
+    read_html: "Read <span class='hidden sm:inline'>Entries</span>"
+    starred_html: "Starred <span class='hidden sm:inline'>Entries</span>"
+    unread_html: "Unread <span class='hidden sm:inline'>Entries</span>"
+  labels:
+    edit_feed: "Edit feed"
+    entries: "Entries"
+    feeds: "Feeds"
+    last_checked: "Last Checked"
+    new_feed: "New feed"
+    search: "Search"
+  navigation:
+    manage_feeds: "Manage Feeds"
+    open_menu: "Open Menu"
+    read: "Read"
+    starred: "Starred"
+    sign_out: "Sign Out"
+    unread: "Unread"
+  messages:
+    no_results: "No entries found"
+  sub_headings:
+    tagline: "Embrace old technology"
+
+
+
+

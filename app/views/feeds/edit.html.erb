@@ -1,8 +1,8 @@
 <div class="pt-3 pb-1 flex justify-between sticky top-16 bg-white">
-  <h1 class="text-3xl font-bold">Edit feed</h1>
+  <h1 class="text-3xl font-bold"><%= translate("labels.edit_feed") %></h1>
 </div>
 <div class="mt-20">
-<%= turbo_frame_tag dom_id(@feed), target: "_top" do %>
-  <%= render partial: "form", locals: { feed: @feed } %>
-<% end %>
+  <%= turbo_frame_tag dom_id(@feed), target: "_top" do %>
+    <%= render partial: "form", locals: { feed: @feed } %>
+  <% end %>
 </div>

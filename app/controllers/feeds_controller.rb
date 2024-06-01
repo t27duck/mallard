@@ -18,14 +18,14 @@ class FeedsController < ApplicationController
 
   def fetch
     @feed.fetch
-    redirect_to feeds_path, notice: "New entries fetched"
+    redirect_to feeds_path, notice: translate("flash.entries_fetched")
   end
 
   def create
     @feed = Feed.new(feed_params)
     if @feed.set_info && @feed.save
       @feed.fetch
-      redirect_to feeds_path, notice: "Feed created"
+      redirect_to feeds_path, notice: translate("flash.feed_created")
     else
       render :new, status: :unprocessable_entity
     end
@@ -41,7 +41,7 @@ class FeedsController < ApplicationController
 
   def destroy
     @feed.destroy
-    redirect_to feeds_path, notice: "Feed removed", status: :see_other
+    redirect_to feeds_path, notice: translate("flash.feed_removed"), status: :see_other
   end
 
   private

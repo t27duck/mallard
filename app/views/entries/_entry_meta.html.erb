@@ -2,20 +2,20 @@
   <%= form_with model: entry, class: "inline" do |f| %>
     <% if entry.read? %>
       <%= f.hidden_field :read, value: false %>
-      <%= f.submit "Mark Unread", class: "button-primary" %>
+      <%= f.submit translate("buttons.mark_unread"), class: "button-primary" %>
     <% else %>
       <%= f.hidden_field :read, value: true %>
-      <%= f.submit "Mark Read", class: "button-primary" %>
+      <%= f.submit translate("buttons.mark_read"), class: "button-primary" %>
     <% end %>
   <% end %>
   <%= form_with model: entry, class: "inline ml-4" do |f| %>
     <% if entry.starred? %>
       <%= f.hidden_field :starred, value: false %>
-      <%= f.submit "Unstarr", class: "button-primary" %>
+      <%= f.submit translate("buttons.unstarr"), class: "button-primary" %>
     <% else %>
       <%= f.hidden_field :starred, value: true %>
-      <%= f.submit "Star", class: "button-primary" %>
+      <%= f.submit translate("buttons.star"), class: "button-primary" %>
     <% end %>
   <% end %>
-  <%= link_to "View", entry.url, target: "_blank", data: { turbo: "false" }, class: "button-primary float-right" %>
+  <%= link_to translate("buttons.view"), entry.url, target: "_blank", data: { turbo: "false" }, class: "button-primary float-right" %>
 <% end %>
