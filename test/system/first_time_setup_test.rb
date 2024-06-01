@@ -17,7 +17,7 @@ class FirstTimeSetupTest < ApplicationSystemTestCase
 
     click_on "Set Password"
 
-    assert_text "Setup complete"
+    assert_text "Please sign in"
 
     fill_in "password", with: TEST_PASSWORD
 
