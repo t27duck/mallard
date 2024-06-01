@@ -7,7 +7,7 @@ class FirstTimeSetupTest < ApplicationSystemTestCase
     User.delete_all
   end
 
-  test "It prompts user to set a password and logs user in" do
+  test "it prompts user to set a password and allows the user to sign in" do
     visit root_path
 
     assert_text "Password Setup"
@@ -16,6 +16,12 @@ class FirstTimeSetupTest < ApplicationSystemTestCase
     fill_in "user[password_confirmation]", with: TEST_PASSWORD
 
     click_on "Set Password"
+
+    assert_text "Setup complete"
+
+    fill_in "password", with: TEST_PASSWORD
+
+    click_on "Sign In"
 
     assert_text "Unread Entries"
   end
