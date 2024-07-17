@@ -35,7 +35,8 @@ en:
       feed: "Feed"
     attributes:
       feed:
-        sanitize: "Sanitize"
+        remove_tracking_params: "Remove Tracking Params from URLs"
+        sanitize: "Remove HTML From Summaries"
         title: "Title"
         url: "Feed URL"
       user:
@@ -65,7 +66,7 @@ en:
     entries_fetched: "New entries fetched"
     feed_created: "Feed created"
     feed_removed: "Feed removed"
-    incorect_password: "Incorrect Password"
+    incorrect_password: "Incorrect Password"
     setup_complete: "Password saved. Please sign in."
   headings:
     mallard: "Mallard"

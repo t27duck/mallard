@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "uri"
+
 class EntriesController < ApplicationController
   PER_PAGE = 10
 
@@ -46,7 +48,7 @@ class EntriesController < ApplicationController
   def fetch_entries(entries)
     entries = entries.full_search(params[:search]) if params[:search].present?
     entries = entries.limit(PER_PAGE).offset(PER_PAGE * params[:page].to_i) if @pagination
-    entries.order(:published_at).select(:id, :title)
+    entries.includes(:feed).order(:published_at).select(:id, :title, :feed_id)
   end
 
   def total_pages(entries)

@@ -23,7 +23,12 @@
 
   <div class="flex">
     <%= f.check_box :sanitize, class: "h-4 w-4 border-gray-300 rounded mr-2" %>
-    <%= f.label :sanitize, "Remove HTML From Summaries", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.label :sanitize, class: "block text-sm font-medium text-gray-700" %>
+  </div>
+
+  <div class="flex">
+    <%= f.check_box :remove_tracking_params, class: "h-4 w-4 border-gray-300 rounded mr-2" %>
+    <%= f.label :remove_tracking_params, class: "block text-sm font-medium text-gray-700" %>
   </div>
 
   <div class="flex justify-end">

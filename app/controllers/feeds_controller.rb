@@ -51,7 +51,7 @@ class FeedsController < ApplicationController
   end
 
   def feed_params
-    params.require(:feed).permit(:title, :url, :sanitize)
+    params.require(:feed).permit(:title, :url, :sanitize, :remove_tracking_params)
   end
 
   def set_section

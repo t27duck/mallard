@@ -55,10 +55,6 @@ class Entry < ApplicationRecord
     }
   end
 
-  def santitized_content
-    feed.sanitize? ? ActionController::Base.helpers.sanitize(content) : content
-  end
-
   def self.reindex(*ids)
     target_ids = Array(ids)
     target_ids = self.ids if target_ids.empty?
@@ -77,6 +73,21 @@ class Entry < ApplicationRecord
 
       EntrySearch.create(attrs)
     end
+  end
+
+  def santitized_content
+    feed.sanitize? ? ActionController::Base.helpers.sanitize(content) : content
+  end
+
+  def final_url
+    return url unless feed.remove_tracking_params?
+
+    uri = URI.parse(url)
+    return url unless uri.query
+
+    clean_key_vals = URI.decode_www_form(uri.query).reject { |k, _| k.start_with?("utm_") }
+    uri.query = URI.encode_www_form(clean_key_vals)
+    uri.to_s
   end
 
   private
