@@ -19,6 +19,8 @@ module ApplicationHelper
   end
 
   def pagination(total_pages)
+    return "" if total_pages.zero?
+
     tag.nav class: "relative z-0 inline-flex shadow-sm" do
       prev_link + number_of_pages(total_pages) + next_link(total_pages)
     end

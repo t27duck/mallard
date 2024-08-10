@@ -53,6 +53,9 @@ class EntriesController < ApplicationController
 
   def total_pages(entries)
     entries = entries.full_search(params[:search]) if params[:search].present?
-    (entries.count / PER_PAGE.to_f).to_i + 1
+    count = entries.count
+    return 0 if count.zero?
+
+    (count / PER_PAGE.to_f).to_i + 1
   end
 end
