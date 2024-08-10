@@ -40,9 +40,6 @@ Style/Documentation:
 Style/EmptyMethod:
   Enabled: false
 
-Style/FrozenStringLiteralComment:
-  Enabled: true
-
 Style/HashSyntax:
   EnforcedStyle: no_mixed_keys
   EnforcedShorthandSyntax: never
@@ -52,14 +49,7 @@ Style/OpenStructUse:
     - "test/**/*"
 
 Style/StringLiterals:
-  Enabled: true
   EnforcedStyle: double_quotes
-  Include:
-    - "app/**/*"
-    - "config/**/*"
-    - "lib/**/*"
-    - "test/**/*"
-    - "Gemfile"
 
 Style/SymbolArray:
   Enabled: false
