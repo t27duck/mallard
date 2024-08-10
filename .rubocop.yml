@@ -9,7 +9,6 @@ AllCops:
   SuggestExtensions: false
   Exclude:
     - "db/migrate/**/*"
-    - "config/environments/**/*"
     - "bin/**/*"
 
 Layout/LineLength:
