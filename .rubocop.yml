@@ -10,6 +10,7 @@ AllCops:
   Exclude:
     - "db/migrate/**/*"
     - "bin/**/*"
+    - "vendor/bundle/**/*"
 
 Layout/LineLength:
   Max: 120
