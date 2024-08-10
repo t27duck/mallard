@@ -1,16 +1,69 @@
-inherit_gem:
-  rubocop-rails-omakase: rubocop.yml
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-minitest
 
 AllCops:
   TargetRubyVersion: 3.3
-
-Layout/SpaceInsideArrayLiteralBrackets:
-  Enabled: false
-
-Style/FrozenStringLiteralComment:
-  Enabled: true
+  NewCops: enable
+  SuggestExtensions: false
+  Exclude:
+    - "db/migrate/**/*"
+    - "config/environments/**/*"
+    - "bin/**/*"
 
 Layout/LineLength:
   Max: 120
   Exclude:
     - app/helpers/application_helper.rb
+
+Metrics/AbcSize:
+  Max: 20
+
+Metrics/CyclomaticComplexity:
+  Max: 12
+
+Metrics/MethodLength:
+  Max: 25
+
+Metrics/PerceivedComplexity:
+  Max: 12
+
+Minitest/MultipleAssertions:
+  Max: 10
+
+Naming/BlockForwarding:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/EmptyMethod:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+
+Style/HashSyntax:
+  EnforcedStyle: no_mixed_keys
+  EnforcedShorthandSyntax: never
+
+Style/OpenStructUse:
+  Exclude:
+    - "test/**/*"
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+  Include:
+    - "app/**/*"
+    - "config/**/*"
+    - "lib/**/*"
+    - "test/**/*"
+    - "Gemfile"
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/WordArray:
+  Enabled: false

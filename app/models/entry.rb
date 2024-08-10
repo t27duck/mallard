@@ -14,15 +14,15 @@ class Entry < ApplicationRecord
   scope :unread, -> { where(read: false) }
   scope :starred, -> { where(starred: true) }
   scope :unstarred, -> { where(starred: false) }
-  scope :full_search, ->(query) {
+  scope :full_search, lambda { |query|
     query = query.gsub(/[^\dA-Za-z ]/, "")
 
     return none if query.blank?
 
     search_table = EntrySearch.quoted_table_name
 
-    joins("JOIN #{search_table} ON #{search_table}.entry_id = #{quoted_table_name}.id").
-    where(sanitize_sql_array(["#{search_table} = :query", query: query])).order(:rank)
+    joins("JOIN #{search_table} ON #{search_table}.entry_id = #{quoted_table_name}.id")
+      .where(sanitize_sql_array(["#{search_table} = :query", { query: query }])).order(:rank)
   }
 
   def self.create_from_feedjira(feed_id, entry)
@@ -64,11 +64,11 @@ class Entry < ApplicationRecord
     target_ids.each do |id|
       record = select(*SEARCHABLE_ATTRIBUTES).find_by(id: id)
 
-      next unless record.present?
+      next if record.blank?
 
-      attrs = SEARCHABLE_ATTRIBUTES.each_with_object({}) { |attr, acc|
-        acc[attr] = Nokogiri::HTML(record[attr.to_sym]).text.gsub(/[^\dA-Za-z ]/, "") || ""
-      }
+      attrs = SEARCHABLE_ATTRIBUTES.index_with do |attr|
+        Nokogiri::HTML(record[attr.to_sym]).text.gsub(/[^\dA-Za-z ]/, "") || ""
+      end
       attrs[:entry_id] = id
 
       EntrySearch.create(attrs)
@@ -93,11 +93,11 @@ class Entry < ApplicationRecord
   private
 
   def update_search_index
-    return unless SEARCHABLE_ATTRIBUTES.any? { |attr| public_send("#{attr}_previously_changed?") }
+    return unless SEARCHABLE_ATTRIBUTES.any? { |attr| public_send(:"#{attr}_previously_changed?") }
 
-    attrs = SEARCHABLE_ATTRIBUTES.each_with_object({}) { |attr, acc|
-      acc[attr] = Nokogiri::HTML(public_send(attr)).text.gsub(/[^\dA-Za-z ]/, "") || ""
-    }
+    attrs = SEARCHABLE_ATTRIBUTES.index_with do |attr|
+      Nokogiri::HTML(public_send(attr)).text.gsub(/[^\dA-Za-z ]/, "") || ""
+    end
     attrs[:entry_id] = id
 
     delete_search_index

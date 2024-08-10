@@ -13,7 +13,7 @@ Capybara.server = :puma, { Silent: true }
 # Have tailwind jit do a one off build instead of keeping the process in memory to watch for file changes.
 ENV["TAILWIND_MODE"] ||= "build"
 
-class ActiveSupport::TestCase
+class ActiveSupport::TestCase # rubocop:disable Style/ClassAndModuleChildren
   # Run tests in parallel with specified workers
   parallelize(workers: :number_of_processors)
 

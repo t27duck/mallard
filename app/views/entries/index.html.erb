@@ -6,7 +6,7 @@
       </h1>
       <% if @pagination %>
         <div class="hidden sm:block">
-          <%= pagination %>
+          <%= pagination(@total_pages) %>
         </div>
       <% end %>
       <div class="space-x-3">
