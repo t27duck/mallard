@@ -1,7 +1,7 @@
-<div class="pt-3 pb-1 flex justify-between sticky top-16 bg-white">
+<div class="pt-3 pb-1 flex justify-between mt-16 bg-white">
   <h1 class="text-3xl font-bold"><%= translate("labels.feeds") %></h1>
   <%= link_to translate("buttons.new_feed"), new_feed_path, class: "button-primary" %>
 </div>
-<div class="mt-20 space-y-4">
+<div class="space-y-4">
   <%= render partial: "feed_row", collection: @feeds, as: :feed %>
 </div>
