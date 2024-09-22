@@ -8,9 +8,9 @@
     <meta name="title" content="Mallard RSS Reader">
     <meta name="description" content="Self-hosted, single user RSS reader">
     <title><%= translate("headings.mallard") %></title>
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/apple-touch-icon.png" type="image/png">
+    <link rel="icon" href="/icon-512.png" type="image/png">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+    <%= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
