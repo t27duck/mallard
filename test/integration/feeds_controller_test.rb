@@ -1,9 +1,17 @@
 # frozen_string_literal: true
 
 require "test_helper"
-require "ostruct"
 
 class FeedsControllerTest < ActionDispatch::IntegrationTest
+  class FeedStub
+    attr_accessor :title, :entries
+
+    def initialize(title:, entries: [])
+      @title = title
+      @entries = entries
+    end
+  end
+
   setup do
     sign_in
     @feed = feeds(:one)
@@ -22,7 +30,7 @@ class FeedsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should fetch feed entries" do
-    Feedjira.stub(:parse, OpenStruct.new(title: "A feed", entries: [])) do
+    Feedjira.stub(:parse, FeedStub.new(title: "A feed", entries: [])) do
       get fetch_feed_url(@feed)
     end
 
@@ -30,7 +38,7 @@ class FeedsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create feed" do
-    Feedjira.stub(:parse, OpenStruct.new(title: "A feed", entries: [])) do
+    Feedjira.stub(:parse, FeedStub.new(title: "A feed", entries: [])) do
       assert_difference("Feed.count") do
         post feeds_url, params: { feed: { url: "https://website.com/feed" } }
       end

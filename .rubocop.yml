@@ -8,7 +8,7 @@ AllCops:
   NewCops: enable
   SuggestExtensions: false
   Exclude:
-    - "db/migrate/**/*"
+    - "db/**/*"
     - "bin/**/*"
     - "vendor/bundle/**/*"
 
