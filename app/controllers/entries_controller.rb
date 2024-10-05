@@ -38,7 +38,7 @@ class EntriesController < ApplicationController
   private
 
   def entry_params
-    params.require(:entry).permit(:read, :starred)
+    params.expect(entry: [:read, :starred])
   end
 
   def fetch_entry
