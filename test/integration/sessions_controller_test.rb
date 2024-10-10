@@ -10,15 +10,19 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should sign the user in" do
-    post session_path, params: { password: TEST_PASSWORD }
+    assert_difference "Session.count" do
+      post session_path, params: { password: TEST_PASSWORD }
+    end
 
     assert_redirected_to root_path
   end
 
   test "should not sign the user in if invalid password" do
-    post session_path, params: { password: "#{TEST_PASSWORD}---" }
+    assert_no_difference "Session.count" do
+      post session_path, params: { password: "#{TEST_PASSWORD}---" }
+    end
 
-    assert_response :unprocessable_entity
+    assert_redirected_to new_session_path
   end
 
   test "should sign the user out" do

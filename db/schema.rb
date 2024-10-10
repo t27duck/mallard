@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_07_16_234734) do
+ActiveRecord::Schema[8.0].define(version: 2024_10_08_005145) do
   create_table "entries", force: :cascade do |t|
     t.integer "feed_id", null: false
     t.string "title", null: false
@@ -35,10 +35,20 @@ ActiveRecord::Schema[8.0].define(version: 2024_07_16_234734) do
     t.boolean "remove_tracking_params", default: true, null: false
   end
 
+  create_table "sessions", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "ip_address"
+    t.string "user_agent"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sessions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "password_digest", null: false
-    t.string "token", null: false
   end
+
+  add_foreign_key "sessions", "users"
 
   # Virtual tables defined in this database.
   # Note that virtual tables may not work with other database engines. Be careful if changing database.

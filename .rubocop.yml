@@ -45,15 +45,13 @@ Style/HashSyntax:
   EnforcedStyle: no_mixed_keys
   EnforcedShorthandSyntax: never
 
-Style/OpenStructUse:
-  Exclude:
-    - "test/**/*"
-
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
 Style/SymbolArray:
-  Enabled: false
+  EnforcedStyle: brackets
+  Exclude:
+    - Gemfile
 
 Style/WordArray:
-  Enabled: false
+  EnforcedStyle: brackets

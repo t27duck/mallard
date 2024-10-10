@@ -19,7 +19,7 @@
   </head>
 
   <body>
-    <% if user_signed_in? %>
+    <% if authenticated? %>
       <nav class="bg-gray-800 <%= @sticky_navbar ? "fixed top-0 w-full" : nil %>" data-controller="navbar">
         <div class="px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
           <div class="flex items-center space-x-4 md:space-x-6">

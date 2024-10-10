@@ -1,3 +1,2 @@
 one:
   password_digest: <%= BCrypt::Password.create(TEST_PASSWORD) %>
-  token: <%= SecureRandom.hex %>

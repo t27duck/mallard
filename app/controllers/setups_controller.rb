@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SetupsController < ApplicationController
-  skip_before_action :authenticate_user!
+  allow_unauthenticated_access only: [:show, :create]
 
   before_action :one_user_registered?
 
@@ -27,7 +27,7 @@ class SetupsController < ApplicationController
   def one_user_registered?
     return false unless User.count == 1
 
-    if user_signed_in?
+    if authenticated?
       redirect_to root_path
     else
       redirect_to new_session_path
