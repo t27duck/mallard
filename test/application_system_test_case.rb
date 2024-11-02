@@ -3,7 +3,16 @@
 require "test_helper"
 
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
-  driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
+  if ENV["CAPYBARA_SERVER_PORT"]
+    served_by host: "rails-app", port: ENV["CAPYBARA_SERVER_PORT"]
+
+    driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400], options: {
+      browser: :remote,
+      url: "http://#{ENV.fetch('SELENIUM_HOST', nil)}:4444"
+    }
+  else
+    driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
+  end
 
   def sign_in_via_browser
     visit root_path
