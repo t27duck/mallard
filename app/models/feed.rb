@@ -81,12 +81,8 @@ class Feed < ApplicationRecord
     raise ArgumentError, "too many HTTP redirects" if limit <= 0
 
     uri = URI.parse(request_url)
-    req = Net::HTTP::Get.new(uri.request_uri)
-    req["Accept-Language"] = "*"
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = (uri.scheme == "https")
-    http.open_timeout = 5
-    http.read_timeout = 5
+    req = request_object(uri)
+    http = http_object(uri)
     response = http.start { http.request(req) }
 
     case response
@@ -96,5 +92,24 @@ class Feed < ApplicationRecord
       location = response["location"]
       make_request(location, limit - 1)
     end
+  end
+
+  def request_object(uri)
+    req = Net::HTTP::Get.new(uri.request_uri)
+    req["Accept-Language"] = "*"
+    req["user-agent"] = "Ruby/#{RUBY_VERSION} (#{RUBY_PLATFORM}) Feedjira (#{Feedjira::VERSION})"
+    if uri.userinfo.present?
+      req.basic_auth(URI.decode_www_form_component(uri.user),
+                     URI.decode_www_form_component(uri.password))
+    end
+    req
+  end
+
+  def http_object(uri)
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = (uri.scheme == "https")
+    http.open_timeout = 5
+    http.read_timeout = 5
+    http
   end
 end
