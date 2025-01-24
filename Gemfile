@@ -19,8 +19,8 @@ gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 # Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
-gem "tailwindcss-rails"
-gem "tailwindcss-ruby", "~> 3.4.17"
+gem "tailwindcss-rails", "4.0.0.rc1"
+gem "tailwindcss-ruby", "~> 4.0.0"
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 gem "bcrypt", "~> 3.1.20"
 

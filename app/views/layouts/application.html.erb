@@ -13,7 +13,7 @@
     <%= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
 
     <%= javascript_importmap_tags %>
   </head>
@@ -47,14 +47,14 @@
             <% end %>
           </div>
           <div class="hidden sm:flex items-center">
-            <!-- Profile dropdown -->
+            <!-- Menu dropdown -->
             <div class="relative">
               <button data-action="click->navbar#toggleUserMenu" class="bg-gray-800 flex text-sm rounded-full" id="user-menu" aria-haspopup="true">
                 <span class="sr-only"><%= translate("navigation.open_menu") %></span>
                 <img class="h-8 w-8 rounded-full" src="/apple-touch-icon.png" alt="">
               </button>
-              <div class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5" data-navbar-target="userMenu">
-                <%= link_to translate("navigation.manage_feds"), feeds_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", data: { turbo: "false" } %>
+              <div class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-gray-200 ring-opacity-5" data-navbar-target="userMenu">
+                <%= link_to translate("navigation.manage_feeds"), feeds_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", data: { turbo: "false" } %>
                 <%= link_to translate("navigation.sign_out"), session_path, data: { turbo_method: "delete", turbo_confirm: "Want to sign out?" }, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
               </div>
             </div>

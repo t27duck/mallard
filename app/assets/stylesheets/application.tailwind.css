@@ -1,6 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/aspect-ratio';
 
 .nav-entry-active {
   @apply bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium block;
@@ -11,15 +12,15 @@
 }
 
 .button-primary {
-  @apply inline-flex items-center px-2.5 py-1.5 border border-transparent font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500;
+  @apply inline-flex items-center px-2.5 py-1.5 border border-transparent font-medium rounded-sm shadow-xs focus:outline-hidden focus:ring-2 focus:ring-offset-2 text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500;
 }
 
 .button-danger {
-  @apply inline-flex items-center px-2.5 py-1.5 border border-transparent font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 text-white bg-red-600 hover:bg-red-700 focus:ring-red-500;
+  @apply inline-flex items-center px-2.5 py-1.5 border border-transparent font-medium rounded-sm shadow-xs focus:outline-hidden focus:ring-2 focus:ring-offset-2 text-white bg-red-600 hover:bg-red-700 focus:ring-red-500;
 }
 
 .button-plain {
-  @apply inline-flex items-center px-2.5 py-1.5 border border-transparent font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 bg-gray-300 hover:bg-gray-400 focus:ring-gray-500;
+  @apply inline-flex items-center px-2.5 py-1.5 border border-transparent font-medium rounded-sm shadow-xs focus:outline-hidden focus:ring-2 focus:ring-offset-2 bg-gray-300 hover:bg-gray-400 focus:ring-gray-500;
 }
 
 #entry-list {
@@ -95,4 +96,3 @@
 .entry-contents ol {
   @apply list-decimal list-inside;
 }
-
