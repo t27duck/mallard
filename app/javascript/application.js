@@ -6,5 +6,5 @@ document.addEventListener("DOMContentLoaded", () => {
   // The default of 500ms is too long and
   // users can lose the causal link between clicking
   // a link and seeing the browser respond
-  Turbo.setProgressBarDelay(100)
+  Turbo.config.drive.progressBarDelay = 100
 })

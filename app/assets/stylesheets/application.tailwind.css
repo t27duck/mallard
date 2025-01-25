@@ -3,6 +3,10 @@
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/aspect-ratio';
 
+@theme {
+  --font-sans: 'Inter var', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
 .nav-entry-active {
   @apply bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium block;
 }
