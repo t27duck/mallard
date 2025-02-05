@@ -87,7 +87,7 @@ class Entry < ApplicationRecord
 
     clean_key_vals = URI.decode_www_form(uri.query).reject { |k, _| k.start_with?("utm_") }
     uri.query = URI.encode_www_form(clean_key_vals)
-    uri.to_s
+    uri.to_s.delete_suffix("?")
   end
 
   private

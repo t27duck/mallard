@@ -36,7 +36,7 @@ class EntryTest < ActiveSupport::TestCase
 
     entry = Entry.new(feed: @feed, url: "https://example.com/?utm_source=aaa&utm_medium=1")
 
-    assert_equal "https://example.com/?", entry.final_url
+    assert_equal "https://example.com/", entry.final_url
   end
 
   test "#final_url returns original url if strip tracking is on but there's no query" do
