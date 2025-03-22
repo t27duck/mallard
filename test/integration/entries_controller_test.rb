@@ -8,38 +8,6 @@ class EntriesControllerTest < ActionDispatch::IntegrationTest
     Entry.reindex
   end
 
-  test "should get unread entries" do
-    get unread_entries_url
-
-    assert_response :success
-    assert_select "a", entries(:unread).title
-  end
-
-  test "should be able to search entries" do
-    entry = entries(:unread2)
-    entry.update!(title: "searchable")
-
-    get unread_entries_url, params: { search: "searchable" }
-
-    assert_response :success
-
-    assert_select "a", entry.title
-  end
-
-  test "should get read entries" do
-    get read_entries_url
-
-    assert_response :success
-    assert_select "a", entries(:read).title
-  end
-
-  test "should get starred entries" do
-    get starred_entries_url
-
-    assert_response :success
-    assert_select "a", entries(:starred).title
-  end
-
   test "should update entry" do
     entry = entries(:one)
 

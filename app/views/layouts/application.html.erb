@@ -28,14 +28,14 @@
           <div class="flex items-center space-x-4 md:space-x-6">
             <%= link_to translate("headings.mallard"), root_path, class: "block shrink-0 text-white hover:text-gray-400" %>
             <div class="hidden sm:flex space-x-4">
-              <%= link_to unread_entries_path, class: nav_entry_class(@section, "unread") do %>
+              <%= link_to unread_path, class: nav_entry_class(@section, "unread") do %>
                 <%= translate("navigation.unread") %>
                 <span id="unread-count" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
                   <%= stats[:total_unread] %>
                 </span>
               <% end %>
-              <%= link_to translate("navigation.read"), read_entries_path, class: nav_entry_class(@section, "read") %>
-              <%= link_to starred_entries_path, class: nav_entry_class(@section, "starred") do %>
+              <%= link_to translate("navigation.read"), read_path, class: nav_entry_class(@section, "read") %>
+              <%= link_to starred_path, class: nav_entry_class(@section, "starred") do %>
                 <%= translate("navigation.starred") %>
                 <span id="starred-count" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
                   <%= stats[:total_starred] %>
@@ -74,14 +74,14 @@
         <!-- Mobile menu -->
         <div data-navbar-target="mobileMenu" class="hidden sm:hidden">
           <div class="pt-2 pb-3 space-y-1">
-            <%= link_to unread_entries_path, class: nav_entry_class(@section, nil) do %>
+            <%= link_to unread_path, class: nav_entry_class(@section, nil) do %>
               <%= translate("navigation.unread") %>
               <span id="mobile-unread-count" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
                 <%= stats[:total_unread] %>
               </span>
             <% end %>
-            <%= link_to translate("navigation.read"), read_entries_path, class: nav_entry_class(@section, "read") %>
-            <%= link_to starred_entries_path, class: nav_entry_class(@section, "starred") do %>
+            <%= link_to translate("navigation.read"), read_path, class: nav_entry_class(@section, "read") %>
+            <%= link_to starred_path, class: nav_entry_class(@section, "starred") do %>
               <%= translate("navigation.starred") %>
               <span id="mobile-starred-count" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
                 <%= stats[:total_starred] %>

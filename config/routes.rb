@@ -18,13 +18,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :entries, only: [:update] do
-    collection do
-      get :unread
-      get :read
-      get :starred
-    end
-  end
+  resources :entries, only: [:update]
+  resource :read, only: [:show]
+  resource :unread, only: [:show]
+  resource :starred, only: [:show]
 
-  root "entries#unread"
+  root "unreads#show"
 end

@@ -6,15 +6,13 @@ module ApplicationHelper
   end
 
   def search_form_path(args = nil)
-    return unread_entries_path(args) unless controller_name == "entries"
-
-    case action_name
-    when "read"
-      read_entries_path(args)
-    when "starred"
-      starred_entries_path(args)
+    case controller_name
+    when "reads"
+      read_path(args)
+    when "starreds"
+      starred_path(args)
     else
-      unread_entries_path(args)
+      unread_path(args)
     end
   end
 
