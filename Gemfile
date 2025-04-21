@@ -20,7 +20,7 @@ gem "turbo-rails"
 gem "stimulus-rails"
 # Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
 gem "tailwindcss-rails", "4.2.2"
-gem "tailwindcss-ruby", "~> 4.1.3"
+gem "tailwindcss-ruby", "~> 4.1.4"
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 gem "bcrypt", "~> 3.1.20"
 
