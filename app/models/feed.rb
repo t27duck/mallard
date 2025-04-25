@@ -4,7 +4,7 @@ require "net/http"
 
 class Feed < ApplicationRecord
   ADDITIONAL_UNREAD_ENTRIES_TO_KEEP = 5
-  has_many :entries, dependent: :destroy
+  has_many :entries, dependent: :destroy_async
 
   validates :title, :url, presence: true
 
