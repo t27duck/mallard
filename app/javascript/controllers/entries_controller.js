@@ -7,17 +7,19 @@ export default class extends Controller {
     window.addEventListener("resize", this.updateDimensions);
     this.updateDimensions()
 
-    window.addEventListener("keyup", this.keyPressed.bind(this));
+    this.pressedKey = this.keyPressed.bind(this)
+    window.addEventListener("keyup", this.pressedKey);
 
+    this.pageChanged = this.mutationCallback.bind(this)
     // While there is a turbo event for when applying stream changes start, there
     // is not one for when turbo finishes streams. Instead, we can monitor the
     // element that will hold an incoming entry and watch for dom changes in there.
-    this.observer = new MutationObserver(this.mutationCallback.bind(this))
+    this.observer = new MutationObserver(this.pageChanged)
   }
 
   disconnect() {
     window.removeEventListener("resize", this.updateDimensions);
-    window.removeEventListener("keyup", this.keyPressed)
+    window.removeEventListener("keyup", this.pressedKey)
 
     this.observer.disconnect()
   }
