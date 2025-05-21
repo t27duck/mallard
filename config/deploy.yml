@@ -44,7 +44,7 @@ builder:
 # Inject ENV variables into containers (secrets come from .kamal/secrets).
 env:
   clear:
-     RAILS_MASTER_KEY: '<%= ENV["RAILS_MASTER_KEY"] %>'
+     SECRET_KEY_BASE: '<%= ENV["SECRET_KEY_BASE"] %>'
 #    DB_HOST: 192.168.0.2
 #  secret:
 #    - RAILS_MASTER_KEY
@@ -69,7 +69,7 @@ volumes:
 # hitting 404 on in-flight requests. Combines all files from new and old
 # version inside the asset_path.
 #
-asset_path: /app/public/assets
+asset_path: /rails/public/assets
 
 # Configure rolling deploys by setting a wait time between batches of restarts.
 #
