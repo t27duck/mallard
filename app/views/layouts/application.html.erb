@@ -16,7 +16,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= preload_link_tag(asset_path("Inter-roman.latin.var.woff2")) %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload", integrity: true %>
 
     <%= javascript_importmap_tags %>
   </head>

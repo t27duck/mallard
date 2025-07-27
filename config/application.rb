@@ -37,5 +37,7 @@ module Mallard
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.assets.integrity_hash_algorithm = "sha384"
   end
 end
