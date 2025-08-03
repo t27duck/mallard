@@ -27,7 +27,7 @@ class FeedsController < ApplicationController
       @feed.fetch
       redirect_to feeds_path, notice: translate("flash.feed_created")
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -35,7 +35,7 @@ class FeedsController < ApplicationController
     if @feed.update(feed_params)
       redirect_to feeds_path
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

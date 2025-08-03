@@ -14,7 +14,7 @@ class SetupsController < ApplicationController
     if @user.save
       redirect_to root_path, notice: translate("flash.setup_complete")
     else
-      render :show, status: :unprocessable_entity
+      render :show, status: :unprocessable_content
     end
   end
 
