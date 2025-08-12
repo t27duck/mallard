@@ -35,6 +35,9 @@ Minitest/MultipleAssertions:
 Naming/BlockForwarding:
   Enabled: false
 
+Naming/PredicateMethod:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
 
