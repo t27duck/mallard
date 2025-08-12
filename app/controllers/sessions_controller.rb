@@ -29,6 +29,6 @@ class SessionsController < ApplicationController
   private
 
   def one_user_registered?
-    redirect_to setup_path if User.count.zero?
+    redirect_to setup_path if User.none?
   end
 end

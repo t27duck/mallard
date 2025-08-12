@@ -25,7 +25,7 @@ class SetupsController < ApplicationController
   end
 
   def one_user_registered?
-    return false unless User.count == 1
+    return false unless User.one?
 
     if authenticated?
       redirect_to root_path
