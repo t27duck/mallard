@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="turbo-prefetch" content="false">
@@ -23,7 +23,7 @@
 
   <body>
     <% if authenticated? %>
-      <nav class="bg-gray-800 <%= @sticky_navbar ? "fixed top-0 w-full" : nil %>" data-controller="navbar">
+      <nav class="bg-gray-800 <%= @sticky_navbar ? "fixed top-0 w-full" : nil %>" data-controller="navbar" aria-label="Main navigation">
         <div class="px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
           <div class="flex items-center space-x-4 md:space-x-6">
             <%= link_to translate("headings.mallard"), root_path, class: "block shrink-0 text-white hover:text-gray-400" %>
