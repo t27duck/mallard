@@ -14,13 +14,19 @@
   <% if feed.persisted? %>
     <div class="space-y-2">
       <%= f.label :title, class: "block text-sm font-medium text-gray-700" %>
-      <%= f.text_field :title, required: true, class: " w-full rounded-md border-gray-300" %>
+      <%= f.text_field :title, required: true, class: "w-full rounded-md border-gray-300" %>
     </div>
   <% end %>
 
   <div class="space-y-2">
     <%= f.label :url, class: "block text-sm font-medium text-gray-700" %>
-    <%= f.url_field :url, required: true, class: " w-full rounded-md border-gray-300" %>
+    <%= f.url_field :url, required: true, class: "w-full rounded-md border-gray-300" %>
+  </div>
+
+  <div class="space-y-2">
+    <%= f.label :entry_limit, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.number_field :entry_limit, required: true, min: 0, step: 1, class: "w-full rounded-md border-gray-300" %>
+    <p class="text-sm text-gray-500"><%= translate("help_texts.entry_limit") %></p>
   </div>
 
   <div class="flex">

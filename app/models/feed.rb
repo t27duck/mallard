@@ -7,6 +7,7 @@ class Feed < ApplicationRecord
   has_many :entries, dependent: :destroy_async
 
   validates :title, :url, presence: true
+  validates :entry_limit, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   def set_info
     if url.blank?
@@ -34,7 +35,6 @@ class Feed < ApplicationRecord
     return false if new_record?
     return false unless feed_object
 
-    incoming_entries = feed_object.entries
     incoming_entries.each do |entry|
       Entry.create_from_feedjira(id, entry)
     end
@@ -58,6 +58,14 @@ class Feed < ApplicationRecord
   delegate :count, to: :entries, prefix: true
 
   private
+
+  def incoming_entries
+    records = feed_object.entries
+    if entry_limit.positive?
+      records = records.select { |e| e.published.present? }.sort_by(&:published).last(entry_limit)
+    end
+    records
+  end
 
   def feed_object
     @feed_object ||= begin
