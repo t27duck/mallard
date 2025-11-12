@@ -65,3 +65,4 @@ end
 
 gem "feedjira"
 gem "nokogiri"
+gem "reactionview"
