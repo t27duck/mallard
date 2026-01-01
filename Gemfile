@@ -23,7 +23,7 @@ gem "tailwindcss-rails", "4.4.0"
 gem "tailwindcss-ruby", "~> 4.1.18"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-gem "bcrypt", "~> 3.1.20"
+gem "bcrypt", "~> 3.1.21"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: [:windows, :jruby]
