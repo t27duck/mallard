@@ -124,7 +124,7 @@ GEM
     herb (0.8.3-x86_64-linux-gnu)
     i18n (1.14.8)
       concurrent-ruby (~> 1.0)
-    importmap-rails (2.2.2)
+    importmap-rails (2.2.3)
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
@@ -311,7 +311,7 @@ GEM
     tailwindcss-ruby (4.1.18-aarch64-linux-gnu)
     tailwindcss-ruby (4.1.18-arm64-darwin)
     tailwindcss-ruby (4.1.18-x86_64-linux-gnu)
-    thor (1.4.0)
+    thor (1.5.0)
     thruster (0.1.17-aarch64-linux)
     thruster (0.1.17-arm64-darwin)
     thruster (0.1.17-x86_64-linux)
@@ -417,7 +417,7 @@ CHECKSUMS
   herb (0.8.3-arm64-darwin) sha256=f6844296fd9a0bd27e819ab29cdf2fc7b59eebd99373fbf60a35cd791bd7c67c
   herb (0.8.3-x86_64-linux-gnu) sha256=71fe9e86270b9c49accb35e70b30fa9167daa8ece78521a95663ed10f5f60388
   i18n (1.14.8) sha256=285778639134865c5e0f6269e0b818256017e8cde89993fdfcbfb64d088824a5
-  importmap-rails (2.2.2) sha256=729f5b1092f832780829ade1d0b46c7e53d91c556f06da7254da2977e93fe614
+  importmap-rails (2.2.3) sha256=7101be2a4dc97cf1558fb8f573a718404c5f6bcfe94f304bf1f39e444feeb16a
   io-console (0.8.2) sha256=d6e3ae7a7cc7574f4b8893b4fca2162e57a825b223a177b7afa236c5ef9814cc
   irb (1.16.0) sha256=2abe56c9ac947cdcb2f150572904ba798c1e93c890c256f8429981a7675b0806
   json (2.18.0) sha256=b10506aee4183f5cf49e0efc48073d7b75843ce3782c68dbeb763351c08fd505
@@ -489,7 +489,7 @@ CHECKSUMS
   tailwindcss-ruby (4.1.18-aarch64-linux-gnu) sha256=e10f9560bccddbb4955fd535b3bcc8c7071a7df07404dd473a23fa791ec4e46b
   tailwindcss-ruby (4.1.18-arm64-darwin) sha256=f940531d5a030c566d3d616004235bcd4c361abdd328f7d6c7e3a953a32e0155
   tailwindcss-ruby (4.1.18-x86_64-linux-gnu) sha256=e0a2220163246fe0126c5c5bafb95bc6206e7d21fce2a2878fd9c9a359137534
-  thor (1.4.0) sha256=8763e822ccb0f1d7bee88cde131b19a65606657b847cc7b7b4b82e772bcd8a3d
+  thor (1.5.0) sha256=e3a9e55fe857e44859ce104a84675ab6e8cd59c650a49106a05f55f136425e73
   thruster (0.1.17-aarch64-linux) sha256=1b3a34b2814185c2aeaf835b5ecff5348cdcf8e77809f7a092d46e4b962a16ba
   thruster (0.1.17-arm64-darwin) sha256=75da66fc4a0f012f9a317f6362f786a3fa953879a3fa6bed8deeaebf1c1d66ec
   thruster (0.1.17-x86_64-linux) sha256=77b8f335075bd4ece7631dc84a19a710a1e6e7102cbce147b165b45851bdfcd3
