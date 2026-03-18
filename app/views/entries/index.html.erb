@@ -10,8 +10,8 @@
         </div>
       <% end %>
       <div class="space-x-3">
-        <%= link_to "&laquo; #{translate("buttons.prev")}".html_safe, "#", class: "button-primary", data: { action: "click->entries#prev" } %>
-        <%= link_to "#{translate("buttons.next")} &raquo;".html_safe, "#", class: "button-primary", data: { action: "click->entries#next" } %>
+        <%= button_tag "« #{translate("buttons.prev")}", type: "button", class: "button-primary cursor-pointer", data: { action: "click->entries#prev" } %>
+        <%= button_tag "#{translate("buttons.next")} »", type: "button", class: "button-primary cursor-pointer", data: { action: "click->entries#next" } %>
       </div>
     </div>
   </div>
