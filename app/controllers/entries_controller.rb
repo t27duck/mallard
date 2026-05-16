@@ -16,6 +16,6 @@ class EntriesController < ApplicationController
   end
 
   def fetch_entry
-    @entry = Entry.find(params[:id])
+    @entry = Entry.find(params.expect(:id))
   end
 end

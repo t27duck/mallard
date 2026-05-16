@@ -47,7 +47,7 @@ class FeedsController < ApplicationController
   private
 
   def fetch_feed
-    @feed = Feed.find(params[:id])
+    @feed = Feed.find(params.expect(:id))
   end
 
   def feed_params
