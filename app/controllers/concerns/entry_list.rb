@@ -23,7 +23,7 @@ module EntryList
 
   def fetch_entries(entries)
     entries = entries.full_search(params[:search]) if params[:search].present?
-    entries = entries.limit(ENTRIES_PER_PAGE).offset(ENTRIES_PER_PAGE * params[:page].to_i) if @pagination # rubocop:disable Rails/StrongParametersExpect
+    entries = entries.limit(ENTRIES_PER_PAGE).offset(ENTRIES_PER_PAGE * params[:page].to_i) if @pagination
     entries.includes(:feed).order(:published_at).select(:id, :title, :feed_id)
   end
 
