@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 enable_integrity!
 
 # Pin npm packages by running ./bin/importmap

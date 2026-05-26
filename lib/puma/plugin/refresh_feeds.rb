@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require "puma/plugin"
 
 Puma::Plugin.create do

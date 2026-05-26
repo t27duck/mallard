@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Entry < ApplicationRecord
   SEARCHABLE_ATTRIBUTES = [:title, :content].freeze
   belongs_to :feed

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative "../lib/puma/plugin/refresh_feeds"
 
 # This configuration file will be evaluated by Puma. The top-level methods that

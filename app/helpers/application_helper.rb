@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module ApplicationHelper
   def nav_entry_class(section, target)
     section == target ? "nav-entry-active" : "nav-entry"

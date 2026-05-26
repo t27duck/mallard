@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module EntryList
   ENTRIES_PER_PAGE = 10
 

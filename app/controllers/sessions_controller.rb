@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class SessionsController < ApplicationController
   allow_unauthenticated_access only: [:new, :create]
   before_action :one_user_registered?

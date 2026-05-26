@@ -7,6 +7,8 @@ AllCops:
   TargetRubyVersion: 4.0
   NewCops: enable
   SuggestExtensions: false
+  # This configuration should be kept in sync with `config/bootsnap.rb`
+  StringLiteralsFrozenByDefault: true
   Exclude:
     - "db/**/*"
     - "bin/**/*"
@@ -46,6 +48,9 @@ Style/Documentation:
 
 Style/EmptyMethod:
   Enabled: false
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never
 
 Style/HashSyntax:
   EnforcedStyle: no_mixed_keys

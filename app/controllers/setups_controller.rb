@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class SetupsController < ApplicationController
   allow_unauthenticated_access only: [:show, :create]
 

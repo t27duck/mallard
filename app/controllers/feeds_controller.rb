@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class FeedsController < ApplicationController
   before_action :fetch_feed, only: [:fetch, :edit, :update, :destroy]
   before_action :set_section
