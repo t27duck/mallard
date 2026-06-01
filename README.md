@@ -16,9 +16,10 @@ It's a Rails with Hotwire application designed to run on a Unix-based server or 
 * If wanting to run in production mode:
   * Be sure an environment variable called `SECRET_KEY_BASE` is set for cookie signing
   * Set the environment variable `RAILS_ENV` to "production"
-  * Run `rake asset:precompile` to compile CSS
+  * Run `rails asset:precompile` to compile CSS
+  * Alternatively, Kamal may be used. Configure a `.env` file and fill in values set in `config/deploy.yml'.
 * Run `rake db:create db:schema:load` to create the database
-  * If updating, run `rake db:migrate` to catch the database structure up to date.
+  * If updating, run `rails db:migrate` to catch the database structure up to date.
 * Run `rails s` to start CSS build watching (dev mode puma plugin) and the web server (default port 3000)
 
 ## Entry fetching and maintenance
