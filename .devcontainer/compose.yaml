@@ -8,6 +8,13 @@ services:
 
     volumes:
     - ../..:/workspaces:cached
+    # Claude Code's config dir (auth, settings, history) lives on a named volume
+    # so it survives container restarts and rebuilds.
+    - claude-config:/home/vscode/.claude
+    # Read-only view of the host's Claude Code config. bin/setup copies the
+    # credentials and settings out of these into the volume above.
+    - ${HOME}/.claude:/mnt/host-claude:ro
+    - ${HOME}/.claude.json:/mnt/host-claude.json:ro
 
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
@@ -24,3 +31,5 @@ services:
     image: selenium/standalone-chromium
     restart: unless-stopped
 
+volumes:
+  claude-config:

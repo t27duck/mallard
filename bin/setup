@@ -1,10 +1,107 @@
 #!/usr/bin/env ruby
 require "fileutils"
+require "json"
 
 APP_ROOT = File.expand_path("..", __dir__)
 
 def system!(*args)
   system(*args, exception: true)
+end
+
+# Read-only mounts of the host's Claude Code config, set up in .devcontainer/compose.yaml.
+HOST_CLAUDE_DIR = "/mnt/host-claude"
+HOST_CLAUDE_JSON = "/mnt/host-claude.json"
+
+# Claude Code's config dir inside the container. devcontainer.json points this at
+# a named volume, so what lands here persists between starts.
+CLAUDE_CONFIG_DIR = File.expand_path(ENV.fetch("CLAUDE_CONFIG_DIR", "~/.claude"))
+
+# Copied only when the container doesn't already have its own copy, so changes
+# made inside the container aren't clobbered on the next run.
+CLAUDE_CONFIG_ENTRIES = ["settings.json", "CLAUDE.md", "agents", "commands", "skills"]
+
+CLAUDE_BIN = File.expand_path("~/.local/bin/claude")
+
+def install_claude_code
+  if File.exist?(CLAUDE_BIN)
+    puts "\n== Claude Code already installed =="
+  else
+    puts "\n== Installing Claude Code =="
+    # pipefail so a curl failure isn't masked by bash's success.
+    system! "bash", "-c", "set -o pipefail; curl -fsSL https://claude.ai/install.sh | bash"
+  end
+
+  # Claude Code seeds .claude.json the first time the binary runs. Doing that
+  # here, before the config copy, means the merge lands on top of that file
+  # instead of racing it and being overwritten.
+  system CLAUDE_BIN, "--version", out: File::NULL, err: File::NULL
+end
+
+# Copies the host's login and settings into the container's Claude Code config directory.
+def copy_claude_config
+  unless File.directory?(HOST_CLAUDE_DIR)
+    puts "No host config mounted at #{HOST_CLAUDE_DIR}; skipping."
+    return
+  end
+
+  FileUtils.mkdir_p CLAUDE_CONFIG_DIR
+
+  copy_claude_credentials
+  copy_claude_account
+
+  CLAUDE_CONFIG_ENTRIES.each do |entry|
+    source = File.join(HOST_CLAUDE_DIR, entry)
+    target = File.join(CLAUDE_CONFIG_DIR, entry)
+    next unless File.exist?(source)
+    next if File.exist?(target)
+
+    FileUtils.cp_r source, target
+    puts "Copied #{entry}"
+  end
+end
+
+# Refreshed on every run so a rebuilt container picks up the host's current token.
+def copy_claude_credentials
+  source = File.join(HOST_CLAUDE_DIR, ".credentials.json")
+
+  unless File.exist?(source)
+    puts "No host credentials found; run `claude` and sign in manually."
+    return
+  end
+
+  target = File.join(CLAUDE_CONFIG_DIR, ".credentials.json")
+  FileUtils.cp source, target
+  FileUtils.chmod 0o600, target
+  puts "Copied credentials"
+end
+
+# .claude.json carries the account and onboarding state. Its project list points
+# at host paths that mean nothing in here, so it gets dropped. Claude Code writes
+# this file itself on first run, so the host's values go *underneath* whatever is
+# already there: keys the container owns (install method, machine ID, first start)
+# win, and everything the host knows but a fresh container doesn't -- most
+# importantly hasCompletedOnboarding -- is filled in. Merging rather than bailing
+# out keeps this repairable: if Claude Code rewrites the file from its own state,
+# the next run puts the missing keys back.
+def copy_claude_account
+  # initializeCommand touches the host file, so on a machine that has never run
+  # Claude Code it exists but is empty. That is a normal first run, not an error.
+  host_config = File.exist?(HOST_CLAUDE_JSON) ? File.read(HOST_CLAUDE_JSON).strip : ""
+  return if host_config.empty?
+
+  target = File.join(CLAUDE_CONFIG_DIR, ".claude.json")
+  current = File.exist?(target) ? JSON.parse(File.read(target)) : {}
+
+  config = JSON.parse(host_config)
+  config.delete("projects")
+  merged = config.merge(current)
+  return if merged == current
+
+  File.write(target, JSON.pretty_generate(merged))
+  FileUtils.chmod 0o600, target
+  puts "Copied account settings"
+rescue JSON::ParserError
+  puts "Could not read .claude.json as JSON; skipping account settings."
 end
 
 FileUtils.chdir APP_ROOT do
@@ -26,6 +123,13 @@ FileUtils.chdir APP_ROOT do
 
   puts "\n== Removing old logs and tempfiles =="
   system! "bin/rails log:clear tmp:clear"
+  
+  if ARGV.include?("--install-claude-code")
+    install_claude_code
+
+    puts "\n== Copying Claude Code config from the host =="
+    copy_claude_config
+  end
 
   unless ARGV.include?("--skip-server")
     puts "\n== Starting development server =="

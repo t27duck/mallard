@@ -362,6 +362,7 @@ DEPENDENCIES
   debug
   feedjira
   importmap-rails
+  json (< 3)
   kamal
   minitest-mock
   nokogiri
