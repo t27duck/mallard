@@ -67,4 +67,4 @@ gem "feedjira"
 gem "nokogiri"
 gem "reactionview"
 
-gem "json", "< 3"
+gem "json", "< 4"
