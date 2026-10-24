@@ -5,16 +5,26 @@ on:
   push:
     branches: [ main ]
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
-  scan_ruby:
+  scan:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v7.0.1
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Set up Ruby
-        uses: ruby/setup-ruby@v1.334.0
+        uses: ruby/setup-ruby@26e5b7d197ebf60545ee9667bcbace0be11ccaec # v1.334.0
         with:
           ruby-version: .ruby-version
           bundler-cache: true
@@ -23,32 +33,25 @@ jobs:
         run: bin/brakeman --no-pager
 
       - name: Scan for known security vulnerabilities in gems used
+        if: ${{ !cancelled() }}
         run: bin/bundler-audit
 
-  scan_js:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v7.0.1
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1.334.0
-        with:
-          ruby-version: .ruby-version
-          bundler-cache: true
-
       - name: Scan for security vulnerabilities in JavaScript dependencies
+        if: ${{ !cancelled() }}
         run: bin/importmap audit
 
-  lint_ruby:
+  lint:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v7.0.1
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Set up Ruby
-        uses: ruby/setup-ruby@v1.334.0
+        uses: ruby/setup-ruby@26e5b7d197ebf60545ee9667bcbace0be11ccaec # v1.334.0
         with:
           ruby-version: .ruby-version
           bundler-cache: true
@@ -56,44 +59,22 @@ jobs:
       - name: Lint code for consistent style
         run: bin/rubocop -f github
 
-  lint_erb:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v7.0.1
-
       - name: Lint erb for consistent style
-        run: npx --yes @herb-tools/linter
+        if: ${{ !cancelled() }}
+        run: npx --yes @herb-tools/linter@0.11.1
 
   test:
     runs-on: ubuntu-latest
-
-    # services:
-      # postgres:
-      #   image: postgres
-      #   env:
-      #     POSTGRES_USER: postgres
-      #     POSTGRES_PASSWORD: postgres
-      #   ports:
-      #     - 5432:5432
-      #   options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
-
-      # redis:
-      #   image: redis
-      #   ports:
-      #     - 6379:6379
-      #   options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
+    timeout-minutes: 15
 
     steps:
-      - name: Install packages
-        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y google-chrome-stable curl
-        # run: sudo apt-get update && sudo apt-get install --no-install-recommends -y google-chrome-stable curl libvips postgresql-client libpq-dev
-
       - name: Checkout code
-        uses: actions/checkout@v7.0.1
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Set up Ruby
-        uses: ruby/setup-ruby@v1.334.0
+        uses: ruby/setup-ruby@26e5b7d197ebf60545ee9667bcbace0be11ccaec # v1.334.0
         with:
           ruby-version: .ruby-version
           bundler-cache: true
@@ -101,13 +82,11 @@ jobs:
       - name: Run tests
         env:
           RAILS_ENV: test
-          # DATABASE_URL: postgres://postgres:postgres@localhost:5432
-          # REDIS_URL: redis://localhost:6379/0
         timeout-minutes: 5
         run: bin/rails db:test:prepare test test:system
 
       - name: Keep screenshots from failed system tests
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: failure()
         with:
           name: screenshots
