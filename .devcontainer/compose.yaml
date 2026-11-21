@@ -7,7 +7,7 @@ services:
       dockerfile: .devcontainer/Dockerfile
 
     volumes:
-    - ../..:/workspaces:cached
+    - ../../mallard:/workspaces/mallard:cached
     # Claude Code's config dir (auth, settings, history) lives on a named volume
     # so it survives container restarts and rebuilds.
     - claude-config:/home/vscode/.claude
