@@ -1,4 +1,5 @@
 require "test_helper"
+require_relative "support/capybara_chrome_storage_patch"
 
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   if ENV["CAPYBARA_SERVER_PORT"]
